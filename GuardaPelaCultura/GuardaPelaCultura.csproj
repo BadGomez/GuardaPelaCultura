@@ -6,6 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\01.jpg" />
+    <Content Remove="wwwroot\img\02.jpg" />
+    <Content Remove="wwwroot\img\03.jpg" />
+    <Content Remove="wwwroot\img\04.jpg" />
+    <Content Remove="wwwroot\img\05.jpg" />
+    <Content Remove="wwwroot\img\06.jpg" />
+    <Content Remove="wwwroot\img\07.jpg" />
+    <Content Remove="wwwroot\img\08.jpg" />
+    <Content Remove="wwwroot\img\about-01.jpg" />
+    <Content Remove="wwwroot\img\about-02.jpg" />
+    <Content Remove="wwwroot\img\about-03.jpg" />
+    <Content Remove="wwwroot\img\about-04.jpg" />
+    <Content Remove="wwwroot\img\about-05.jpg" />
+    <Content Remove="wwwroot\img\about-06.jpg" />
+    <Content Remove="wwwroot\img\img-01.jpg" />
+    <Content Remove="wwwroot\img\OBorges.PNG" />
+    <Content Remove="wwwroot\img\Simple..PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
