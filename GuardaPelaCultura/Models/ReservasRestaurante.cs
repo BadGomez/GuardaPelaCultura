@@ -13,6 +13,6 @@ namespace GuardaPelaCultura.Models
 
         public string  NumeroTelefone{ get; set; }
 
-        public string Descrição { get; set; }
+        public string Descricao { get; set; }
     }
 }
