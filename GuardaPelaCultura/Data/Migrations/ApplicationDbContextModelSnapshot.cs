@@ -26,7 +26,7 @@ namespace GuardaPelaCultura.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descrição")
+                    b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeRestaurante")
@@ -38,6 +38,27 @@ namespace GuardaPelaCultura.Data.Migrations
                     b.HasKey("ReservasRestauranteId");
 
                     b.ToTable("ReservasRestaurante");
+                });
+
+            modelBuilder.Entity("GuardaPelaCultura.Models.ReservasTakeAway", b =>
+                {
+                    b.Property<int>("ReservasTakeAwayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeRestaurante")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroTelefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReservasTakeAwayId");
+
+                    b.ToTable("ReservasTakeAway");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

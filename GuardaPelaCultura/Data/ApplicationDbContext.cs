@@ -14,5 +14,6 @@ namespace GuardaPelaCultura.Data
         {
         }
         public DbSet<GuardaPelaCultura.Models.ReservasRestaurante> ReservasRestaurante { get; set; }
+        public DbSet<GuardaPelaCultura.Models.ReservasTakeAway> ReservasTakeAway { get; set; }
     }
 }
