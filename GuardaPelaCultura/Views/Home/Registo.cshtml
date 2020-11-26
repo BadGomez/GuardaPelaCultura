@@ -1,0 +1,39 @@
+﻿@model RegistarMesa
+
+@{
+    ViewData["Title"] = "Registo";
+}
+
+<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Registe-se para reservar mesa</h2>
+
+<form asp-action="Register" method="post">
+    <div class="form-group">
+        <div asp-validation-summary="All" class="alert-danger text-danger"></div>
+
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" class="form-control" placeholder="Escreva o seu nome" />
+
+        <label asp-for="Telemovel">Telemóvel</label>
+        <input asp-for="Telemovel" class="form-control" placeholder="Escreva o seu numero de telefone" />
+
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Escreva o seu email" />
+
+        <label asp-for="NumeroPessoas">Número de pessoas, no máximo 6 devido ás restrições do covid-19</label>
+        <select asp-for="NumeroPessoas" class="form-control">
+            <option value="1"> 1 pessoa</option>
+            <option value="2"> 2 pessoas</option>
+            <option value="3"> 3 pessoas</option>
+            <option value="4"> 4 pessoas</option>
+            <option value="5"> 5 pessoas</option>
+            <option value="6"> 6 pessoas</option>
+            <option value="7">Agregado Maior que 6</option>
+        </select>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+</form>
+
+
