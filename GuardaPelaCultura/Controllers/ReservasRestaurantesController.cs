@@ -12,9 +12,9 @@ namespace GuardaPelaCultura.Controllers
 {
     public class ReservasRestaurantesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GuardaPelaCulturaContext _context;
 
-        public ReservasRestaurantesController(ApplicationDbContext context)
+        public ReservasRestaurantesController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }

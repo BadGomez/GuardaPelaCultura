@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GuardaPelaCultura.Data.Migrations
+namespace GuardaPelaCultura.Migrations
 {
-    public partial class reservasMigration : Migration
+    public partial class ReservasRestauranteMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace GuardaPelaCultura.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomeRestaurante = table.Column<string>(nullable: true),
                     NumeroTelefone = table.Column<string>(nullable: true),
-                    Descrição = table.Column<string>(nullable: true)
+                    Descricao = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
