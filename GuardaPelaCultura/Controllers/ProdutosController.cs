@@ -12,9 +12,9 @@ namespace GuardaPelaCultura.Controllers
 {
     public class ProdutosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GuardaPelaCulturaContext _context;
 
-        public ProdutosController(ApplicationDbContext context)
+        public ProdutosController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
