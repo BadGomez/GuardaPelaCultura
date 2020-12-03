@@ -53,13 +53,45 @@ https://templatemo.com/tm-539-simple-house
                 <div id="tm-gallery-page-restaurantes" class="tm-gallery-page">
                     <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
                         <figure>
-                            <img src="img/BolaDePrata.PNG" alt="Image" class="img-fluid tm-gallery-img" />
+                            <img src="img/BolaDePrata.PNG" alt="Image" style="width:100%" class="img-fluid tm-gallery-img  hover-shadow cursor" onclick="openModal();currentSlide(1)"/>
                             <figcaption class="mb-4">
                                 <h4 class="tm-gallery-title">Bola de Prata</h4>
                                 <p class="tm-gallery-description">Um espaço onde se pode jogar uma partida de snooker, setas ou matraquilhos assim como . . .</p>
                                 <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                                <div id="myModal" class="modal">
+                                    <span class="close cursor" onclick="closeModal()">&times;</span>
+                                    <div class="modal-content">
+
+                                        <div class="mySlides">
+                                            <div class="numbertext">1 / 4</div>
+                                            <img src="img/BolaDePrata.PNG" style="width:100%">
+                                        </div>
+
+                                        <div class="mySlides">
+                                            <div class="numbertext">2 / 4</div>
+                                            <img src="img/NobreVinhosETal.PNG" style="width:100%">
+                                        </div>
+
+                                        <div class="mySlides">
+                                            <div class="numbertext">3 / 4</div>
+                                            <img src="img/OAlbertino.PNG" style="width:100%">
+                                        </div>
+
+                                        <div class="mySlides">
+                                            <div class="numbertext">4 / 4</div>
+                                            <img src="img/Colmeia.PNG" style="width:100%">
+                                        </div>
+                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                                        <div class="caption-container">
+                                            <p id="caption"></p>
+                                        </div>
+                                        <h2 class="pt-5">Tudo o que for para escrever Aqui</h2>
+                                    </div>
+                                </div>
                             </figcaption>
-                        </figure>
+                         </figure>
                     </article>
                     <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
                         <figure>
@@ -414,6 +446,43 @@ https://templatemo.com/tm-539-simple-house
                 $(this).addClass("active");
             });
         });
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
     </script>
 </body>
 </html>
