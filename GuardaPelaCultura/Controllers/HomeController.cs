@@ -26,6 +26,10 @@ namespace GuardaPelaCultura.Controllers
         {
             return View();
         }
+        public IActionResult Contacts()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
