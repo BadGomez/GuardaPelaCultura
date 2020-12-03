@@ -12,9 +12,9 @@ namespace GuardaPelaCultura.Controllers
 {
     public class ReservasTakeAwaysController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GuardaPelaCulturaContext _context;
 
-        public ReservasTakeAwaysController(ApplicationDbContext context)
+        public ReservasTakeAwaysController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
@@ -54,7 +54,7 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasTakeAwayId,NomeRestaurante,NumeroTelefone,Descricao")] ReservasTakeAway reservasTakeAway)
+        public async Task<IActionResult> Create([Bind("ReservasTakeAwayId,NomeRestaurante,Nome,NumeroTelefone,Descricao")] ReservasTakeAway reservasTakeAway)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasTakeAwayId,NomeRestaurante,NumeroTelefone,Descricao")] ReservasTakeAway reservasTakeAway)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasTakeAwayId,NomeRestaurante,Nome,NumeroTelefone,Descricao")] ReservasTakeAway reservasTakeAway)
         {
             if (id != reservasTakeAway.ReservasTakeAwayId)
             {
