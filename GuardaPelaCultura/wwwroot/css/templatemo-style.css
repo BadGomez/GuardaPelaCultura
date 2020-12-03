@@ -778,8 +778,7 @@ address {
   padding-top: 40px;
 }
 
-/* https://www.w3schools.com/howto/howto_js_accordion.asp */
-/* Style the buttons that are used to open and close the accordion panel */
+
 .accordion {
   font-size: 1.2rem;
   font-family: 'Open Sans', Helevetica, Arial, sans-serif;
@@ -796,7 +795,7 @@ address {
   transition: 0.4s;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
 .accordion.active, .accordion:hover {
   color: #09C;
 }
@@ -841,7 +840,7 @@ address {
   content: '\f0d7';
 }
 
-/* Style the accordion panel. Note: hidden by default */
+
 .panel {
   background-color: white;
   max-height: 0;
@@ -851,4 +850,115 @@ address {
 
 .panel p {
   padding: 5px 20px 30px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: black;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+        color: #999;
+        text-decoration: none;
+        cursor: pointer;
+}
+
+.mySlides {
+    display: none;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.caption-container {
+    text-align: center;
+    background-color: black;
+    padding: 2px 16px;
+    color: white;
+}
+.demo {
+    opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+        opacity: 1;
+    }
+
+img.hover-shadow {
+    transition: 0.3s;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
