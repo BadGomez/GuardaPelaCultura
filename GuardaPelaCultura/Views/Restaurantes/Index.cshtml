@@ -1,0 +1,65 @@
+﻿@model IEnumerable<GuardaPelaCultura.Models.Restaurantes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeRestaurante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroTelefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LugaresRestaurante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MesasRestaurante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailRestaurante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalizacaoRestaurante)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeRestaurante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroTelefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LugaresRestaurante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MesasRestaurante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailRestaurante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalizacaoRestaurante)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RestaurantesId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RestaurantesId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RestaurantesId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
