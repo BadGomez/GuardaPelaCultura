@@ -54,7 +54,7 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,NomeRestaurante,NumeroTelefone,Descricao")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,NomeRestaurante,Nome,NumeroTelefone,Descricao")] ReservasRestaurante reservasRestaurante)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,NomeRestaurante,NumeroTelefone,Descricao")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,NomeRestaurante,Nome,NumeroTelefone,Descricao")] ReservasRestaurante reservasRestaurante)
         {
             if (id != reservasRestaurante.ReservasRestauranteId)
             {
