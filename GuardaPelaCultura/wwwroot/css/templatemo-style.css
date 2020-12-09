@@ -909,7 +909,7 @@ address {
 .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 25%;
     width: auto;
     padding: 16px;
     margin-top: -50px;

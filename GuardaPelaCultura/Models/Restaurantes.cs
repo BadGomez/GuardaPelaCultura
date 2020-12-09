@@ -24,7 +24,6 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "É necessário Inserir o Numero de Mesas do Restaurante")]
         public int MesasRestaurante { get; set; }
 
-
         [Required(ErrorMessage = "É necessário o Email do Restaurante!")]
         [EmailAddress(ErrorMessage = "Email Inválido")]
         public String  EmailRestaurante { get; set; }
@@ -32,7 +31,5 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "É necessário a Localização do Restaurante!")]
         [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public String LocalizacaoRestaurante { get; set; }
-
-
     }
 }
