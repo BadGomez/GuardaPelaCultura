@@ -2,7 +2,7 @@
 
 namespace GuardaPelaCultura.Migrations
 {
-    public partial class ReservasRestaurantesMigration : Migration
+    public partial class RestaurantesMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20201210094232_ReservasRestaurantesMigration")]
-    partial class ReservasRestaurantesMigration
+    [Migration("20201210101324_ProdutosMigration")]
+    partial class ProdutosMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,6 +113,11 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HorarioRestaurante")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
                     b.Property<string>("LocalizacaoRestaurante")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)")
@@ -133,6 +138,11 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
+
+                    b.Property<string>("TextoDescritivoRestaurante")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.HasKey("RestaurantesId");
 
