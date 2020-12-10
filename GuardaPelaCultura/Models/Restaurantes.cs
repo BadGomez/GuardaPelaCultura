@@ -31,5 +31,13 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "É necessário a Localização do Restaurante!")]
         [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public String LocalizacaoRestaurante { get; set; }
+
+        [Required(ErrorMessage = "É necessário o TextoDescritivo do Restaurante!")]
+        [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
+        public String TextoDescritivoRestaurante { get; set; }
+
+        [Required(ErrorMessage = "É necessário o Horário de Funcionamento do Restaurante!")]
+        [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
+        public String HorarioRestaurante { get; set; }
     }
 }

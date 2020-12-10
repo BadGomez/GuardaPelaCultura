@@ -46,11 +46,18 @@ namespace GuardaPelaCultura.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
+
                     b.Property<string>("NomeRestaurante")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroTelefone")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(9)")
+                        .HasMaxLength(9);
 
                     b.HasKey("ReservasRestauranteId");
 
@@ -95,6 +102,11 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HorarioRestaurante")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
                     b.Property<string>("LocalizacaoRestaurante")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)")
@@ -115,6 +127,11 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
+
+                    b.Property<string>("TextoDescritivoRestaurante")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.HasKey("RestaurantesId");
 
