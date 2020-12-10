@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20201210101058_RestaurantesMigration")]
-    partial class RestaurantesMigration
+    [Migration("20201210110655_EmentaMigration")]
+    partial class EmentaMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,20 +21,33 @@ namespace GuardaPelaCultura.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GuardaPelaCultura.Models.Produtos", b =>
+            modelBuilder.Entity("GuardaPelaCultura.Models.Ementa", b =>
                 {
-                    b.Property<int>("ProdutosId")
+                    b.Property<int>("EmentaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DescricaoProduto")
+                    b.Property<string>("DescricaoEmenta")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomeProduto")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NomeEmenta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
-                    b.HasKey("ProdutosId");
+                    b.Property<float>("PrecoEmenta")
+                        .HasColumnType("real");
+
+                    b.Property<int>("QuantidadeEmenta")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestaurantesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmentaId");
+
+                    b.HasIndex("RestaurantesId");
 
                     b.ToTable("Produtos");
                 });
@@ -147,6 +160,15 @@ namespace GuardaPelaCultura.Migrations
                     b.HasKey("RestaurantesId");
 
                     b.ToTable("Restaurantes");
+                });
+
+            modelBuilder.Entity("GuardaPelaCultura.Models.Ementa", b =>
+                {
+                    b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
+                        .WithMany()
+                        .HasForeignKey("RestaurantesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GuardaPelaCultura.Models.ReservasRestaurante", b =>

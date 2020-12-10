@@ -10,22 +10,23 @@ using GuardaPelaCultura.Models;
 
 namespace GuardaPelaCultura.Controllers
 {
-    public class ProdutosController : Controller
+    public class EmentasController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
 
-        public ProdutosController(GuardaPelaCulturaContext context)
+        public EmentasController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
 
-        // GET: Produtos
+        // GET: Ementas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Produtos.ToListAsync());
+            var guardaPelaCulturaContext = _context.Produtos.Include(e => e.Restaurantes);
+            return View(await guardaPelaCulturaContext.ToListAsync());
         }
 
-        // GET: Produtos/Details/5
+        // GET: Ementas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var produtos = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.ProdutosId == id);
-            if (produtos == null)
+            var ementa = await _context.Produtos
+                .Include(e => e.Restaurantes)
+                .FirstOrDefaultAsync(m => m.EmentaId == id);
+            if (ementa == null)
             {
                 return NotFound();
             }
 
-            return View(produtos);
+            return View(ementa);
         }
 
-        // GET: Produtos/Create
+        // GET: Ementas/Create
         public IActionResult Create()
         {
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
             return View();
         }
 
-        // POST: Produtos/Create
+        // POST: Ementas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdutosId,NomeProduto,DescricaoProduto")] Produtos produtos)
+        public async Task<IActionResult> Create([Bind("EmentaId,NomeEmenta,DescricaoEmenta,PrecoEmenta,QuantidadeEmenta,RestaurantesId")] Ementa ementa)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(produtos);
+                _context.Add(ementa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(produtos);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", ementa.RestaurantesId);
+            return View(ementa);
         }
 
-        // GET: Produtos/Edit/5
+        // GET: Ementas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var produtos = await _context.Produtos.FindAsync(id);
-            if (produtos == null)
+            var ementa = await _context.Produtos.FindAsync(id);
+            if (ementa == null)
             {
                 return NotFound();
             }
-            return View(produtos);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", ementa.RestaurantesId);
+            return View(ementa);
         }
 
-        // POST: Produtos/Edit/5
+        // POST: Ementas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdutosId,NomeProduto,DescricaoProduto")] Produtos produtos)
+        public async Task<IActionResult> Edit(int id, [Bind("EmentaId,NomeEmenta,DescricaoEmenta,PrecoEmenta,QuantidadeEmenta,RestaurantesId")] Ementa ementa)
         {
-            if (id != produtos.ProdutosId)
+            if (id != ementa.EmentaId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace GuardaPelaCultura.Controllers
             {
                 try
                 {
-                    _context.Update(produtos);
+                    _context.Update(ementa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdutosExists(produtos.ProdutosId))
+                    if (!EmentaExists(ementa.EmentaId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(produtos);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", ementa.RestaurantesId);
+            return View(ementa);
         }
 
-        // GET: Produtos/Delete/5
+        // GET: Ementas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var produtos = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.ProdutosId == id);
-            if (produtos == null)
+            var ementa = await _context.Produtos
+                .Include(e => e.Restaurantes)
+                .FirstOrDefaultAsync(m => m.EmentaId == id);
+            if (ementa == null)
             {
                 return NotFound();
             }
 
-            return View(produtos);
+            return View(ementa);
         }
 
-        // POST: Produtos/Delete/5
+        // POST: Ementas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var produtos = await _context.Produtos.FindAsync(id);
-            _context.Produtos.Remove(produtos);
+            var ementa = await _context.Produtos.FindAsync(id);
+            _context.Produtos.Remove(ementa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProdutosExists(int id)
+        private bool EmentaExists(int id)
         {
-            return _context.Produtos.Any(e => e.ProdutosId == id);
+            return _context.Produtos.Any(e => e.EmentaId == id);
         }
     }
 }

@@ -2,24 +2,10 @@
 
 namespace GuardaPelaCultura.Migrations
 {
-    public partial class InicialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Produtos",
-                columns: table => new
-                {
-                    ProdutosId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeProduto = table.Column<string>(nullable: true),
-                    DescricaoProduto = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Produtos", x => x.ProdutosId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "ReservasTakeAway",
                 columns: table => new
@@ -57,6 +43,29 @@ namespace GuardaPelaCultura.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    EmentaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeEmenta = table.Column<string>(maxLength: 1000, nullable: false),
+                    DescricaoEmenta = table.Column<string>(nullable: true),
+                    PrecoEmenta = table.Column<float>(nullable: false),
+                    QuantidadeEmenta = table.Column<int>(nullable: false),
+                    RestaurantesId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.EmentaId);
+                    table.ForeignKey(
+                        name: "FK_Produtos_Restaurantes_RestaurantesId",
+                        column: x => x.RestaurantesId,
+                        principalTable: "Restaurantes",
+                        principalColumn: "RestaurantesId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ReservasRestaurante",
                 columns: table => new
                 {
@@ -79,6 +88,11 @@ namespace GuardaPelaCultura.Migrations
                         principalColumn: "RestaurantesId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produtos_RestaurantesId",
+                table: "Produtos",
+                column: "RestaurantesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReservasRestaurante_RestaurantesId",

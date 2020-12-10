@@ -2,7 +2,7 @@
 
 namespace GuardaPelaCultura.Migrations
 {
-    public partial class ProdutosMigration : Migration
+    public partial class EmentaMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
