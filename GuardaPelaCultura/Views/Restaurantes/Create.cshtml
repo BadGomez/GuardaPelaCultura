@@ -43,6 +43,16 @@
                 <span asp-validation-for="LocalizacaoRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="TextoDescritivoRestaurante" class="control-label"></label>
+                <input asp-for="TextoDescritivoRestaurante" class="form-control" />
+                <span asp-validation-for="TextoDescritivoRestaurante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorarioRestaurante" class="control-label"></label>
+                <input asp-for="HorarioRestaurante" class="form-control" />
+                <span asp-validation-for="HorarioRestaurante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

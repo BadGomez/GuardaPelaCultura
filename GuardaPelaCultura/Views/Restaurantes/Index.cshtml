@@ -30,6 +30,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.LocalizacaoRestaurante)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TextoDescritivoRestaurante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HorarioRestaurante)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -53,6 +59,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LocalizacaoRestaurante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextoDescritivoRestaurante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorarioRestaurante)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RestaurantesId">Edit</a> |

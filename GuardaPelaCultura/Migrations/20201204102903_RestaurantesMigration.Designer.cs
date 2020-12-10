@@ -3,14 +3,16 @@ using GuardaPelaCultura.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    partial class GuardaPelaCulturaContextModelSnapshot : ModelSnapshot
+    [Migration("20201204102903_RestaurantesMigration")]
+    partial class RestaurantesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,18 +48,11 @@ namespace GuardaPelaCultura.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(80)")
-                        .HasMaxLength(80);
-
                     b.Property<string>("NomeRestaurante")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroTelefone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(9)")
-                        .HasMaxLength(9);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservasRestauranteId");
 
@@ -102,11 +97,6 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HorarioRestaurante")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
                     b.Property<string>("LocalizacaoRestaurante")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)")
@@ -127,11 +117,6 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
-
-                    b.Property<string>("TextoDescritivoRestaurante")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
 
                     b.HasKey("RestaurantesId");
 
