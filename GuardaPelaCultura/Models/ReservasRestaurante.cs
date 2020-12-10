@@ -10,15 +10,19 @@ namespace GuardaPelaCultura.Models
     {
         public int ReservasRestauranteId { get; set; }
 
-        public string NomeRestaurante { get; set; }
+        public int RestauranteID { get; set; }
+
+        public Restaurantes Restaurantes { get; set; }
 
         [Required(ErrorMessage = "Escreva o seu nome por favor")]
         [StringLength(80, MinimumLength = 2, ErrorMessage = "O nome tem de ter no mínimo 2 caracteres e no máximo 80")]
-        public string Nome { get; set; }
+        public string NomeReserva { get; set; }
+
+        public string NumeroPessoas { get; set; }
 
         [Required(ErrorMessage = "Escreva o seu número de telefone por favor")]
         [StringLength(9, ErrorMessage = "O telefone tem de ter 9 caracteres")]
-        public string  NumeroTelefone{ get; set; }
+    public string  NumeroTelefoneReserva { get; set; }
 
         public string Descricao { get; set; }
     }
