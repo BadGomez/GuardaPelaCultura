@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20201211095856_ReservasRestauranteMigration")]
-    partial class ReservasRestauranteMigration
+    [Migration("20201211101316_EmentaMigration")]
+    partial class EmentaMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

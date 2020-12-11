@@ -22,7 +22,8 @@ namespace GuardaPelaCultura.Controllers
         // GET: ReservasRestaurantes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ReservasRestaurante.ToListAsync());
+            var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Restaurantes);
+            return View(await guardaPelaCulturaContext.ToListAsync());
         }
 
         // GET: ReservasRestaurantes/Details/5
@@ -34,6 +35,7 @@ namespace GuardaPelaCultura.Controllers
             }
 
             var reservasRestaurante = await _context.ReservasRestaurante
+                .Include(r => r.Restaurantes)
                 .FirstOrDefaultAsync(m => m.ReservasRestauranteId == id);
             if (reservasRestaurante == null)
             {
@@ -46,6 +48,7 @@ namespace GuardaPelaCultura.Controllers
         // GET: ReservasRestaurantes/Create
         public IActionResult Create()
         {
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace GuardaPelaCultura.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
@@ -78,6 +82,7 @@ namespace GuardaPelaCultura.Controllers
             {
                 return NotFound();
             }
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
@@ -113,6 +118,7 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
@@ -125,6 +131,7 @@ namespace GuardaPelaCultura.Controllers
             }
 
             var reservasRestaurante = await _context.ReservasRestaurante
+                .Include(r => r.Restaurantes)
                 .FirstOrDefaultAsync(m => m.ReservasRestauranteId == id);
             if (reservasRestaurante == null)
             {
