@@ -48,7 +48,7 @@ namespace GuardaPelaCultura.Controllers
         // GET: Ementas/Create
         public IActionResult Create()
         {
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
         }
 
