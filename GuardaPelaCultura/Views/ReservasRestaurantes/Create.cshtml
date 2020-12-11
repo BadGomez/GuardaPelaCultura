@@ -14,19 +14,21 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="RestauranteID" class="control-label"></label>
-                <select asp-for="RestauranteID" class="form-control">
-                    <option value="1">NomeDoRestauranteDaBD</option>
-                    <option value="2">NomeDoRestauranteDaBD</option>
-                    <option value="3">NomeDoRestauranteDaBD</option>
-                    <option value="4">NomeDoRestauranteDaBD</option>
-                    <option value="5">NomeDoRestauranteDaBD</option>
-                    <option value="6">NomeDoRestauranteDaBD</option>
-                    <option value="7">NomeDoRestauranteDaBD</option>
-                </select>
+                <input asp-for="RestauranteID" class="form-control" />
                 <span asp-validation-for="RestauranteID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroTelefoneReserva" class="control-label">Adicione o seu nr de telefone</label>
+                <label asp-for="NomeReserva" class="control-label"></label>
+                <input asp-for="NomeReserva" class="form-control" />
+                <span asp-validation-for="NomeReserva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroPessoas" class="control-label"></label>
+                <input asp-for="NumeroPessoas" class="form-control" />
+                <span asp-validation-for="NumeroPessoas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroTelefoneReserva" class="control-label"></label>
                 <input asp-for="NumeroTelefoneReserva" class="form-control" />
                 <span asp-validation-for="NumeroTelefoneReserva" class="text-danger"></span>
             </div>
@@ -46,6 +48,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

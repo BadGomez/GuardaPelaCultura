@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20201210110630_ReservasRestauranteMigration")]
-    partial class ReservasRestauranteMigration
+    [Migration("20201211085953_ProdutosMigration")]
+    partial class ProdutosMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,8 +67,8 @@ namespace GuardaPelaCultura.Migrations
                         .HasColumnType("nvarchar(80)")
                         .HasMaxLength(80);
 
-                    b.Property<string>("NumeroPessoas")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NumeroPessoas")
+                        .HasColumnType("int");
 
                     b.Property<string>("NumeroTelefoneReserva")
                         .IsRequired()
