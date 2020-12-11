@@ -19,7 +19,7 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "É necessário Inserir um Preço")]
         public float PrecoEmenta { get; set; }
 
-        [Required(ErrorMessage = "É necessário Inserir a Quantidade")]
+        [Required(ErrorMessage = "É necessário Inserir a Quantidade Disponível!")]
         public int QuantidadeEmenta { get; set; }
 
         public int RestaurantesId { get; set; }
