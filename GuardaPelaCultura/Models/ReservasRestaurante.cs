@@ -18,11 +18,11 @@ namespace GuardaPelaCultura.Models
         [StringLength(80, MinimumLength = 2, ErrorMessage = "O nome tem de ter no mínimo 2 caracteres e no máximo 80")]
         public string NomeReserva { get; set; }
 
-        public string NumeroPessoas { get; set; }
+        public int NumeroPessoas { get; set; }
 
         [Required(ErrorMessage = "Escreva o seu número de telefone por favor")]
         [StringLength(9, ErrorMessage = "O telefone tem de ter 9 caracteres")]
-    public string  NumeroTelefoneReserva { get; set; }
+        public string  NumeroTelefoneReserva { get; set; }
 
         public string Descricao { get; set; }
     }
