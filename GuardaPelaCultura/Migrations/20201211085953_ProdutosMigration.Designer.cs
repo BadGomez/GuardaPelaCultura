@@ -75,7 +75,7 @@ namespace GuardaPelaCultura.Migrations
                         .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
 
-                    b.Property<int>("RestauranteID")
+                    b.Property<int>("RestaurantesId")
                         .HasColumnType("int");
 
                     b.Property<int?>("RestaurantesId")
