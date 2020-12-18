@@ -10,23 +10,23 @@ using GuardaPelaCultura.Models;
 
 namespace GuardaPelaCultura.Controllers
 {
-    public class ReservasRestaurantesController : Controller
+    public class ReservasRestaurantesV2Controller : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
 
-        public ReservasRestaurantesController(GuardaPelaCulturaContext context)
+        public ReservasRestaurantesV2Controller(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
 
-        // GET: ReservasRestaurantes
+        // GET: ReservasRestaurantesV2
         public async Task<IActionResult> Index()
         {
             var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Restaurantes);
             return View(await guardaPelaCulturaContext.ToListAsync());
         }
 
-        // GET: ReservasRestaurantes/Details/5
+        // GET: ReservasRestaurantesV2/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,14 +45,14 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // GET: ReservasRestaurantes/Create
+        // GET: ReservasRestaurantesV2/Create
         public IActionResult Create()
         {
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
             return View();
         }
 
-        // POST: ReservasRestaurantes/Create
+        // POST: ReservasRestaurantesV2/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -69,7 +69,7 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // GET: ReservasRestaurantes/Edit/5
+        // GET: ReservasRestaurantesV2/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // POST: ReservasRestaurantes/Edit/5
+        // POST: ReservasRestaurantesV2/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -122,7 +122,7 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // GET: ReservasRestaurantes/Delete/5
+        // GET: ReservasRestaurantesV2/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +141,7 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // POST: ReservasRestaurantes/Delete/5
+        // POST: ReservasRestaurantesV2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,0 +1,49 @@
+﻿@model GuardaPelaCultura.Models.ReservasRestaurante
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ReservasRestaurante</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RestaurantesId" class="control-label"></label>
+                <select asp-for="RestaurantesId" class ="form-control" asp-items="ViewBag.RestaurantesId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeReserva" class="control-label"></label>
+                <input asp-for="NomeReserva" class="form-control" />
+                <span asp-validation-for="NomeReserva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroPessoas" class="control-label"></label>
+                <input asp-for="NumeroPessoas" class="form-control" />
+                <span asp-validation-for="NumeroPessoas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroTelefoneReserva" class="control-label"></label>
+                <input asp-for="NumeroTelefoneReserva" class="form-control" />
+                <span asp-validation-for="NumeroTelefoneReserva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
