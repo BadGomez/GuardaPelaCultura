@@ -32,7 +32,7 @@ namespace GuardaPelaCultura.Models
         public String TextoDescritivoRestaurante { get; set; }
 
         [Required(ErrorMessage = "É necessário o Horário de Funcionamento do Restaurante!")]
-        [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public String HorarioRestaurante { get; set; }
     }
 }
