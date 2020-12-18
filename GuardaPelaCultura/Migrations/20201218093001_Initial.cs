@@ -2,7 +2,7 @@
 
 namespace GuardaPelaCultura.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,10 +71,9 @@ namespace GuardaPelaCultura.Migrations
                 {
                     ReservasRestauranteId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RestauranteID = table.Column<int>(nullable: false),
-                    RestaurantesId = table.Column<int>(nullable: true),
+                    RestaurantesId = table.Column<int>(nullable: false),
                     NomeReserva = table.Column<string>(maxLength: 80, nullable: false),
-                    NumeroPessoas = table.Column<string>(nullable: true),
+                    NumeroPessoas = table.Column<int>(nullable: false),
                     NumeroTelefoneReserva = table.Column<string>(maxLength: 9, nullable: false),
                     Descricao = table.Column<string>(nullable: true)
                 },
@@ -86,7 +85,7 @@ namespace GuardaPelaCultura.Migrations
                         column: x => x.RestaurantesId,
                         principalTable: "Restaurantes",
                         principalColumn: "RestaurantesId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
