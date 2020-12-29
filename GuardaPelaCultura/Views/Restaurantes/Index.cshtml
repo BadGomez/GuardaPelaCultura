@@ -16,21 +16,27 @@
 <p class="mt-4 text-center mb-4">
     <a asp-action="Create">Create New</a>
 </p>
-    <body>
-        @foreach (var item in Model)
-        {
-        <div class="card mb-3" style="width: 50%">
-            <div class="card-body text-center">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeRestaurante)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.TextoDescritivoRestaurante)</p>
-                <h6>Telefone: @Html.DisplayFor(modelItem => item.NumeroTelefone)</h6>
-                <h6>Email: @Html.DisplayFor(modelItem => item.EmailRestaurante)</h6>
-                <h6>Horário: @Html.DisplayFor(modelItem => item.HorarioRestaurante)</h6>
-                <h6>Localização: @Html.DisplayFor(modelItem => item.LocalizacaoRestaurante)</h6>
-                <a asp-action="Edit" asp-route-id="@item.RestaurantesId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RestaurantesId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RestaurantesId">Delete</a>
+<body>
+    <div class="card-deck">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeRestaurante)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.TextoDescritivoRestaurante)</p>
+                        <h6 class="mt-2">Telefone: @Html.DisplayFor(modelItem => item.NumeroTelefone)</h6>
+                        <h6 class="mt-2">Email: @Html.DisplayFor(modelItem => item.EmailRestaurante)</h6>
+                        <h6 class="mt-2">Horário: @Html.DisplayFor(modelItem => item.HorarioRestaurante)</h6>
+                        <h6 class="mt-2">Localização: @Html.DisplayFor(modelItem => item.LocalizacaoRestaurante)</h6>
+                        <a asp-action="Edit" asp-route-id="@item.RestaurantesId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.RestaurantesId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.RestaurantesId">Delete</a>
+                    </div>
+                </div>
             </div>
+            }
         </div>
-        }
-    </body>
+    </div>
+</body>
