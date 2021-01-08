@@ -4,54 +4,69 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
 <h4>Restaurantes</h4>
 <hr />
+
+<h2 class="text-center mb-2">Editar</h2>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RestaurantesId" />
+            <div class="form-group pt-1 mr-2 text-center">
+                <label asp-for="NomeRestaurante" class="control-label">Nome</label>
+            </div>
+            <div class="form-group pt-2 mr-2 text-center">
+                <label asp-for="NumeroTelefone" class="control-label">Telemóvel</label>
+            </div>
+            <div class="form-group pt-2 mr-2 text-center">
+                <label asp-for="EmailRestaurante" class="control-label">Email</label>
+            </div>
+            <div class="form-group pt-2 mr-2 text-center">
+                <label asp-for="LocalizacaoRestaurante" class="control-label">Morada</label>
+            </div>
+            <div class="form-group pt-2 mr-2 text-center">
+                <label asp-for="TextoDescritivoRestaurante" class="control-label">Descrição</label>
+            </div>
+            <div class="form-group pt-2 mr-2 text-center">
+                <label asp-for="HorarioRestaurante" class="control-label">Horario</label>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RestaurantesId" />
             <div class="form-group">
-                <label asp-for="NomeRestaurante" class="control-label">Nome Restaurante</label>
                 <input asp-for="NomeRestaurante" class="form-control" />
                 <span asp-validation-for="NomeRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroTelefone" class="control-label">Numero Telefone</label>
                 <input asp-for="NumeroTelefone" class="form-control" />
                 <span asp-validation-for="NumeroTelefone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmailRestaurante" class="control-label">Email</label>
                 <input asp-for="EmailRestaurante" class="form-control" />
                 <span asp-validation-for="EmailRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LocalizacaoRestaurante" class="control-label">Morada</label>
                 <input asp-for="LocalizacaoRestaurante" class="form-control" />
                 <span asp-validation-for="LocalizacaoRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TextoDescritivoRestaurante" class="control-label">Descrição</label>
                 <input asp-for="TextoDescritivoRestaurante" class="form-control" />
                 <span asp-validation-for="TextoDescritivoRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HorarioRestaurante" class="control-label">Horario</label>
                 <input asp-for="HorarioRestaurante" class="form-control" />
                 <span asp-validation-for="HorarioRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

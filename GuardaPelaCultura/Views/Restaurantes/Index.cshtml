@@ -14,7 +14,7 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 <p class="mt-4 text-center mb-4">
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Criar Novo Restaurante</a>
 </p>
 <body>
     <div class="card-deck">
@@ -26,13 +26,13 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeRestaurante)</h5>
                         <p class="card-text">@Html.DisplayFor(modelItem => item.TextoDescritivoRestaurante)</p>
-                        <h6 class="mt-2">Telefone: @Html.DisplayFor(modelItem => item.NumeroTelefone)</h6>
-                        <h6 class="mt-2">Email: @Html.DisplayFor(modelItem => item.EmailRestaurante)</h6>
-                        <h6 class="mt-2">Horário: @Html.DisplayFor(modelItem => item.HorarioRestaurante)</h6>
-                        <h6 class="mt-2">Localização: @Html.DisplayFor(modelItem => item.LocalizacaoRestaurante)</h6>
-                        <a asp-action="Edit" asp-route-id="@item.RestaurantesId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.RestaurantesId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.RestaurantesId">Delete</a>
+                        <p class="mt-2"><strong>Telefone: </strong>@Html.DisplayFor(modelItem => item.NumeroTelefone)</p>
+                        <p class="mt-2"><strong>Email: </strong>@Html.DisplayFor(modelItem => item.EmailRestaurante)</p>
+                        <p class="mt-2"><strong>Horário: </strong>@Html.DisplayFor(modelItem => item.HorarioRestaurante)</p>
+                        <p class="mt-2 mb-2"><strong>Localização: </strong>@Html.DisplayFor(modelItem => item.LocalizacaoRestaurante)</p>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.RestaurantesId">Editar</a>   
+                        <a asp-action="Details" class="btn btn-success" asp-route-id="@item.RestaurantesId">Detalhes</a>   
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.RestaurantesId">Eliminar</a>   
                     </div>
                 </div>
             </div>

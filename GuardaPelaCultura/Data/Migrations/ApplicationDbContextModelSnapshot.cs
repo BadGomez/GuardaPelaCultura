@@ -44,7 +44,7 @@ namespace GuardaPelaCultura.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("DescricaoReserva")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeRestaurante")
@@ -65,7 +65,7 @@ namespace GuardaPelaCultura.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("DescricaoReserva")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
