@@ -65,7 +65,7 @@ namespace GuardaPelaCultura.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", ementa.RestaurantesId);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", ementa.RestaurantesId);
             return View(ementa);
         }
 
@@ -82,7 +82,7 @@ namespace GuardaPelaCultura.Controllers
             {
                 return NotFound();
             }
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", ementa.RestaurantesId);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", ementa.RestaurantesId);
             return View(ementa);
         }
 
@@ -118,7 +118,7 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", ementa.RestaurantesId);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", ementa.RestaurantesId);
             return View(ementa);
         }
 
