@@ -8,17 +8,17 @@ namespace GuardaPelaCultura.Models
 {
     public class Cliente
     {
-        public int MesaId { get; set; }
+        public int ClienteId { get; set; }
 
         [Required(ErrorMessage = "Escreva o seu nome por favor")]
         [StringLength(80, MinimumLength = 2, ErrorMessage = "O nome tem de ter no mínimo 2 caracteres e no máximo 80")]
-        public string nomeCliente { get; set; }
+        public string NomeCliente { get; set; }
 
         [Required(ErrorMessage = "Escreva o seu número de telefone por favor")]
         [StringLength(14, ErrorMessage = "O telefone tem de ter 14 caracteres")]
-        public string numeroTelefoneCliente { get; set; }
+        public string NumeroTelefoneCliente { get; set; }
 
-        public string nifCliente { get; set; }
+        public string NifCliente { get; set; }
 
         [Required(ErrorMessage = "É necessário o seu Email por favor")]
         [EmailAddress(ErrorMessage = "Email Inválido")]
