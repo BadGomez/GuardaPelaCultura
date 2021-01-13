@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GuardaPelaCultura.Migrations
 {
@@ -49,7 +50,12 @@ namespace GuardaPelaCultura.Migrations
                     EmailRestaurante = table.Column<string>(maxLength: 40, nullable: false),
                     LocalizacaoRestaurante = table.Column<string>(maxLength: 100, nullable: false),
                     TextoDescritivoRestaurante = table.Column<string>(maxLength: 1000, nullable: false),
-                    HorarioRestaurante = table.Column<string>(maxLength: 100, nullable: false)
+                    HoraAbertura = table.Column<int>(nullable: false),
+                    HoraFecho = table.Column<int>(nullable: false),
+                    Imagem = table.Column<byte[]>(nullable: true),
+                    Imagem1 = table.Column<byte[]>(nullable: true),
+                    Imagem2 = table.Column<byte[]>(nullable: true),
+                    Imagem3 = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
