@@ -4,34 +4,54 @@
     ViewData["Title"] = "Delete";
 }
 
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
-<link href="~/css/templatemo-style.css" rel="stylesheet" />
+<h1>Delete</h1>
 
-<script src="~/js/jquery.min.js"></script>
-<script src="~/js/parallax.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-
-<h2 class="text-center mt-5 mb-4">Eliminar Restaurante</h2>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <div class="card-deck justify-content-center">
-        <div class="col-sm-6">
-            <div class="card mb-3">
-                <div class="card-body text-center">
-                    <h5 class="card-title">@Html.DisplayFor(model => model.NomeRestaurante)</h5>
-                    <p class="card-text">@Html.DisplayFor(model => model.TextoDescritivoRestaurante)</p>
-                    <p class="mt-2"><strong>Telefone: </strong>@Html.DisplayFor(model => model.NumeroTelefone)</p>
-                    <p class="mt-2"><strong>Email: </strong>@Html.DisplayFor(model => model.EmailRestaurante)</p>
-                    <p class="mt-2"><strong>Horário: </strong>@Html.DisplayFor(model => model.HorarioRestaurante)</p>
-                    <p class="mt-2 mb-2"><strong>Localização: </strong>@Html.DisplayFor(model => model.LocalizacaoRestaurante)</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <form asp-action="Delete" class="align-content-center text-center">
+    <h4>Restaurantes</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeRestaurante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomeRestaurante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroTelefone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroTelefone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmailRestaurante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmailRestaurante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocalizacaoRestaurante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocalizacaoRestaurante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TextoDescritivoRestaurante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TextoDescritivoRestaurante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HorarioRestaurante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HorarioRestaurante)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
         <input type="hidden" asp-for="RestaurantesId" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

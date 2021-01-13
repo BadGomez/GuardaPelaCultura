@@ -23,5 +23,7 @@ namespace GuardaPelaCultura.Data
         public DbSet<GuardaPelaCultura.Models.Restaurantes> Restaurantes { get; set; }
 
         public DbSet<GuardaPelaCultura.Models.Cliente> Cliente { get; set; }
+
+        public DbSet<GuardaPelaCultura.Models.Mesa> Mesa { get; set; }
     }
 }

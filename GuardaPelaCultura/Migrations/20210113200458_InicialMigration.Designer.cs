@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20210113191221_InicialMigration")]
+    [Migration("20210113200458_InicialMigration")]
     partial class InicialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

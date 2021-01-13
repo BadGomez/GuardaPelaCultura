@@ -10,22 +10,23 @@ using GuardaPelaCultura.Models;
 
 namespace GuardaPelaCultura.Controllers
 {
-    public class ReservasTakeAwaysController : Controller
+    public class MesasController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
 
-        public ReservasTakeAwaysController(GuardaPelaCulturaContext context)
+        public MesasController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
 
-        // GET: ReservasTakeAways
+        // GET: Mesas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ReservasTakeAway.ToListAsync());
+            var guardaPelaCulturaContext = _context.Mesa.Include(m => m.Restaurantes);
+            return View(await guardaPelaCulturaContext.ToListAsync());
         }
 
-        // GET: ReservasTakeAways/Details/5
+        // GET: Mesas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var reservasTakeAway = await _context.ReservasTakeAway
-                .FirstOrDefaultAsync(m => m.ReservasTakeAwayId == id);
-            if (reservasTakeAway == null)
+            var mesa = await _context.Mesa
+                .Include(m => m.Restaurantes)
+                .FirstOrDefaultAsync(m => m.MesaId == id);
+            if (mesa == null)
             {
                 return NotFound();
             }
 
-            return View(reservasTakeAway);
+            return View(mesa);
         }
 
-        // GET: ReservasTakeAways/Create
+        // GET: Mesas/Create
         public IActionResult Create()
         {
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
             return View();
         }
 
-        // POST: ReservasTakeAways/Create
+        // POST: Mesas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasTakeAwayId,NomeRestaurante,Nome,NumeroTelefone,ObservacaoReserva")] ReservasTakeAway reservasTakeAway)
+        public async Task<IActionResult> Create([Bind("MesaId,RestaurantesId,LugaresRestaurante,MesasRestaurante")] Mesa mesa)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(reservasTakeAway);
+                _context.Add(mesa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(reservasTakeAway);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", mesa.RestaurantesId);
+            return View(mesa);
         }
 
-        // GET: ReservasTakeAways/Edit/5
+        // GET: Mesas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var reservasTakeAway = await _context.ReservasTakeAway.FindAsync(id);
-            if (reservasTakeAway == null)
+            var mesa = await _context.Mesa.FindAsync(id);
+            if (mesa == null)
             {
                 return NotFound();
             }
-            return View(reservasTakeAway);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", mesa.RestaurantesId);
+            return View(mesa);
         }
 
-        // POST: ReservasTakeAways/Edit/5
+        // POST: Mesas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasTakeAwayId,NomeRestaurante,Nome,NumeroTelefone,ObservacaoReserva")] ReservasTakeAway reservasTakeAway)
+        public async Task<IActionResult> Edit(int id, [Bind("MesaId,RestaurantesId,LugaresRestaurante,MesasRestaurante")] Mesa mesa)
         {
-            if (id != reservasTakeAway.ReservasTakeAwayId)
+            if (id != mesa.MesaId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace GuardaPelaCultura.Controllers
             {
                 try
                 {
-                    _context.Update(reservasTakeAway);
+                    _context.Update(mesa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ReservasTakeAwayExists(reservasTakeAway.ReservasTakeAwayId))
+                    if (!MesaExists(mesa.MesaId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(reservasTakeAway);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", mesa.RestaurantesId);
+            return View(mesa);
         }
 
-        // GET: ReservasTakeAways/Delete/5
+        // GET: Mesas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var reservasTakeAway = await _context.ReservasTakeAway
-                .FirstOrDefaultAsync(m => m.ReservasTakeAwayId == id);
-            if (reservasTakeAway == null)
+            var mesa = await _context.Mesa
+                .Include(m => m.Restaurantes)
+                .FirstOrDefaultAsync(m => m.MesaId == id);
+            if (mesa == null)
             {
                 return NotFound();
             }
 
-            return View(reservasTakeAway);
+            return View(mesa);
         }
 
-        // POST: ReservasTakeAways/Delete/5
+        // POST: Mesas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reservasTakeAway = await _context.ReservasTakeAway.FindAsync(id);
-            _context.ReservasTakeAway.Remove(reservasTakeAway);
+            var mesa = await _context.Mesa.FindAsync(id);
+            _context.Mesa.Remove(mesa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ReservasTakeAwayExists(int id)
+        private bool MesaExists(int id)
         {
-            return _context.ReservasTakeAway.Any(e => e.ReservasTakeAwayId == id);
+            return _context.Mesa.Any(e => e.MesaId == id);
         }
     }
 }

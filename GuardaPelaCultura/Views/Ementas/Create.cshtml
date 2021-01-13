@@ -9,47 +9,32 @@
 <h4>Ementa</h4>
 <hr />
 <div class="row">
-    <div class="col-md-2 ml-5">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group pt-1 mr-2">
-                <label asp-for="NomeEmenta" class="control-label"> Nome da Ementa</label>
-            </div>
-            <div class="form-group pt-2 mr-2">
-                <label asp-for="DescricaoEmenta" class="control-label"> Descrição </label>
-            </div>
-            <div class="form-group pt-2 mr-2">
-                <label asp-for="PrecoEmenta" class="control-label"> Preço</label>
-            </div>
-            <div class="form-group pt-2 mr-2">
-                <label asp-for="QuantidadeEmenta" class="control-label"> Quantidade Disponível</label>
-            </div>
-            <div class="form-group pt-2 mr-2">
-                <label asp-for="RestaurantesId" class="control-label"> Nome do Restaurante </label>
-            </div>
-        </form>
-    </div>
-    <div class="col-md-9">
+    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="NomeEmenta" class="control-label"></label>
                 <input asp-for="NomeEmenta" class="form-control" />
                 <span asp-validation-for="NomeEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="DescricaoEmenta" class="control-label"></label>
                 <input asp-for="DescricaoEmenta" class="form-control" />
                 <span asp-validation-for="DescricaoEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PrecoEmenta" class="control-label"></label>
                 <input asp-for="PrecoEmenta" class="form-control" />
                 <span asp-validation-for="PrecoEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="QuantidadeEmenta" class="control-label"></label>
                 <input asp-for="QuantidadeEmenta" class="form-control" />
                 <span asp-validation-for="QuantidadeEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <select asp-for="RestaurantesId" class="form-control" asp-items="ViewBag.RestaurantesId"></select>
+                <label asp-for="RestaurantesId" class="control-label"></label>
+                <select asp-for="RestaurantesId" class ="form-control" asp-items="ViewBag.RestaurantesId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -62,6 +47,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

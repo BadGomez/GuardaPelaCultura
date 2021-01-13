@@ -10,14 +10,15 @@ namespace GuardaPelaCultura.Models
     {
         public int ReservasRestauranteId { get; set; }
 
-        public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
-
         public int RestaurantesId { get; set; }
         public Restaurantes Restaurantes { get; set; }
         
+        public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
+        
         public int MesaId { get; set; }
         public Mesa Mesa { get; set; }
+
         [Required]
         public int NumeroPessoas { get; set; }
 

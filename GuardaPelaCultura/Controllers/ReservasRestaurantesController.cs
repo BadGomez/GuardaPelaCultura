@@ -51,7 +51,7 @@ namespace GuardaPelaCultura.Controllers
         public IActionResult Create()
         {
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente");
-            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId");
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId");
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
             return View();
         }
@@ -61,7 +61,7 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,ClienteId,RestaurantesId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,ClienteId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace GuardaPelaCultura.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId", reservasRestaurante.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId", reservasRestaurante.MesaId);
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
@@ -89,7 +89,7 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId", reservasRestaurante.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId", reservasRestaurante.MesaId);
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
@@ -99,7 +99,7 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,ClienteId,RestaurantesId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,RestaurantesId,ClienteId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
         {
             if (id != reservasRestaurante.ReservasRestauranteId)
             {
@@ -127,7 +127,7 @@ namespace GuardaPelaCultura.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId", reservasRestaurante.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId", reservasRestaurante.MesaId);
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }

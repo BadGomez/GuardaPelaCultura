@@ -106,8 +106,8 @@ namespace GuardaPelaCultura.Migrations
                 {
                     ReservasRestauranteId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClienteId = table.Column<int>(nullable: false),
                     RestaurantesId = table.Column<int>(nullable: false),
+                    ClienteId = table.Column<int>(nullable: false),
                     MesaId = table.Column<int>(nullable: false),
                     NumeroPessoas = table.Column<int>(nullable: false),
                     EstadoReserva = table.Column<bool>(nullable: false),
