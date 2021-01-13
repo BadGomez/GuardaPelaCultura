@@ -10,23 +10,23 @@ using GuardaPelaCultura.Models;
 
 namespace GuardaPelaCultura.Controllers
 {
-    public class ReservasRestaurantesV2Controller : Controller
+    public class ReservasRestaurantesController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
 
-        public ReservasRestaurantesV2Controller(GuardaPelaCulturaContext context)
+        public ReservasRestaurantesController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
 
-        // GET: ReservasRestaurantesV2
+        // GET: ReservasRestaurantes
         public async Task<IActionResult> Index()
         {
-            var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Restaurantes);
+            var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
             return View(await guardaPelaCulturaContext.ToListAsync());
         }
 
-        // GET: ReservasRestaurantesV2/Details/5
+        // GET: ReservasRestaurantes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,6 +35,8 @@ namespace GuardaPelaCultura.Controllers
             }
 
             var reservasRestaurante = await _context.ReservasRestaurante
+                .Include(r => r.Cliente)
+                .Include(r => r.Mesa)
                 .Include(r => r.Restaurantes)
                 .FirstOrDefaultAsync(m => m.ReservasRestauranteId == id);
             if (reservasRestaurante == null)
@@ -45,19 +47,21 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // GET: ReservasRestaurantesV2/Create
+        // GET: ReservasRestaurantes/Create
         public IActionResult Create()
         {
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente");
+            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId");
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
             return View();
         }
 
-        // POST: ReservasRestaurantesV2/Create
+        // POST: ReservasRestaurantes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,NomeReserva,NumeroPessoas,NumeroTelefoneReserva,DescricaoReserva")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,ClienteId,RestaurantesId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +69,13 @@ namespace GuardaPelaCultura.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId", reservasRestaurante.MesaId);
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
-        // GET: ReservasRestaurantesV2/Edit/5
+        // GET: ReservasRestaurantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,16 +88,18 @@ namespace GuardaPelaCultura.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId", reservasRestaurante.MesaId);
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
-        // POST: ReservasRestaurantesV2/Edit/5
+        // POST: ReservasRestaurantes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,RestaurantesId,NomeReserva,NumeroPessoas,NumeroTelefoneReserva,DescricaoReserva")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,ClienteId,RestaurantesId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
         {
             if (id != reservasRestaurante.ReservasRestauranteId)
             {
@@ -118,11 +126,13 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Set<Mesa>(), "MesaId", "MesaId", reservasRestaurante.MesaId);
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
-        // GET: ReservasRestaurantesV2/Delete/5
+        // GET: ReservasRestaurantes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,6 +141,8 @@ namespace GuardaPelaCultura.Controllers
             }
 
             var reservasRestaurante = await _context.ReservasRestaurante
+                .Include(r => r.Cliente)
+                .Include(r => r.Mesa)
                 .Include(r => r.Restaurantes)
                 .FirstOrDefaultAsync(m => m.ReservasRestauranteId == id);
             if (reservasRestaurante == null)
@@ -141,7 +153,7 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
-        // POST: ReservasRestaurantesV2/Delete/5
+        // POST: ReservasRestaurantes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

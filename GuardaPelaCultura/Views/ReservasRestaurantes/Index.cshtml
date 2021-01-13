@@ -13,19 +13,25 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Restaurantes)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NomeReserva)
+                @Html.DisplayNameFor(model => model.Mesa)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumeroPessoas)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumeroTelefoneReserva)
+                @Html.DisplayNameFor(model => model.EstadoReserva)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DescricaoReserva)
+                @Html.DisplayNameFor(model => model.DataReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObservacaoReserva)
             </th>
             <th></th>
         </tr>
@@ -34,19 +40,25 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Cliente.EmailCliente)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Restaurantes.EmailRestaurante)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NomeReserva)
+                @Html.DisplayFor(modelItem => item.Mesa.MesaId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumeroPessoas)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumeroTelefoneReserva)
+                @Html.DisplayFor(modelItem => item.EstadoReserva)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DescricaoReserva)
+                @Html.DisplayFor(modelItem => item.DataReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObservacaoReserva)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReservasRestauranteId">Edit</a> |
