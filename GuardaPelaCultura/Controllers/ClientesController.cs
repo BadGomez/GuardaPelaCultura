@@ -10,23 +10,22 @@ using GuardaPelaCultura.Models;
 
 namespace GuardaPelaCultura.Controllers
 {
-    public class EmentasController : Controller
+    public class ClientesController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
 
-        public EmentasController(GuardaPelaCulturaContext context)
+        public ClientesController(GuardaPelaCulturaContext context)
         {
             _context = context;
         }
 
-        // GET: Ementas
+        // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            var guardaPelaCulturaContext = _context.Produtos.Include(e => e.Restaurantes);
-            return View(await guardaPelaCulturaContext.ToListAsync());
+            return View(await _context.Cliente.ToListAsync());
         }
 
-        // GET: Ementas/Details/5
+        // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,39 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var ementa = await _context.Produtos
-                .Include(e => e.Restaurantes)
-                .FirstOrDefaultAsync(m => m.EmentaId == id);
-            if (ementa == null)
+            var cliente = await _context.Cliente
+                .FirstOrDefaultAsync(m => m.ClienteId == id);
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(ementa);
+            return View(cliente);
         }
 
-        // GET: Ementas/Create
+        // GET: Clientes/Create
         public IActionResult Create()
         {
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
         }
 
-        // POST: Ementas/Create
+        // POST: Clientes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmentaId,NomeEmenta,DescricaoEmenta,PrecoEmenta,QuantidadeEmenta,RestaurantesId")] Ementa ementa)
+        public async Task<IActionResult> Create([Bind("ClienteId,NomeCliente,NumeroTelefoneCliente,NifCliente,EmailCliente")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(ementa);
+                _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", ementa.RestaurantesId);
-            return View(ementa);
+            return View(cliente);
         }
 
-        // GET: Ementas/Edit/5
+        // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +73,22 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var ementa = await _context.Produtos.FindAsync(id);
-            if (ementa == null)
+            var cliente = await _context.Cliente.FindAsync(id);
+            if (cliente == null)
             {
                 return NotFound();
             }
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", ementa.RestaurantesId);
-            return View(ementa);
+            return View(cliente);
         }
 
-        // POST: Ementas/Edit/5
+        // POST: Clientes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmentaId,NomeEmenta,DescricaoEmenta,PrecoEmenta,QuantidadeEmenta,RestaurantesId")] Ementa ementa)
+        public async Task<IActionResult> Edit(int id, [Bind("ClienteId,NomeCliente,NumeroTelefoneCliente,NifCliente,EmailCliente")] Cliente cliente)
         {
-            if (id != ementa.EmentaId)
+            if (id != cliente.ClienteId)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace GuardaPelaCultura.Controllers
             {
                 try
                 {
-                    _context.Update(ementa);
+                    _context.Update(cliente);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmentaExists(ementa.EmentaId))
+                    if (!ClienteExists(cliente.ClienteId))
                     {
                         return NotFound();
                     }
@@ -118,11 +113,10 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", ementa.RestaurantesId);
-            return View(ementa);
+            return View(cliente);
         }
 
-        // GET: Ementas/Delete/5
+        // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +124,30 @@ namespace GuardaPelaCultura.Controllers
                 return NotFound();
             }
 
-            var ementa = await _context.Produtos
-                .Include(e => e.Restaurantes)
-                .FirstOrDefaultAsync(m => m.EmentaId == id);
-            if (ementa == null)
+            var cliente = await _context.Cliente
+                .FirstOrDefaultAsync(m => m.ClienteId == id);
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(ementa);
+            return View(cliente);
         }
 
-        // POST: Ementas/Delete/5
+        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ementa = await _context.Produtos.FindAsync(id);
-            _context.Produtos.Remove(ementa);
+            var cliente = await _context.Cliente.FindAsync(id);
+            _context.Cliente.Remove(cliente);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmentaExists(int id)
+        private bool ClienteExists(int id)
         {
-            return _context.Produtos.Any(e => e.EmentaId == id);
+            return _context.Cliente.Any(e => e.ClienteId == id);
         }
     }
 }
