@@ -14,22 +14,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EmentaId" />
             <div class="form-group">
-                <label asp-for="NomeEmenta" class="control-label"> Nome da Ementa</label>
+                <label asp-for="NomeEmenta" class="control-label"></label>
                 <input asp-for="NomeEmenta" class="form-control" />
                 <span asp-validation-for="NomeEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DescricaoEmenta" class="control-label"> Descrição </label>
+                <label asp-for="DescricaoEmenta" class="control-label"></label>
                 <input asp-for="DescricaoEmenta" class="form-control" />
                 <span asp-validation-for="DescricaoEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrecoEmenta" class="control-label"> Preço </label>
+                <label asp-for="PrecoEmenta" class="control-label"></label>
                 <input asp-for="PrecoEmenta" class="form-control" />
                 <span asp-validation-for="PrecoEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="QuantidadeEmenta" class="control-label"> Quantidade </label>
+                <label asp-for="QuantidadeEmenta" class="control-label"></label>
                 <input asp-for="QuantidadeEmenta" class="form-control" />
                 <span asp-validation-for="QuantidadeEmenta" class="text-danger"></span>
             </div>
@@ -49,6 +49,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
