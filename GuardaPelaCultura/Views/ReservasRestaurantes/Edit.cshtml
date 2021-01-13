@@ -14,29 +14,39 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ReservasRestauranteId" />
             <div class="form-group">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="RestaurantesId" class="control-label"></label>
                 <select asp-for="RestaurantesId" class="form-control" asp-items="ViewBag.RestaurantesId"></select>
                 <span asp-validation-for="RestaurantesId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NomeReserva" class="control-label"></label>
-                <input asp-for="NomeReserva" class="form-control" />
-                <span asp-validation-for="NomeReserva" class="text-danger"></span>
+                <label asp-for="MesaId" class="control-label"></label>
+                <select asp-for="MesaId" class="form-control" asp-items="ViewBag.MesaId"></select>
+                <span asp-validation-for="MesaId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumeroPessoas" class="control-label"></label>
                 <input asp-for="NumeroPessoas" class="form-control" />
                 <span asp-validation-for="NumeroPessoas" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NumeroTelefoneReserva" class="control-label"></label>
-                <input asp-for="NumeroTelefoneReserva" class="form-control" />
-                <span asp-validation-for="NumeroTelefoneReserva" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EstadoReserva" /> @Html.DisplayNameFor(model => model.EstadoReserva)
+                </label>
             </div>
             <div class="form-group">
-                <label asp-for="DescricaoReserva" class="control-label"></label>
-                <input asp-for="DescricaoReserva" class="form-control" />
-                <span asp-validation-for="DescricaoReserva" class="text-danger"></span>
+                <label asp-for="DataReserva" class="control-label"></label>
+                <input asp-for="DataReserva" class="form-control" />
+                <span asp-validation-for="DataReserva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObservacaoReserva" class="control-label"></label>
+                <input asp-for="ObservacaoReserva" class="form-control" />
+                <span asp-validation-for="ObservacaoReserva" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

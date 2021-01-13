@@ -20,7 +20,7 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "Escreva o seu número de telefone por favor")]
         public string NumeroTelefone { get; set; }
 
-        public string Descricao { get; set; }
+        public string ObservacaoTakeAway { get; set; }
     }
 }
 

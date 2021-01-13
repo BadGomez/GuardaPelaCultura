@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20201218093001_Initial")]
-    partial class Initial
+    [Migration("20210113191221_InicialMigration")]
+    partial class InicialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,36 @@ namespace GuardaPelaCultura.Migrations
                 .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("GuardaPelaCultura.Models.Cliente", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailCliente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("NifCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeCliente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
+
+                    b.Property<string>("NumeroTelefoneCliente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(14)")
+                        .HasMaxLength(14);
+
+                    b.HasKey("ClienteId");
+
+                    b.ToTable("Cliente");
+                });
 
             modelBuilder.Entity("GuardaPelaCultura.Models.Ementa", b =>
                 {
@@ -51,6 +81,29 @@ namespace GuardaPelaCultura.Migrations
                     b.ToTable("Produtos");
                 });
 
+            modelBuilder.Entity("GuardaPelaCultura.Models.Mesa", b =>
+                {
+                    b.Property<int>("MesaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LugaresRestaurante")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MesasRestaurante")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestaurantesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MesaId");
+
+                    b.HasIndex("RestaurantesId");
+
+                    b.ToTable("Mesa");
+                });
+
             modelBuilder.Entity("GuardaPelaCultura.Models.ReservasRestaurante", b =>
                 {
                     b.Property<int>("ReservasRestauranteId")
@@ -58,26 +111,33 @@ namespace GuardaPelaCultura.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DescricaoReserva")
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DataReserva")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomeReserva")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(80)")
-                        .HasMaxLength(80);
+                    b.Property<bool>("EstadoReserva")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MesaId")
+                        .HasColumnType("int");
 
                     b.Property<int>("NumeroPessoas")
                         .HasColumnType("int");
 
-                    b.Property<string>("NumeroTelefoneReserva")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(9)")
-                        .HasMaxLength(9);
+                    b.Property<string>("ObservacaoReserva")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RestaurantesId")
                         .HasColumnType("int");
 
                     b.HasKey("ReservasRestauranteId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("MesaId");
 
                     b.HasIndex("RestaurantesId");
 
@@ -91,9 +151,6 @@ namespace GuardaPelaCultura.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DescricaoReserva")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(80)")
@@ -104,6 +161,9 @@ namespace GuardaPelaCultura.Migrations
 
                     b.Property<string>("NumeroTelefone")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ObservacaoTakeAway")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservasTakeAwayId");
@@ -120,33 +180,28 @@ namespace GuardaPelaCultura.Migrations
 
                     b.Property<string>("EmailRestaurante")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
 
                     b.Property<string>("HorarioRestaurante")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("LocalizacaoRestaurante")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<int>("LugaresRestaurante")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MesasRestaurante")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("NomeRestaurante")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("NumeroTelefone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(9)")
-                        .HasMaxLength(9);
+                        .HasColumnType("nvarchar(14)")
+                        .HasMaxLength(14);
 
                     b.Property<string>("TextoDescritivoRestaurante")
                         .IsRequired()
@@ -167,8 +222,29 @@ namespace GuardaPelaCultura.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("GuardaPelaCultura.Models.Mesa", b =>
+                {
+                    b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
+                        .WithMany()
+                        .HasForeignKey("RestaurantesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GuardaPelaCultura.Models.ReservasRestaurante", b =>
                 {
+                    b.HasOne("GuardaPelaCultura.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GuardaPelaCultura.Models.Mesa", "Mesa")
+                        .WithMany()
+                        .HasForeignKey("MesaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")

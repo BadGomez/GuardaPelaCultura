@@ -23,7 +23,7 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "É necessário o seu Email por favor")]
         [EmailAddress(ErrorMessage = "Email Inválido")]
         [StringLength(40, ErrorMessage = "O Email deve ter 40 caracteres")]
-        public string EmailCliente { get; set; }
+        public string EmailCliente { get; set; } 
 
     }
 }

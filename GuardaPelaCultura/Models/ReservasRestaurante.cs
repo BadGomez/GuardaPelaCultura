@@ -18,22 +18,14 @@ namespace GuardaPelaCultura.Models
         
         public int MesaId { get; set; }
         public Mesa Mesa { get; set; }
-        
+        [Required]
         public int NumeroPessoas { get; set; }
 
-        public bool Estado { get; set; }
+        public bool EstadoReserva { get; set; }
 
+        [Required]
         public string DataReserva { get; set; }
 
-        [Required(ErrorMessage = "Escreva o seu número de telefone por favor")]
-        [StringLength(9, ErrorMessage = "O telefone tem de ter 9 caracteres")]
-        public string NumeroTelefoneReserva { get; set; }
-
-        [Required(ErrorMessage = "Escreva o seu nome por favor")]
-        [StringLength(80, MinimumLength = 2, ErrorMessage = "O nome tem de ter no mínimo 2 caracteres e no máximo 80")]
-        public string NomeReserva { get; set; }
-        [Required(ErrorMessage = "É necessário o Texto Descritivo da Reserva!")]
-        [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
-        public string DescricaoReserva{ get; set; }
+        public string ObservacaoReserva { get; set; }
     }
 }
