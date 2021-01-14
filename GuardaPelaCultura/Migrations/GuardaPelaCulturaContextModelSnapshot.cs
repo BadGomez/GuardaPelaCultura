@@ -230,7 +230,7 @@ namespace GuardaPelaCultura.Migrations
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -239,7 +239,7 @@ namespace GuardaPelaCultura.Migrations
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -248,19 +248,19 @@ namespace GuardaPelaCultura.Migrations
                     b.HasOne("GuardaPelaCultura.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GuardaPelaCultura.Models.Mesa", "Mesa")
                         .WithMany()
                         .HasForeignKey("MesaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

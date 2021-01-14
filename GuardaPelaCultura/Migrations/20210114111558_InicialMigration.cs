@@ -80,7 +80,7 @@ namespace GuardaPelaCultura.Migrations
                         column: x => x.RestaurantesId,
                         principalTable: "Restaurantes",
                         principalColumn: "RestaurantesId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,7 +103,7 @@ namespace GuardaPelaCultura.Migrations
                         column: x => x.RestaurantesId,
                         principalTable: "Restaurantes",
                         principalColumn: "RestaurantesId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -128,19 +128,19 @@ namespace GuardaPelaCultura.Migrations
                         column: x => x.ClienteId,
                         principalTable: "Cliente",
                         principalColumn: "ClienteId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ReservasRestaurante_Mesa_MesaId",
                         column: x => x.MesaId,
                         principalTable: "Mesa",
                         principalColumn: "MesaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ReservasRestaurante_Restaurantes_RestaurantesId",
                         column: x => x.RestaurantesId,
                         principalTable: "Restaurantes",
                         principalColumn: "RestaurantesId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuardaPelaCultura.Migrations
 {
     [DbContext(typeof(GuardaPelaCulturaContext))]
-    [Migration("20210113205506_InicialMigration")]
+    [Migration("20210114111558_InicialMigration")]
     partial class InicialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,7 +232,7 @@ namespace GuardaPelaCultura.Migrations
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -241,7 +241,7 @@ namespace GuardaPelaCultura.Migrations
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -250,19 +250,19 @@ namespace GuardaPelaCultura.Migrations
                     b.HasOne("GuardaPelaCultura.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GuardaPelaCultura.Models.Mesa", "Mesa")
                         .WithMany()
                         .HasForeignKey("MesaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GuardaPelaCultura.Models.Restaurantes", "Restaurantes")
                         .WithMany()
                         .HasForeignKey("RestaurantesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
