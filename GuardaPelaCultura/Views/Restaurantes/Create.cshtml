@@ -4,77 +4,114 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<h4>Restaurantes</h4>
-<hr />
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+
+<h2 class="text-center mt-5 mb-4">Criar Restaurante</h2>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-2 ml-5">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group pt-1 mr-2">
+                <label asp-for="NomeRestaurante" class="control-label">Nome</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="NumeroTelefone" class="control-label">Telemóvel</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="EmailRestaurante" class="control-label">Email</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="LocalizacaoRestaurante" class="control-label">Morada</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="TextoDescritivoRestaurante" class="control-label">Descrição</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="HoraAbertura" class="control-label">Abertura</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="HoraFecho" class="control-label">Fecho</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="Imagem" class="control-label">1ª Imagem</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="Imagem1" class="control-label">2ª Imagem</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="Imagem2" class="control-label">3ª Imagem</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="Imagem3" class="control-label">4ª Imagem</label>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-9">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeRestaurante" class="control-label"></label>
                 <input asp-for="NomeRestaurante" class="form-control" />
                 <span asp-validation-for="NomeRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroTelefone" class="control-label"></label>
                 <input asp-for="NumeroTelefone" class="form-control" />
                 <span asp-validation-for="NumeroTelefone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmailRestaurante" class="control-label"></label>
                 <input asp-for="EmailRestaurante" class="form-control" />
                 <span asp-validation-for="EmailRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LocalizacaoRestaurante" class="control-label"></label>
                 <input asp-for="LocalizacaoRestaurante" class="form-control" />
                 <span asp-validation-for="LocalizacaoRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TextoDescritivoRestaurante" class="control-label"></label>
                 <input asp-for="TextoDescritivoRestaurante" class="form-control" />
                 <span asp-validation-for="TextoDescritivoRestaurante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HoraAbertura" class="control-label"></label>
                 <input asp-for="HoraAbertura" class="form-control" />
                 <span asp-validation-for="HoraAbertura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HoraFecho" class="control-label"></label>
                 <input asp-for="HoraFecho" class="form-control" />
                 <span asp-validation-for="HoraFecho" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Imagem" class="control-label"></label>
                 <input asp-for="Imagem" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Imagem1" class="control-label"></label>
                 <input asp-for="Imagem1" class="form-control" />
                 <span asp-validation-for="Imagem1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Imagem2" class="control-label"></label>
                 <input asp-for="Imagem2" class="form-control" />
                 <span asp-validation-for="Imagem2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Imagem3" class="control-label"></label>
                 <input asp-for="Imagem3" class="form-control" />
                 <span asp-validation-for="Imagem3" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
 

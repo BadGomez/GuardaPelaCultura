@@ -3,82 +3,88 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<h1>Details</h1>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
+<h2 class="text-center mt-5 mb-4">Detalhos Restaurante</h2>
 <div>
-    <h4>Restaurantes</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeRestaurante)
-        </dt>
-        <dd class = "col-sm-10">
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center">Nome</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.NomeRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumeroTelefone)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Telemóvel</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.NumeroTelefone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailRestaurante)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Email</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.EmailRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LocalizacaoRestaurante)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Morada</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.LocalizacaoRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TextoDescritivoRestaurante)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Descrição</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.TextoDescritivoRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoraAbertura)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Hora de Abrir</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.HoraAbertura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoraFecho)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Hora de Fechar</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.HoraFecho)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagem)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">1ª Imagem</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.Imagem)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagem1)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">2ª Imagem</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.Imagem1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagem2)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">3ª Imagem</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.Imagem2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagem3)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">4ª Imagem</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.Imagem3)
-        </dd>
-    </dl>
+        </div>
+
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.RestaurantesId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="text-center">
+    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.RestaurantesId">Editar</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
 </div>
