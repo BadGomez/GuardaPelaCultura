@@ -27,7 +27,24 @@
             <th>
                 @Html.DisplayNameFor(model => model.TextoDescritivoRestaurante)
             </th>
-          
+            <th>
+                @Html.DisplayNameFor(model => model.HoraAbertura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraFecho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem3)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,9 +66,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TextoDescritivoRestaurante)
             </td>
-           
-
-
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraAbertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFecho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem3)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RestaurantesId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.RestaurantesId">Details</a> |

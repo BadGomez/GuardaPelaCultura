@@ -9,6 +9,15 @@ namespace GuardaPelaCultura.Data
 {
     public class GuardaPelaCulturaContext : DbContext
     {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            foreach(var r in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                r.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+            base.OnModelCreating(modelBuilder);
+        }
+
         public GuardaPelaCulturaContext (DbContextOptions<GuardaPelaCulturaContext> options)
             : base(options)
         {
