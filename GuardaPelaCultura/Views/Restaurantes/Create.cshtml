@@ -55,7 +55,7 @@
         </form>
     </div>
     <div class="col-sm-9">
-        <form asp-action="Create">
+        <form method="post" enctype="multipart/form-data" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="NomeRestaurante" class="form-control" />
@@ -86,19 +86,19 @@
                 <span asp-validation-for="HoraFecho" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Imagem" class="form-control" />
+                <input asp-for="Imagem" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Primeira Imagem" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Imagem1" class="form-control" />
+                <input asp-for="Imagem1" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Segunda Imagem" />
                 <span asp-validation-for="Imagem1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Imagem2" class="form-control" />
+                <input asp-for="Imagem2" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Terceira Imagem" />
                 <span asp-validation-for="Imagem2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Imagem3" class="form-control" />
+                <input asp-for="Imagem3" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Quarta Imagem" />
                 <span asp-validation-for="Imagem3" class="text-danger"></span>
             </div>
             <div class="form-group">
