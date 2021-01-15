@@ -14,10 +14,10 @@ namespace GuardaPelaCultura.Models
 
         public Restaurantes Restaurantes { get; set; }
 
-        [Required(ErrorMessage = "É necessário Inserir o Numero de Lugares do Restaurante!")]
+        [Required(ErrorMessage = "É necessário Inserir o Numero de Lugares do Populate!")]
         public int LugaresRestaurante { get; set; }
 
-        [Required(ErrorMessage = "É necessário Inserir o Numero de Mesas do Restaurante")]
+        [Required(ErrorMessage = "É necessário Inserir o Numero de Mesas do Populate")]
         public int MesasRestaurante { get; set; }
     }
 }
