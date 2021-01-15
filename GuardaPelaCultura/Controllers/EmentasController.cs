@@ -20,11 +20,11 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: Ementas
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var guardaPelaCulturaContext = _context.Produtos.Include(e => e.Restaurantes);
             return View(await guardaPelaCulturaContext.ToListAsync());
-        }
+        }*/
 
         // GET: Ementas/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -155,6 +155,24 @@ namespace GuardaPelaCultura.Controllers
         private bool EmentaExists(int id)
         {
             return _context.Produtos.Any(e => e.EmentaId == id);
+        }
+
+        public IActionResult Index(int page = 1) 
+        {
+            var pagination = new PagingInfo
+            {
+                CurrentPage = page,
+                PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
+                TotalItem = _context.Produtos.Count()
+            };
+            return View(
+            new EmentaListViewModel
+            {
+                Ementas = _context.Produtos.OrderBy(page => page.NomeEmenta)
+            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize),
+                Pagination = pagination
+            }
+            );
         }
     }
 }
