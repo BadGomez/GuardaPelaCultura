@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GuardaPelaCultura.Data;
 using GuardaPelaCultura.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace GuardaPelaCultura.Controllers
 {
@@ -49,13 +51,61 @@ namespace GuardaPelaCultura.Controllers
             return View();
         }
 
+
+
         // POST: Restaurantes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RestaurantesId,NomeRestaurante,NumeroTelefone,EmailRestaurante,LocalizacaoRestaurante,TextoDescritivoRestaurante,HoraAbertura,HoraFecho,Imagem,Imagem1,Imagem2,Imagem3")] Restaurantes restaurantes)
+        public async Task<IActionResult> Create([Bind("RestaurantesId,NomeRestaurante,NumeroTelefone,EmailRestaurante,LocalizacaoRestaurante,TextoDescritivoRestaurante,HoraAbertura," +
+            "HoraFecho")] Restaurantes restaurantes, List<IFormFile> Imagem, List<IFormFile> Imagem1, List<IFormFile> Imagem2, List<IFormFile> Imagem3)
         {
+            foreach (var item in Imagem)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Imagem1)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem1 = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Imagem2)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem2 = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Imagem3)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem3 = stream.ToArray();
+                    }
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(restaurantes);
