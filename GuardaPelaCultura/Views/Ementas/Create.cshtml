@@ -4,37 +4,44 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<h4>Ementa</h4>
-<hr />
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<h2 class="text-center mt-5 mb-4">Create Ementa</h2>
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeEmenta" class="control-label"></label>
+                <label asp-for="NomeEmenta" class="control-label">Nome</label>
                 <input asp-for="NomeEmenta" class="form-control" />
                 <span asp-validation-for="NomeEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DescricaoEmenta" class="control-label"></label>
+                <label asp-for="DescricaoEmenta" class="control-label">Descrição</label>
                 <input asp-for="DescricaoEmenta" class="form-control" />
                 <span asp-validation-for="DescricaoEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrecoEmenta" class="control-label"></label>
+                <label asp-for="PrecoEmenta" class="control-label">Preço</label>
                 <input asp-for="PrecoEmenta" class="form-control" />
                 <span asp-validation-for="PrecoEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="QuantidadeEmenta" class="control-label"></label>
+                <label asp-for="QuantidadeEmenta" class="control-label">Quantidade da Ementa</label>
                 <input asp-for="QuantidadeEmenta" class="form-control" />
                 <span asp-validation-for="QuantidadeEmenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RestaurantesId" class="control-label"></label>
-                <select asp-for="RestaurantesId" class ="form-control" asp-items="ViewBag.RestaurantesId"></select>
+                <label asp-for="RestaurantesId" class="control-label">Restaurantes</label>
+                <select asp-for="RestaurantesId" class="form-control" asp-items="ViewBag.RestaurantesId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -42,7 +49,6 @@
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

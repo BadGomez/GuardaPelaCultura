@@ -25,7 +25,5 @@ namespace GuardaPelaCultura.Models
         public int RestaurantesId { get; set; }
 
         public Restaurantes Restaurantes { get; set; }
-
-
     }
 }
