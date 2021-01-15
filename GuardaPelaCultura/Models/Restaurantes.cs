@@ -10,7 +10,7 @@ namespace GuardaPelaCultura.Models
     {
         public int RestaurantesId { get; set; }
 
-        [Required(ErrorMessage = "É necessário o Nome do Populate!")]
+        [Required(ErrorMessage = "É necessário o Nome do Restaurante!")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public string NomeRestaurante { get; set; }
 
@@ -18,16 +18,16 @@ namespace GuardaPelaCultura.Models
         [StringLength(14, ErrorMessage = "O Numero de Telefone deve ter 14 números")]
         public string NumeroTelefone { get; set; }
 
-        [Required(ErrorMessage = "É necessário o Email do Populate!")]
+        [Required(ErrorMessage = "É necessário o Email do Restaurante!")]
         [EmailAddress(ErrorMessage = "Email Inválido")]
         [StringLength(40, ErrorMessage = "O Email deve ter 40 caracteres")]
         public string  EmailRestaurante { get; set; }
 
-        [Required(ErrorMessage = "É necessário a Localização do Populate!")]
+        [Required(ErrorMessage = "É necessário a Localização do Restaurante!")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public string LocalizacaoRestaurante { get; set; }
 
-        [Required(ErrorMessage = "É necessário o TextoDescritivo do Populate!")]
+        [Required(ErrorMessage = "É necessário o TextoDescritivo do Restaurante!")]
         [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public string TextoDescritivoRestaurante { get; set; }
 
