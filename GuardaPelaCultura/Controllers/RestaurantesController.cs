@@ -136,17 +136,89 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RestaurantesId,NomeRestaurante,NumeroTelefone,EmailRestaurante,LocalizacaoRestaurante,TextoDescritivoRestaurante,HoraAbertura,HoraFecho,Imagem,Imagem1,Imagem2,Imagem3")] Restaurantes restaurantes)
+        public async Task<IActionResult> Edit(int id, [Bind("RestaurantesId,NomeRestaurante,NumeroTelefone,EmailRestaurante,LocalizacaoRestaurante,TextoDescritivoRestaurante," +
+            "HoraAbertura,HoraFecho")] Restaurantes restaurantes, List<IFormFile> Imagem, List<IFormFile> Imagem1, List<IFormFile> Imagem2, List<IFormFile> Imagem3)
         {
             if (id != restaurantes.RestaurantesId)
             {
                 return NotFound();
+            }
+            
+            Restaurantes TodosDadosRestaurante = await _context.Restaurantes.FindAsync(id);
+
+            if (Imagem.Count() != 0)
+            {
+                foreach (var item in Imagem)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem = stream.ToArray();
+                        }
+                    }
+                }
+            }
+
+            if (Imagem1.Count() != 0)
+            {
+                foreach (var item in Imagem1)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem1 = stream.ToArray();
+                        }
+                    }
+                }
+            }
+
+            if (Imagem2.Count() != 0)
+            {
+                foreach (var item in Imagem2)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem2 = stream.ToArray();
+                        }
+                    }
+                }
+            }
+
+            if (Imagem3.Count() != 0)
+            {
+                foreach (var item in Imagem3)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem3 = stream.ToArray();
+                        }
+                    }
+                }
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    TodosDadosRestaurante.EmailRestaurante = restaurantes.EmailRestaurante;
+                    TodosDadosRestaurante.NomeRestaurante = restaurantes.NomeRestaurante;
+                    TodosDadosRestaurante.NumeroTelefone = restaurantes.NumeroTelefone;
+                    TodosDadosRestaurante.LocalizacaoRestaurante = restaurantes.LocalizacaoRestaurante;
+                    TodosDadosRestaurante.TextoDescritivoRestaurante = restaurantes.TextoDescritivoRestaurante;
+                    TodosDadosRestaurante.HoraAbertura = restaurantes.HoraAbertura;
+                    TodosDadosRestaurante.HoraFecho = restaurantes.HoraFecho;
+                    restaurantes = TodosDadosRestaurante;
+
                     _context.Update(restaurantes);
                     await _context.SaveChangesAsync();
                 }
