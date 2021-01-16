@@ -1,71 +1,43 @@
 ﻿@model IEnumerable<GuardaPelaCultura.Models.ReservasRestaurante>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Reservas";
 }
 
-<h1>Index</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="css/templatemo-style.css" rel="stylesheet" />
 
-<p>
-    <a asp-action="Create">Create New</a>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<p class="mt-4 text-center mb-4">
+    <a asp-action="Create">Criar nova Reserva</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Restaurantes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mesa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroPessoas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EstadoReserva)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataReserva)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ObservacaoReserva)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Restaurantes.EmailRestaurante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.EmailCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mesa.MesaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroPessoas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoReserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataReserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ObservacaoReserva)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ReservasRestauranteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReservasRestauranteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReservasRestauranteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body>
+    <div class="card-deck">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Cliente.NomeCliente)</h5>
+                            <p class="card-text"><strong>Restaurante: </strong>@Html.DisplayFor(modelItem => item.Restaurantes.NomeRestaurante)</p>
+                            <p class="mt-2"><strong>Mesa: </strong>@Html.DisplayFor(modelItem => item.Mesa.MesasRestaurante)</p>
+                            <p class="mt-2"><strong>Numero de Pessoas: </strong>@Html.DisplayFor(modelItem => item.NumeroPessoas)</p>
+                            <p class="mt-2"><strong>Data Reserva: </strong>@Html.DisplayFor(modelItem => item.DataReserva)</p>
+                            <p class="mt-2"><strong>Observações: </strong>@Html.DisplayFor(modelItem => item.ObservacaoReserva)</p>
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.ReservasRestauranteId">Editar</a>
+                            <a asp-action="Details" class="btn btn-success" asp-route-id="@item.ReservasRestauranteId">Detalhes</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ReservasRestauranteId">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
