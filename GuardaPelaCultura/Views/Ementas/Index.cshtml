@@ -6,6 +6,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
 <link href="css/templatemo-style.css" rel="stylesheet" />
+<link href="~/css/outroscss.css" rel="stylesheet" />
 
 <script src="~/js/jquery.min.js"></script>
 <script src="~/js/parallax.min.js"></script>
@@ -18,22 +19,26 @@
 <body>
     <div class="card-deck">
         <div class="row">
+            @{
+                var aux = Model.Ementas.Count();
+                if (aux >= 3) { aux = 3; }
+             }
             @foreach (var item in Model.Ementas)
             {
-            <div class="col-sm-4">
-                <div class="card mb-3 col-md-11">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeEmenta)</h5>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.DescricaoEmenta)</p>
-                        <p class="mt-2"><strong>Preço: </strong>@Html.DisplayFor(modelItem => item.PrecoEmenta) €</p>
-                        <p class="mt-2"><strong>Quantidade: </strong>@Html.DisplayFor(modelItem => item.QuantidadeEmenta)</p>
-                        <p class="mt-2"><strong>Restaurante: </strong>@Html.DisplayFor(modelItem => item.RestaurantesId)</p>
-                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.EmentaId">Editar</a>
-                        <a asp-action="Details" class="btn btn-success" asp-route-id="@item.EmentaId">Detalhes</a>
-                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.EmentaId">Eliminar</a>
+                <div class="col-sm-@aux ementa">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeEmenta)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.DescricaoEmenta)</p>
+                            <p class="mt-2"><strong>Preço: </strong>@Html.DisplayFor(modelItem => item.PrecoEmenta) €</p>
+                            <p class="mt-2"><strong>Quantidade: </strong>@Html.DisplayFor(modelItem => item.QuantidadeEmenta)</p>
+                            <p class="mt-2"><strong>Restaurante: </strong>@Html.DisplayFor(modelItem => item.RestaurantesId)</p>
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.EmentaId">Editar</a>
+                            <a asp-action="Details" class="btn btn-success" asp-route-id="@item.EmentaId">Detalhes</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.EmentaId">Eliminar</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
         </div>
     </div>

@@ -1,8 +1,10 @@
-﻿@{
+﻿
+@model ListaPaginaRestaurantes
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-@model GuardaPelaCultura.Models.Restaurantes
 
 <!DOCTYPE html>
 <html>
@@ -31,34 +33,36 @@ https://templatemo.com/tm-539-simple-house
 -->
 <body>
     <main>
-            <header class="row tm-welcome-section">
-                <h2 class="col-12 text-center tm-section-title">Bem Vindo! <br> Guarda Pela Cultura 27</h2>
-                <p class="col-12 text-center">
-                    Guarda Pela Cultura é um projeto que surge pela candidatura da Guarda a capital europeia da cultura em 2027.<br>Pretendemos demonstrar a grande diversidade de cultura existente no nosso distrito.
-                </p>
-            </header>
+        <header class="row tm-welcome-section">
+            <h2 class="col-12 text-center tm-section-title">Bem Vindo! <br> Guarda Pela Cultura 27</h2>
+            <p class="col-12 text-center">
+                Guarda Pela Cultura é um projeto que surge pela candidatura da Guarda a capital europeia da cultura em 2027.<br>Pretendemos demonstrar a grande diversidade de cultura existente no nosso distrito.
+            </p>
+        </header>
 
-            <div class="tm-paging-links">
-                <nav>
-                    <ul>
-                        <li class="tm-paging-item"><a href="#" class="tm-paging-link active">Restaurantes</a></li>
-                        <li class="tm-paging-item"><a href="#" class="tm-paging-link">Turismo</a></li>
-                        <li class="tm-paging-item"><a href="#" class="tm-paging-link">Hotéis</a></li>
-                        <li class="tm-paging-item"><a href="#" class="tm-paging-link">Museus</a></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="tm-paging-links">
+            <nav>
+                <ul>
+                    <li class="tm-paging-item"><a href="#" class="tm-paging-link active">Restaurantes</a></li>
+                    <li class="tm-paging-item"><a href="#" class="tm-paging-link">Turismo</a></li>
+                    <li class="tm-paging-item"><a href="#" class="tm-paging-link">Hotéis</a></li>
+                    <li class="tm-paging-item"><a href="#" class="tm-paging-link">Museus</a></li>
+                </ul>
+            </nav>
+        </div>
 
-            <!-- Gallery -->
-            <div class="row tm-gallery">
-                <!-- gallery page 1 -->
-                <div id="tm-gallery-page-restaurantes" class="tm-gallery-page">
+        <!-- Gallery -->
+        <div class="row tm-gallery">
+            <!-- gallery page 1 -->
+            <div id="tm-gallery-page-restaurantes" class="tm-gallery-page">
+                @foreach (var item in Model.ListaRestaurantes)
+                {
                     <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
                         <figure>
-                            <img src="img/BolaDePrata.PNG" alt="Image" style="width:100%" class="img-fluid tm-gallery-img  hover-shadow cursor" onclick="openModal();currentSlide(1)"/>
+                            <img src="img/BolaDePrata.PNG" alt="Image" style="width:100%" class="img-fluid tm-gallery-img  hover-shadow cursor" onclick="openModal();currentSlide(1)" />
                             <figcaption class="mb-4">
-                                <h4 class="tm-gallery-title">Bola de Prata</h4>
-                                <p class="tm-gallery-description">Um espaço onde se pode jogar uma partida de snooker, setas ou matraquilhos assim como . . .</p>
+                                <h4 class="tm-gallery-title">@Html.DisplayFor(model => item.NomeRestaurante)</h4>
+                                <p class="tm-gallery-description">@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
                                 <div id="myModal" class="modal">
                                     <span class="close cursor" onclick="closeModal()">&times;</span>
                                     <div class="modal-content">
@@ -87,33 +91,33 @@ https://templatemo.com/tm-539-simple-house
                                         <div class="row mt-5">
                                             <div class="col-12 text-center">
                                                 <h1 class="text-center mb-3">
-                                                    @Html.DisplayFor(model => model.NomeRestaurante) 
+                                                    @Html.DisplayFor(model => item.NomeRestaurante)
                                                 </h1>
                                             </div>
                                             <div class="col-sm-5 ml-5 mr-3">
-                                                <p>@Html.DisplayFor(model => model.TextoDescritivoRestaurante)</p>
+                                                <p>@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
                                             </div>
                                             <div class="col-sm-6 text-center">
                                                 <h5>Horário:</h5>
-                                                <p>Segunda a Domingo:</p>
-                                                
+                                                <p>@Html.DisplayFor(model => item.HoraAbertura) h- @Html.DisplayFor(model => item.HoraFecho) h</p>
+
                                             </div>
                                         </div>
                                         <div class="row mt-5">
                                             <div class="col-sm-5 ml-5">
                                                 <h5 class="text-center">Contactos</h5>
-                                                <p>Email: @Html.DisplayFor(model => model.EmailRestaurante)</p>
-                                                <p>Telefone: @Html.DisplayFor(model => model.NumeroTelefone)</p>
+                                                <p>Email: @Html.DisplayFor(model => item.EmailRestaurante)</p>
+                                                <p>Telefone: @Html.DisplayFor(model => item.NumeroTelefone)</p>
                                             </div>
                                             <div class="col-sm-6 text-center">
                                                 <h5>Onde nos Encontramos:</h5>
-                                                <p>@Html.DisplayFor(model => model.LocalizacaoRestaurante)</p>
+                                                <p>@Html.DisplayFor(model => item.LocalizacaoRestaurante)</p>
                                             </div>
                                         </div>
                                         <div class="row mt-5 mb-4">
                                             <div class="col-sm-5 ml-5 text-center">
                                                 <a href="ReservasRestaurantesV2/Create" class="btn btn-outline-danger">Reservar Mesa</a>
-</div>
+                                            </div>
                                             <div class="col-sm-6 text-center">
                                                 <a href="ReservasTakeAways/Create" class="btn btn-outline-danger"> Reserva Take Away</a>
                                             </div>
@@ -121,341 +125,277 @@ https://templatemo.com/tm-539-simple-house
                                     </div>
                                 </div>
                             </figcaption>
-                         </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/Colmeia.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Colmeia</h4>
-                                <p class="tm-gallery-description">Restaurante mediterrâneo com toques modernistas. Produtos de altíssima qualidade.</p>
-                            </figcaption>
                         </figure>
                     </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/CortelheiraDaBurra.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Cortelheira da Burra</h4>
-                                <p class="tm-gallery-description">O Restaurante Cortelha da Burra é um local onde os ingredientes tradicionais transformam . . .</p> 
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/DomGarfo.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Dom Garfo</h4>
-                                <p class="tm-gallery-description">O que se vê, o que se cheira, o que se saboreia.. tudo tem um impacto colossal na forma como se . . .</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/GuardaRios.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Guarda Rios</h4>
-                                <p class="tm-gallery-description">Instalado num antigo lagar recuperado, sobranceiro a uma cascata do rio Alvôco, serve cozinha tradicional e é uma das referências da região.</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/NobreVinhosETal.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Nobre Vinhos e Tal</h4>
-                                <p class="tm-gallery-description">É do gosto pela simplicidade dos tesouros da gastronomia tradicional portuguesa associado ao gosto pelos vinhos que surge este espaço. Proporcionamos . . .</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/OBorges.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">O Borges</h4>
-                                <p class="tm-gallery-description">Pratos regionais da serra também constam da ementa, sobressaindo o cabrito assado. O ambiente de conforto acolhedor e a decoração com motivos rurais tornam . . .</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/OAlbertino.PNG" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">O Albertino</h4>
-                                <p class="tm-gallery-description">
-                                    Pessoas de todos os lugares deslocam-se ao seu estabelecimento para provarem os seus petiscos, que já nessa altura eram os que ainda hoje  . . .
-                                </p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div> <!-- gallery page 1 -->
-                <!-- gallery page 2 -->
-                <div id="tm-gallery-page-turismo" class="tm-gallery-page hidden">
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/serraestrela.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption class="mb-4">
-                                <h4 class="tm-gallery-title">Serra da Estrela</h4>
-                                <p class="tm-gallery-description">Este parque natural é excelente para caminhadas, passeios a cavalo ou mountain bike. Possui cerca de 375 km de . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/Se-Catedral-da-Guarda.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Sé da Guarda</h4>
-                                <p class="tm-gallery-description">Embora a Guarda seja sede de bispado desde a sua fundação, quando D. Sancho I pediu ao papa Inocêncio III a transferência . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/cascatadoPoçodaBroca.png" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Cascata do Poço da Broca</h4>
-                                <p class="tm-gallery-description">A Cascata do Poço da Broca é uma queda de água destacada pela sua beleza inigualável. Localiza-se na ribeira de Alvôco mais . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/muralhadeCasteloRodrigo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Muralha de Castelo Rodrigo</h4>
-                                <p class="tm-gallery-description">Local bem cuidado com uma vista fantástica e aprazível para visitar e sentir a história local.</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/ForteDeAlmeida.gif" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Vila Forte de Almeida</h4>
-                                <p class="tm-gallery-description">Almeida é uma vila fortificada e um município da sub-região da Beira Interior Norte e do Distrito da Guarda. A fortaleza em torno . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/PoçoDoInferno.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Poço do Inferno</h4>
-                                <p class="tm-gallery-description">Ao percorrer a Rota do Poço do Inferno verifica-se um dualismo de paisagem, natural e humanizada, marcada pelo diferente tipo . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/EstacaoDeVilarFormoso.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Estação de Vilar Formoso</h4>
-                                <p class="tm-gallery-description">A Estação Ferroviária de Vilar Formoso é uma interface da Linha da Beira Alta, que serve a Freguesia de Vilar Formoso . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/praias-fluviais-loriga.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Praias Fluviais de Loriga</h4>
-                                <p class="tm-gallery-description">Esta praia situa-se no interior do Parque Natural da Serra da Estrela, no vale glaciar de Loriga, cujos vestígios ainda são visíveis.</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div> <!-- gallery page 2 -->
-                <!-- gallery page 3 -->
-                <div id="tm-gallery-page-hotéis" class="tm-gallery-page hidden">
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/HotelVanguarda.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption class="mb-4">
-                                <h4 class="tm-gallery-title">Holtel Vanguarda</h4>
-                                <p class="tm-gallery-description">Este hotel no centro da Guarda está localizado no ponto mais alto de Portugal, a 1.000 m de altitude. Tem um restaurante com vista para a Serra da Estrela.</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/HotelSantos.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hotel Santos</h4>
-                                <p class="tm-gallery-description">Localizado no centro histórico da Guarda, este hotel fica a 150 m da catedral da cidade. As áreas verdes do Parque Natural da Serra da Estrela estão a 10 minutos . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/HotelLusitano.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hotel Lusitano</h4>
-                                <p class="tm-gallery-description">Localizado a cerca de 250 m da Estação de Comboios de Vilar Formoso, o Hotel Lusitano oferece Wi-Fi gratuito, recepção 24 horas e quartos com TV via satélite . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/hotel-fortaleza-de-almeida.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hotel Fortaleza</h4>
-                                <p class="tm-gallery-description"> O Hotel Fortaleza de Almeida tem como meta proporcionar a você uma visita relaxante e agradável, motivo pelo qual vários hóspedes retornam todos os anos.</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/HotelCamelo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hotel Camelo</h4>
-                                <p class="tm-gallery-description">O Hotel Eurosol Seia Camelo ocupa uma localização privilegiada no centro da cidade de Seia. Apresenta uma piscina exterior com espreguiçadeiras.</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/HospedariaDoConventoD'Aguiar.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hospedeira do Convento D'Aguiar</h4>
-                                <p class="tm-gallery-description">Este alojamento situa-se no Mosteiro de Santa Maria de Aguiar, que remonta ao século XI. Dispõe de quartos decorados . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/HospedariaRobalo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hospedaria Robalo</h4>
-                                <p class="tm-gallery-description">A Hospedaria Robalo está localizada no centro da cidade de Sabugal e apenas a 5 km da Reserva Natural da Serra da Malcata . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/VilaGaleSerraDaEstrela.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Hotel Vila Galé</h4>
-                                <p class="tm-gallery-description">Situada a 2,3 km das Termas de Manteigas, a Vila Gale Serra da Estrela, em Manteigas, tem várias comodidades, incluindo um restaurante, um centro de . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div><!-- gallery page 3 -->
-                <!-- gallery page 4 -->
-                <div id="tm-gallery-page-museus" class="tm-gallery-page hidden">
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="~/img/MuseudoCoa.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption class="mb-4">
-                                <h4 class="tm-gallery-title">Museu da Fundação do Côa</h4>
-                                <p class="tm-gallery-description"> Excelente arquitetura, perfeitamente integrada na paisagem das encostas do vale do Douro, com excelentes meios . . . </p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/MuseudoBrinquedo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Museu do Brinquedo</h4>
-                                <p class="tm-gallery-description"> O Museu do Brinquedo de Seia apresenta uma colectânea de cerca de 8000 brinquedos de Portugal e do mundo, do passado ao presente e assim, serve . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/Museu-Natural-da-Electricidade-Serra-da-Estrela.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Museu Natural da Eletricidade</h4>
-                                <p class="tm-gallery-description"> Trata-se da Central da Senhora do Desterro, uma das mais antigas centrais hidroeléctricas de Portugal, fruto da iniciativa . . . </p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/museuhisticocultural.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Museu Histórico-Militar</h4>
-                                <p class="tm-gallery-description">A sua funcionalidade esteve ligada a dois vectores essenciais, a paz e a guerra. Serviram então para abrigar a população da Vila e como armazém de víveres.</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/museudopao.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Museu do Pão</h4>
-                                <p class="tm-gallery-description">Situado em Seia, em plena Serra da Estrela, o Museu do Pão é um complexo museológico onde é possível fazer uma pequena . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/museuminiaturaautomovel.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Museu Miniatura Automóvel</h4>
-                                <p class="tm-gallery-description">É um verdadeiro mundo por descobrir que conta com cerca de 4 mil miniaturas em exposição . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/fronteiradapaz.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Fronteira da Paz</h4>
-                                <p class="tm-gallery-description">O espaço expositivo transmite, “quase” fisicamente, a experiência destes refugiados europeus que, durante a IIª Guerra Mundial . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                        <figure>
-                            <img src="img/museusabugal.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                            <figcaption>
-                                <h4 class="tm-gallery-title">Museu do Sabugal</h4>
-                                <p class="tm-gallery-description">Com esta exposição pretende-se homenagear a vida dura dos nossos antepassados que trabalhavam desde que o sol . . .</p>
-                                <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div> <!-- gallery page 4 -->
-            </div>
-            <div class="tm-section tm-container-inner">
-                <div class="row">
-                    <div class="col-md-6">
-                        <figure class="tm-description-figure">
-                            <img src="img/CandidaturaGuarda.jpg" alt="Image" class="img-fluid" />
-                        </figure>
-                    </div>
-                    <div class="col-md-6 mb-auto">
-                        <div class="tm-description-box">
-                            <h4 class="tm-gallery-title">Capital Europeia da Cultura</h4>
-                            <p class="tm-mb-45">A Candidatura da Guarda a Capital Europeia da Cultura 2027 é mais do que uma aposta num título ou a preparação de um ano de eventos. É um projeto regional, participado por 17 Municípios, que pretende desenvolver a Beira Interior a partir da sua dimensão cultural. </p>
-                            <a asp-action="About" class="tm-btn tm-btn-default tm-right">Saiba Mais</a>
-                        </div>
+                }
+            </div> <!-- gallery page 1 -->
+            <!-- gallery page 2 -->
+            <div id="tm-gallery-page-turismo" class="tm-gallery-page hidden">
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/serraestrela.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption class="mb-4">
+                            <h4 class="tm-gallery-title">Serra da Estrela</h4>
+                            <p class="tm-gallery-description">Este parque natural é excelente para caminhadas, passeios a cavalo ou mountain bike. Possui cerca de 375 km de . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/Se-Catedral-da-Guarda.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Sé da Guarda</h4>
+                            <p class="tm-gallery-description">Embora a Guarda seja sede de bispado desde a sua fundação, quando D. Sancho I pediu ao papa Inocêncio III a transferência . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/cascatadoPoçodaBroca.png" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Cascata do Poço da Broca</h4>
+                            <p class="tm-gallery-description">A Cascata do Poço da Broca é uma queda de água destacada pela sua beleza inigualável. Localiza-se na ribeira de Alvôco mais . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/muralhadeCasteloRodrigo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Muralha de Castelo Rodrigo</h4>
+                            <p class="tm-gallery-description">Local bem cuidado com uma vista fantástica e aprazível para visitar e sentir a história local.</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/ForteDeAlmeida.gif" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Vila Forte de Almeida</h4>
+                            <p class="tm-gallery-description">Almeida é uma vila fortificada e um município da sub-região da Beira Interior Norte e do Distrito da Guarda. A fortaleza em torno . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/PoçoDoInferno.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Poço do Inferno</h4>
+                            <p class="tm-gallery-description">Ao percorrer a Rota do Poço do Inferno verifica-se um dualismo de paisagem, natural e humanizada, marcada pelo diferente tipo . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/EstacaoDeVilarFormoso.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Estação de Vilar Formoso</h4>
+                            <p class="tm-gallery-description">A Estação Ferroviária de Vilar Formoso é uma interface da Linha da Beira Alta, que serve a Freguesia de Vilar Formoso . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/praias-fluviais-loriga.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Praias Fluviais de Loriga</h4>
+                            <p class="tm-gallery-description">Esta praia situa-se no interior do Parque Natural da Serra da Estrela, no vale glaciar de Loriga, cujos vestígios ainda são visíveis.</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+            </div> <!-- gallery page 2 -->
+            <!-- gallery page 3 -->
+            <div id="tm-gallery-page-hotéis" class="tm-gallery-page hidden">
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/HotelVanguarda.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption class="mb-4">
+                            <h4 class="tm-gallery-title">Holtel Vanguarda</h4>
+                            <p class="tm-gallery-description">Este hotel no centro da Guarda está localizado no ponto mais alto de Portugal, a 1.000 m de altitude. Tem um restaurante com vista para a Serra da Estrela.</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/HotelSantos.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hotel Santos</h4>
+                            <p class="tm-gallery-description">Localizado no centro histórico da Guarda, este hotel fica a 150 m da catedral da cidade. As áreas verdes do Parque Natural da Serra da Estrela estão a 10 minutos . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/HotelLusitano.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hotel Lusitano</h4>
+                            <p class="tm-gallery-description">Localizado a cerca de 250 m da Estação de Comboios de Vilar Formoso, o Hotel Lusitano oferece Wi-Fi gratuito, recepção 24 horas e quartos com TV via satélite . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/hotel-fortaleza-de-almeida.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hotel Fortaleza</h4>
+                            <p class="tm-gallery-description"> O Hotel Fortaleza de Almeida tem como meta proporcionar a você uma visita relaxante e agradável, motivo pelo qual vários hóspedes retornam todos os anos.</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/HotelCamelo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hotel Camelo</h4>
+                            <p class="tm-gallery-description">O Hotel Eurosol Seia Camelo ocupa uma localização privilegiada no centro da cidade de Seia. Apresenta uma piscina exterior com espreguiçadeiras.</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/HospedariaDoConventoD'Aguiar.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hospedeira do Convento D'Aguiar</h4>
+                            <p class="tm-gallery-description">Este alojamento situa-se no Mosteiro de Santa Maria de Aguiar, que remonta ao século XI. Dispõe de quartos decorados . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/HospedariaRobalo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hospedaria Robalo</h4>
+                            <p class="tm-gallery-description">A Hospedaria Robalo está localizada no centro da cidade de Sabugal e apenas a 5 km da Reserva Natural da Serra da Malcata . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/VilaGaleSerraDaEstrela.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Hotel Vila Galé</h4>
+                            <p class="tm-gallery-description">Situada a 2,3 km das Termas de Manteigas, a Vila Gale Serra da Estrela, em Manteigas, tem várias comodidades, incluindo um restaurante, um centro de . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+            </div><!-- gallery page 3 -->
+            <!-- gallery page 4 -->
+            <div id="tm-gallery-page-museus" class="tm-gallery-page hidden">
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="~/img/MuseudoCoa.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption class="mb-4">
+                            <h4 class="tm-gallery-title">Museu da Fundação do Côa</h4>
+                            <p class="tm-gallery-description"> Excelente arquitetura, perfeitamente integrada na paisagem das encostas do vale do Douro, com excelentes meios . . . </p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/MuseudoBrinquedo.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Museu do Brinquedo</h4>
+                            <p class="tm-gallery-description"> O Museu do Brinquedo de Seia apresenta uma colectânea de cerca de 8000 brinquedos de Portugal e do mundo, do passado ao presente e assim, serve . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/Museu-Natural-da-Electricidade-Serra-da-Estrela.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Museu Natural da Eletricidade</h4>
+                            <p class="tm-gallery-description"> Trata-se da Central da Senhora do Desterro, uma das mais antigas centrais hidroeléctricas de Portugal, fruto da iniciativa . . . </p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/museuhisticocultural.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Museu Histórico-Militar</h4>
+                            <p class="tm-gallery-description">A sua funcionalidade esteve ligada a dois vectores essenciais, a paz e a guerra. Serviram então para abrigar a população da Vila e como armazém de víveres.</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/museudopao.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Museu do Pão</h4>
+                            <p class="tm-gallery-description">Situado em Seia, em plena Serra da Estrela, o Museu do Pão é um complexo museológico onde é possível fazer uma pequena . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/museuminiaturaautomovel.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Museu Miniatura Automóvel</h4>
+                            <p class="tm-gallery-description">É um verdadeiro mundo por descobrir que conta com cerca de 4 mil miniaturas em exposição . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/fronteiradapaz.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Fronteira da Paz</h4>
+                            <p class="tm-gallery-description">O espaço expositivo transmite, “quase” fisicamente, a experiência destes refugiados europeus que, durante a IIª Guerra Mundial . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        <img src="img/museusabugal.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>
+                            <h4 class="tm-gallery-title">Museu do Sabugal</h4>
+                            <p class="tm-gallery-description">Com esta exposição pretende-se homenagear a vida dura dos nossos antepassados que trabalhavam desde que o sol . . .</p>
+                            <p><a class="text-info font-italic" href="#">Saiba Mais...</a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+            </div> <!-- gallery page 4 -->
+        </div>
+        <div class="tm-section tm-container-inner">
+            <div class="row">
+                <div class="col-md-6">
+                    <figure class="tm-description-figure">
+                        <img src="img/CandidaturaGuarda.jpg" alt="Image" class="img-fluid" />
+                    </figure>
+                </div>
+                <div class="col-md-6 mb-auto">
+                    <div class="tm-description-box">
+                        <h4 class="tm-gallery-title">Capital Europeia da Cultura</h4>
+                        <p class="tm-mb-45">A Candidatura da Guarda a Capital Europeia da Cultura 2027 é mais do que uma aposta num título ou a preparação de um ano de eventos. É um projeto regional, participado por 17 Municípios, que pretende desenvolver a Beira Interior a partir da sua dimensão cultural. </p>
+                        <a asp-action="About" class="tm-btn tm-btn-default tm-right">Saiba Mais</a>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
     <script>
         $(document).ready(function () {
             // Handle click on paging links
