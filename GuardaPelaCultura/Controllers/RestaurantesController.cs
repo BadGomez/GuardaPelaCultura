@@ -187,10 +187,10 @@ namespace GuardaPelaCultura.Controllers
                             await item.CopyToAsync(stream);
                             TodosDadosRestaurante.Imagem2 = stream.ToArray();
                         }
+
                     }
                 }
             }
-
             if (Imagem3.Count() != 0)
             {
                 foreach (var item in Imagem3)
