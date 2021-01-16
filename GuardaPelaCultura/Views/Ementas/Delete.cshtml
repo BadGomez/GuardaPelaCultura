@@ -13,48 +13,26 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h2 class="text-center mt-5 mb-4">Delete Ementa</h2>
+
 <div>
-    <h4>Ementa</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeEmenta)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NomeEmenta)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DescricaoEmenta)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DescricaoEmenta)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecoEmenta)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PrecoEmenta)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantidadeEmenta)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.QuantidadeEmenta)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Restaurantes)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Restaurantes.EmailRestaurante)
-        </dd>
-    </dl>
-
-    <form asp-action="Delete">
+    <div class="card-deck justify-content-center">
+        <div class="col-sm-6">
+            <div class="card mb-3">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@Html.DisplayFor(model => model.NomeEmenta)</h5>
+                    <p class="card-text">@Html.DisplayFor(model => model.DescricaoEmenta)</p>
+                    <p class="mt-2"><strong>Quatidade da Ementa: </strong>@Html.DisplayFor(model => model.QuantidadeEmenta)</p>
+                    <p class="mt-2"><strong>Preço: </strong>@Html.DisplayFor(model => model.PrecoEmenta)</p>
+                    <p class="mt-2"><strong>Restaurante: </strong>@Html.DisplayFor(model => model.Restaurantes.RestaurantesId)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form asp-action="Delete" class="align-content-center text-center">
         <input type="hidden" asp-for="EmentaId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-outline-secondary">Back</a>
     </form>
 </div>
