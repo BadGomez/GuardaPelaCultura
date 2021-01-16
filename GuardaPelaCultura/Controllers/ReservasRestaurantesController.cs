@@ -50,9 +50,9 @@ namespace GuardaPelaCultura.Controllers
         // GET: ReservasRestaurantes/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente");
-            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId");
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante");
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente");
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante");
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
         }
 
@@ -69,9 +69,9 @@ namespace GuardaPelaCultura.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId", reservasRestaurante.MesaId);
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
@@ -88,9 +88,9 @@ namespace GuardaPelaCultura.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId", reservasRestaurante.MesaId);
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 
@@ -126,9 +126,9 @@ namespace GuardaPelaCultura.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "EmailCliente", reservasRestaurante.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesaId", reservasRestaurante.MesaId);
-            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "EmailRestaurante", reservasRestaurante.RestaurantesId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);
+            ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante", reservasRestaurante.RestaurantesId);
             return View(reservasRestaurante);
         }
 

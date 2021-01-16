@@ -40,13 +40,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Restaurantes.EmailRestaurante)
+                @Html.DisplayFor(modelItem => item.Restaurantes.NomeRestaurante)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente.EmailCliente)
+                @Html.DisplayFor(modelItem => item.Cliente.NomeCliente)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mesa.MesaId)
+                @Html.DisplayFor(modelItem => item.Mesa.MesasRestaurante)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumeroPessoas)
