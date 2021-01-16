@@ -26,10 +26,38 @@
                     <p class="mt-2"><strong>Localização: </strong>@Html.DisplayFor(model => model.LocalizacaoRestaurante)</p>
                     <p class="mt-2"><strong>Hora de Abrir: </strong>@Html.DisplayFor(model => Model.HoraAbertura)</p>
                     <p class="mt-2"><strong>Hora de Fechar: </strong>@Html.DisplayFor(model => Model.HoraFecho)</p>
-                    <p class="mt-2"><strong>1ª Imagem: </strong>@Html.DisplayFor(model => Model.Imagem)</p>
-                    <p class="mt-2"><strong>2ª Imagem: </strong>@Html.DisplayFor(model => Model.Imagem1)</p>
-                    <p class="mt-2"><strong>3ª Imagem: </strong>@Html.DisplayFor(model => Model.Imagem2)</p>
-                    <p class="mt-2 mb-2"><strong>4ª Imagem: </strong>@Html.DisplayFor(model => Model.Imagem3)</p>
+                    <p class="mt-2"><strong>Imagens do Restaurante</strong></p>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-sm-3">
+                            @{
+                                var base64 = Convert.ToBase64String(Model.Imagem);
+                                var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
+                            }
+                            <img src='@imgsrc' width="80%" />
+                        </div>
+                        <div class="col-sm-3">
+                            @{
+                                var base65 = Convert.ToBase64String(Model.Imagem1);
+                                var imgsrc1 = string.Format("data:image/gif; base64,{0}", base65);
+                            }
+                            <img src='@imgsrc1' width="80%" />
+                        </div>
+                        <div class="col-sm-3">
+                            @{
+                                var base66 = Convert.ToBase64String(Model.Imagem2);
+                                var imgsrc2 = string.Format("data:image/gif; base64,{0}", base66);
+                            }
+                            <img src='@imgsrc2' width="80%" />
+                        </div>
+                        <div class="col-sm-3">
+                            @{
+                                var base67 = Convert.ToBase64String(Model.Imagem3);
+                                var imgsrc3 = string.Format("data:image/gif; base64,{0}", base67);
+                            }
+                            <img src='@imgsrc3' width="80%" />
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
