@@ -3,58 +3,64 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<h1>Details</h1>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<h2 class="text-center mt-5 mb-4">Detalhes das Rerservas Restaurante</h2>
 
 <div>
-    <h4>ReservasRestaurante</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Restaurantes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Restaurantes.EmailRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.EmailCliente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mesa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mesa.MesaId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumeroPessoas)
-        </dt>
-        <dd class = "col-sm-10">
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center">Nome</p>
+        </div>
+        <div class="col-sm-8">
+            @Html.DisplayFor(model => model.Cliente.NomeCliente)
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Restaurante</p>
+        </div>
+        <div class="col-sm-8">
+            @Html.DisplayFor(model => model.Restaurantes.NomeRestaurante)
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Mesa</p>
+        </div>
+        <div class="col-sm-8">
+            @Html.DisplayFor(model => model.Mesa.MesasRestaurante)
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Numeros de Pessoas</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.NumeroPessoas)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EstadoReserva)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Estado da Reserva</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.EstadoReserva)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataReserva)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Data da Rerserva</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.DataReserva)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ObservacaoReserva)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div class="col-sm-4">
+            <p class="text-center">Observações da Reserva</p>
+        </div>
+        <div class="col-sm-8">
             @Html.DisplayFor(model => model.ObservacaoReserva)
-        </dd>
-    </dl>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ReservasRestauranteId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="text-center">
+    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ReservasRestauranteId">Editar</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
 </div>
