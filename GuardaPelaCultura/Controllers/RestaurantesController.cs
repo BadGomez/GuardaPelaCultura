@@ -143,48 +143,65 @@ namespace GuardaPelaCultura.Controllers
             {
                 return NotFound();
             }
+            
+            Restaurantes TodosDadosRestaurante = await _context.Restaurantes.FindAsync(id);
 
-            foreach (var item in Imagem)
+            if (Imagem.Count() != 0)
             {
-                if (item.Length > 0)
+                foreach (var item in Imagem)
                 {
-                    using (var stream = new MemoryStream())
+                    if (item.Length > 0)
                     {
-                        await item.CopyToAsync(stream);
-                        restaurantes.Imagem = stream.ToArray();
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem = stream.ToArray();
+                        }
                     }
                 }
             }
-            foreach (var item in Imagem1)
+
+            if (Imagem1.Count() != 0)
             {
-                if (item.Length > 0)
+                foreach (var item in Imagem1)
                 {
-                    using (var stream = new MemoryStream())
+                    if (item.Length > 0)
                     {
-                        await item.CopyToAsync(stream);
-                        restaurantes.Imagem1 = stream.ToArray();
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem1 = stream.ToArray();
+                        }
                     }
                 }
             }
-            foreach (var item in Imagem2)
+
+            if (Imagem2.Count() != 0)
             {
-                if (item.Length > 0)
+                foreach (var item in Imagem2)
                 {
-                    using (var stream = new MemoryStream())
+                    if (item.Length > 0)
                     {
-                        await item.CopyToAsync(stream);
-                        restaurantes.Imagem2 = stream.ToArray();
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem2 = stream.ToArray();
+                        }
                     }
                 }
             }
-            foreach (var item in Imagem3)
+
+            if (Imagem3.Count() != 0)
             {
-                if (item.Length > 0)
+                foreach (var item in Imagem3)
                 {
-                    using (var stream = new MemoryStream())
+                    if (item.Length > 0)
                     {
-                        await item.CopyToAsync(stream);
-                        restaurantes.Imagem3 = stream.ToArray();
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            TodosDadosRestaurante.Imagem3 = stream.ToArray();
+                        }
                     }
                 }
             }
@@ -193,6 +210,15 @@ namespace GuardaPelaCultura.Controllers
             {
                 try
                 {
+                    TodosDadosRestaurante.EmailRestaurante = restaurantes.EmailRestaurante;
+                    TodosDadosRestaurante.NomeRestaurante = restaurantes.NomeRestaurante;
+                    TodosDadosRestaurante.NumeroTelefone = restaurantes.NumeroTelefone;
+                    TodosDadosRestaurante.LocalizacaoRestaurante = restaurantes.LocalizacaoRestaurante;
+                    TodosDadosRestaurante.TextoDescritivoRestaurante = restaurantes.TextoDescritivoRestaurante;
+                    TodosDadosRestaurante.HoraAbertura = restaurantes.HoraAbertura;
+                    TodosDadosRestaurante.HoraFecho = restaurantes.HoraFecho;
+                    restaurantes = TodosDadosRestaurante;
+
                     _context.Update(restaurantes);
                     await _context.SaveChangesAsync();
                 }
