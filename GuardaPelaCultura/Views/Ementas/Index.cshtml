@@ -15,16 +15,13 @@
 
 <h2 class="text-center mt-5 mb-4">Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <body>
     <div class="card-deck">
         <div class="row">
             @foreach (var item in Model.Ementas)
             {
             <div class="col-sm-4">
-                <div class="card mb-3 col-md-12">
+                <div class="card mb-3">
                     <div class="card-body text-center">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeEmenta)</h5>
                         <p class="card-text">@Html.DisplayFor(modelItem => item.DescricaoEmenta)</p>
@@ -40,7 +37,7 @@
             }
         </div>
     </div>
-    <nav class="mt-3">
+    <nav class="mt-4">
         <ul class="pagination">
             <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">First</a></li>
 
@@ -64,7 +61,8 @@
                 }
             }
 
-            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Pagination.TotalPages" asp-route-name="@Model.SearchName">Last</a></li>
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Pagination.TotalPages" asp-route-name="@Model.SearchName">Last</a></li> 
+            <li style="margin-left:70%" class="btn btn-outline-secondary"><a asp-action="Create">Create New</a></li>
         </ul>
     </nav>
 </body>
