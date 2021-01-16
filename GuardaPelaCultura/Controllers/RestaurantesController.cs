@@ -136,11 +136,57 @@ namespace GuardaPelaCultura.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RestaurantesId,NomeRestaurante,NumeroTelefone,EmailRestaurante,LocalizacaoRestaurante,TextoDescritivoRestaurante,HoraAbertura,HoraFecho,Imagem,Imagem1,Imagem2,Imagem3")] Restaurantes restaurantes)
+        public async Task<IActionResult> Edit(int id, [Bind("RestaurantesId,NomeRestaurante,NumeroTelefone,EmailRestaurante,LocalizacaoRestaurante,TextoDescritivoRestaurante," +
+            "HoraAbertura,HoraFecho")] Restaurantes restaurantes, List<IFormFile> Imagem, List<IFormFile> Imagem1, List<IFormFile> Imagem2, List<IFormFile> Imagem3)
         {
             if (id != restaurantes.RestaurantesId)
             {
                 return NotFound();
+            }
+
+            foreach (var item in Imagem)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Imagem1)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem1 = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Imagem2)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem2 = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Imagem3)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        restaurantes.Imagem3 = stream.ToArray();
+                    }
+                }
             }
 
             if (ModelState.IsValid)

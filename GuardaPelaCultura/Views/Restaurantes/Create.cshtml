@@ -85,21 +85,21 @@
                 <input asp-for="HoraFecho" class="form-control" />
                 <span asp-validation-for="HoraFecho" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input asp-for="Imagem" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Primeira Imagem" />
-                <span asp-validation-for="Imagem" class="text-danger"></span>
+            <div class="form-group pt-2">
+                <input asp-for="Imagem" type="file" required accept="image/*" id="file" aria-label="File browser example" title="Insira a Primeira Imagem">
+                <span asp-validation-for="Imagem" class="file-custom text-danger"></span>
             </div>
-            <div class="form-group">
-                <input asp-for="Imagem1" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Segunda Imagem" />
-                <span asp-validation-for="Imagem1" class="text-danger"></span>
+            <div class="form-group pt-2">
+                <input asp-for="Imagem1" type="file" required accept="image/*" id="file" aria-label="File browser example" title="Insira a Segunda Imagem">
+                <span asp-validation-for="Imagem1" class="file-custom text-danger"></span>
             </div>
-            <div class="form-group">
-                <input asp-for="Imagem2" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Terceira Imagem" />
-                <span asp-validation-for="Imagem2" class="text-danger"></span>
+            <div class="form-group pt-2">
+                <input asp-for="Imagem2" type="file" required accept="image/*" id="file" aria-label="File browser example" title="Insira a Terceira Imagem">
+                <span asp-validation-for="Imagem2" class="file-custom text-danger"></span>
             </div>
-            <div class="form-group">
-                <input asp-for="Imagem3" type="file" required accept="image/*" class="form-control custom-file-input" title="Insira a Quarta Imagem" />
-                <span asp-validation-for="Imagem3" class="text-danger"></span>
+            <div class="form-group pt-2">
+                <input asp-for="Imagem3" type="file" required accept="image/*" id="file" aria-label="File browser example" title="Insira a Quarta Imagem">
+                <span asp-validation-for="Imagem3" class="file-custom text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-primary" />
