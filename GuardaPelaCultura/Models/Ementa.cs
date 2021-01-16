@@ -20,6 +20,7 @@ namespace GuardaPelaCultura.Models
         public float PrecoEmenta { get; set; }
 
         [Required(ErrorMessage = "É necessário Inserir a Quantidade Disponível!")]
+        [Range(0,500,ErrorMessage ="Valor entre 0 e 500")]
         public int QuantidadeEmenta { get; set; }
 
         public int RestaurantesId { get; set; }
