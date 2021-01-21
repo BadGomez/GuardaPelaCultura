@@ -20,11 +20,11 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: ReservasRestaurantes
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
             return View(await guardaPelaCulturaContext.ToListAsync());
-        }
+        }*/
 
         // GET: ReservasRestaurantes/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -167,6 +167,26 @@ namespace GuardaPelaCultura.Controllers
         private bool ReservasRestauranteExists(int id)
         {
             return _context.ReservasRestaurante.Any(e => e.ReservasRestauranteId == id);
+        }
+        public IActionResult Index(int page = 1)
+        {
+            var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
+            //return View(await guardaPelaCulturaContext.ToListAsync());
+
+            var pagination = new PagingInfo
+            {
+                CurrentPage = page,
+                PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
+                TotalItem = _context.ReservasRestaurante.Count()
+            }; 
+            return View(
+            new ReservaRestauranteListViewModel
+            {
+                ReservaRestaurantes = _context.ReservasRestaurante.OrderBy(page => page.ReservasRestauranteId)
+            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize),
+                Paginacao = pagination
+            }
+            );
         }
     }
 }
