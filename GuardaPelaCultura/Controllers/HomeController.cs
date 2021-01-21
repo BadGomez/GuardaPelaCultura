@@ -18,7 +18,7 @@ namespace GuardaPelaCultura.Controllers
         public HomeController(ILogger<HomeController> logger, GuardaPelaCulturaContext context)
         {
             _logger = logger;
-            _context = context; 
+            _context = context;
         }
 
         public IActionResult Index(int page = 1)
@@ -29,9 +29,10 @@ namespace GuardaPelaCultura.Controllers
                 PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
                 TotalItem = _context.Restaurantes.Count()
             };
-            return View(new ListaPaginaRestaurantes {
+            return View(new ListaPaginaRestaurantes
+            {
                 Paginacao = paginacao,
-                ListaRestaurantes = _context.Restaurantes.Skip((page - 1)*paginacao.PageSize).Take(paginacao.PageSize)
+                ListaRestaurantes = _context.Restaurantes.Skip((page - 1) * paginacao.PageSize).Take(paginacao.PageSize)
             });
         }
         public IActionResult About()
@@ -50,4 +51,3 @@ namespace GuardaPelaCultura.Controllers
         }
     }
 }
-
