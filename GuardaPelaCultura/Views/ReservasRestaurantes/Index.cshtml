@@ -18,11 +18,11 @@
 </p>
 <body>
     <div class="card-deck">
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach (var item in Model.ReservaRestaurantes)
             {
-                <div class="col-sm-4">
-                    <div class="card mb-3">
+                <div>
+                    <div class="card mb-3 ">
                         <div class="card-body text-center">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Cliente.NomeCliente)</h5>
                             <p class="card-text"><strong>Restaurante: </strong>@Html.DisplayFor(modelItem => item.Restaurantes.NomeRestaurante)</p>
