@@ -21,12 +21,6 @@ namespace GuardaPelaCultura.Controllers
             _context = context;
         }
 
-        // GET: Restaurantes
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Restaurantes.ToListAsync());
-        }
-
         // GET: Restaurantes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -270,6 +264,23 @@ namespace GuardaPelaCultura.Controllers
         private bool RestaurantesExists(int id)
         {
             return _context.Restaurantes.Any(e => e.RestaurantesId == id);
+        }
+        public IActionResult Index(int page = 1)
+        {
+            var pagination = new PagingInfo
+            {
+                CurrentPage = page,
+                PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
+                TotalItem = _context.Restaurantes.Count()
+            };
+            return View(
+            new ListaPaginaRestaurantes
+            {
+                ListaRestaurantes = _context.Restaurantes.OrderBy(page => page.NomeRestaurante)
+            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize),
+                Paginacao = pagination
+            }
+            );
         }
     }
 }

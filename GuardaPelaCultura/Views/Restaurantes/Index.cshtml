@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GuardaPelaCultura.Models.Restaurantes>
+﻿@model ListaPaginaRestaurantes
 
 @{
     ViewData["Title"] = "Index";
@@ -19,7 +19,7 @@
 <body>
     <div class="card-deck">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in Model.ListaRestaurantes)
             {
                 <div class="col-sm-6">
                     <div class="card mb-3">
@@ -71,4 +71,31 @@
             }
         </div>
     </div>
+    <nav class="mt-4">
+        <ul class="pagination  justify-content-center">
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">First</a></li>
+
+            @{
+                int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
+                if (initalPage < 1) initalPage = 1;
+
+                int finalPage = Model.Paginacao.CurrentPage + PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
+                if (finalPage > Model.Paginacao.TotalPages) finalPage = Model.Paginacao.TotalPages;
+            }
+
+            @for (int p = initalPage; p <= finalPage; p++)
+            {
+                if (p == Model.Paginacao.CurrentPage)
+                {
+                    <li class="page-item active"><a class="page-link" href="#">@p</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.SearchName">@p</a></li>
+                }
+            }
+
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchName">Last</a></li>
+        </ul>
+    </nav>
 </body>
