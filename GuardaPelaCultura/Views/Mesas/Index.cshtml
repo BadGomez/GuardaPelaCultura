@@ -4,44 +4,37 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<p>
-    <a asp-action="Create">Create New</a>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<p class="mt-4 text-center mb-4">
+    <a asp-action="Create">Criar Nova Mesa</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Restaurantes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LugaresRestaurante)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MesasRestaurante)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Restaurantes.EmailRestaurante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LugaresRestaurante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MesasRestaurante)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MesaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MesaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MesaId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<body>
+    <div class="card-deck">
+        <div class="row">
+            @foreach(var item in Model)
+            {
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Restaurantes.NomeRestaurante)</h5>
+                            <p class="mt-2"><strong>Número da Mesa: </strong>@Html.DisplayFor(modelItem => item.MesasRestaurante)</p>
+                            <p class="mt-2"><strong>Número de Lugares: </strong>@Html.DisplayFor(modelItem => item.LugaresRestaurante)</p>
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.MesaId">Editar</a>
+                            <a asp-action="Details" class="btn btn-success" asp-route-id="@item.MesaId">Detalhes</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.MesaId">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>

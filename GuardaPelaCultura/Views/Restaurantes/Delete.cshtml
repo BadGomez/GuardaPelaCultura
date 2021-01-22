@@ -13,8 +13,8 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 
-<h2 class="text-center mt-5 mb-4">Eliminar Restaurante</h2>
-<div>
+<body>
+    <h2 class="text-center mt-5 mb-4">Eliminar Restaurante "@Html.DisplayFor(model => model.NomeRestaurante)"</h2>
     <div class="card-deck justify-content-center">
         <div class="col-sm-6">
             <div class="card mb-3">
@@ -67,4 +67,4 @@
         <input type="submit" value="Apagar" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
     </form>
-</div>
+</body>
