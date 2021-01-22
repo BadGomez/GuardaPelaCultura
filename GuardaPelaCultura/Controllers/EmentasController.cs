@@ -165,11 +165,12 @@ namespace GuardaPelaCultura.Controllers
                 PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
                 TotalItem = _context.Produtos.Count()
             };
+            var guardaPelaCulturaContext = _context.Produtos.Include(e => e.Restaurantes);
             return View(
             new EmentaListViewModel
             {
                 Ementas = _context.Produtos.OrderBy(page => page.NomeEmenta)
-            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize),
+            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize).Include(e => e.Restaurantes),
                 Pagination = pagination
             }
             );
