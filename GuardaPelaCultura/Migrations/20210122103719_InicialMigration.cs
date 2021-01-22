@@ -117,7 +117,7 @@ namespace GuardaPelaCultura.Migrations
                     MesaId = table.Column<int>(nullable: false),
                     NumeroPessoas = table.Column<int>(nullable: false),
                     EstadoReserva = table.Column<bool>(nullable: false),
-                    DataReserva = table.Column<string>(nullable: false),
+                    DataReserva = table.Column<DateTime>(nullable: false),
                     ObservacaoReserva = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
