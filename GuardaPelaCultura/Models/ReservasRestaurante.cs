@@ -26,7 +26,7 @@ namespace GuardaPelaCultura.Models
         public bool EstadoReserva { get; set; }
 
         [Required]
-        public string DataReserva { get; set; }
+        public DateTime DataReserva { get; set; }
 
         public string ObservacaoReserva { get; set; }
     }
