@@ -168,21 +168,22 @@ namespace GuardaPelaCultura.Controllers
         {
             return _context.ReservasRestaurante.Any(e => e.ReservasRestauranteId == id);
         }
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string name = null, int page = 1)
         { 
             var pagination = new PagingInfo
             {
                 CurrentPage = page,
                 PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
-                TotalItem = _context.ReservasRestaurante.Count()
+                TotalItem = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name)).Count()
             };
             var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
             return View(
             new ReservaRestauranteListViewModel
             {
 
-                ReservaRestaurantes = _context.ReservasRestaurante.OrderBy(page => page.DataReserva).Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize).Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes),
-                Paginacao = pagination
+                ReservaRestaurantes = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name)).OrderBy(page => page.DataReserva).Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize).Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes),
+                Paginacao = pagination,
+                SearchName = name
             }
             ) ;
 
