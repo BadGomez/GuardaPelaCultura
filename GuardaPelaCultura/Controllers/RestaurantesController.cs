@@ -265,19 +265,21 @@ namespace GuardaPelaCultura.Controllers
         {
             return _context.Restaurantes.Any(e => e.RestaurantesId == id);
         }
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1, string name = null)
         {
             var pagination = new PagingInfo
             {
                 CurrentPage = page,
                 PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
-                TotalItem = _context.Restaurantes.Count()
+                TotalItem = _context.Restaurantes.Where(p => name == null || p.NomeRestaurante.Contains(name)).Count()
             };
             return View(
             new ListaPaginaRestaurantes
             {
-                ListaRestaurantes = _context.Restaurantes.OrderBy(page => page.NomeRestaurante)
-            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize),
+                ListaRestaurantes = _context.Restaurantes.Where(p => name == null || p.NomeRestaurante.Contains(name))
+                .OrderBy(page => page.NomeRestaurante)
+                .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize),
+                SearchName = name,
                 Paginacao = pagination
             }
             );
