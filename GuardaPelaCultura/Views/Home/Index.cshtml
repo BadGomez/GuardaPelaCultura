@@ -436,24 +436,31 @@ https://templatemo.com/tm-539-simple-house
             document.getElementById("myModal").style.display = "none";
         }
 
+        var indexrestaurantes = 1;
         var slideIndex = 1;
-        showSlides(slideIndex);
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
+        function RestauranteAtual(m) {
+            showSlides(slideIndex = m  * 4 - 3, indexrestaurantes = m);
+        }
+
+        function plusSlides(n, m) {
+            showSlides(slideIndex += n, m);
         }
 
         function currentSlide(n) {
             showSlides(slideIndex = n);
         }
 
-        function showSlides(n) {
+        function showSlides(n, m) {
+            var min = m * 4 - 3;
+            var max = m * 4;
             var i;
             var slides = document.getElementsByClassName("mySlides");
             var dots = document.getElementsByClassName("demo");
             var captionText = document.getElementById("caption");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
+  
+            if (n > max) { slideIndex = min }
+            if (n < min) { slideIndex = max }
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }

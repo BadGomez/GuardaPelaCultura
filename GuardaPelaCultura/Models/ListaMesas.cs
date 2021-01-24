@@ -12,6 +12,6 @@ namespace GuardaPelaCultura.Models
 
         public PagingInfo Paginacao { get; set; }
 
-        public string Search { get; set; }
+        public string SearchMesa { get; set; }
     }
 }

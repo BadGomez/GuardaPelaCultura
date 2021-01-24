@@ -18,11 +18,15 @@
 </p>
 
 <body>
+    <form asp-action="Index" method="get" class="mb-4">
+        <input name="name" type="search" class="searchbar form-control" value="@Model.SearchMesa" placeholder="Mesas do Restaurante:" />
+        <input name="page" type="hidden" value="1" />
+    </form>
     <div class="card-deck">
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach (var item in Model.Mesa)
             {
-                <div class="col-sm-6">
+                <div class="col-sn-6">
                     <div class="card mb-3">
                         <div class="card-body text-center">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Restaurantes.NomeRestaurante)</h5>
@@ -39,7 +43,7 @@
     </div>
     <nav class="mt-4">
         <ul class="pagination  justify-content-center">
-            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.Search">First</a></li>
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchMesa">First</a></li>
 
             @{
                 int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
@@ -57,11 +61,11 @@
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.Search">@p</a></li>
+                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.SearchMesa">@p</a></li>
                 }
             }
 
-            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.Search">Last</a></li>
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchMesa">Last</a></li>
         </ul>
     </nav>
 </body>
