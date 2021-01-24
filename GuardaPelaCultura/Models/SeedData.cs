@@ -33,9 +33,9 @@ namespace GuardaPelaCultura.Models
                     HoraAbertura = 11,
                     HoraFecho = 23,
                     Imagem = File.ReadAllBytes("./imgSeed/OBorges.PNG"),
-                    Imagem1 = File.ReadAllBytes("./imgSeed/OBorges1.PNG"),
-                    Imagem2 = File.ReadAllBytes("./imgSeed/OBorges2.PNG"),
-                    Imagem3 = File.ReadAllBytes("./imgSeed/OBorges3.PNG"),
+                    Imagem1 = File.ReadAllBytes("./imgSeed/OBorges1.jpg"),
+                    Imagem2 = File.ReadAllBytes("./imgSeed/OBorges2.jpg"),
+                    Imagem3 = File.ReadAllBytes("./imgSeed/OBorges3.jpg"),
                 });
             dbContext.Restaurantes.Add(
             new Restaurantes
@@ -48,9 +48,9 @@ namespace GuardaPelaCultura.Models
                 HoraAbertura = 11,
                 HoraFecho = 20,
                 Imagem = File.ReadAllBytes("./imgSeed/BolaDePrata.PNG"),
-                Imagem1 = File.ReadAllBytes("./imgSeed/02.jpg"),
-                Imagem2 = File.ReadAllBytes("./imgSeed/Colmeia.PNG"),
-                Imagem3 = File.ReadAllBytes("./imgSeed/01.jpg"),
+                Imagem1 = File.ReadAllBytes("./imgSeed/BolaDePrata.PNG"),
+                Imagem2 = File.ReadAllBytes("./imgSeed/BolaDePrata.PNG"),
+                Imagem3 = File.ReadAllBytes("./imgSeed/BolaDePrata.PNG"),
             });
             dbContext.SaveChanges();
         }
