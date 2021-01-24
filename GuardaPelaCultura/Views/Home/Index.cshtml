@@ -62,86 +62,88 @@ https://templatemo.com/tm-539-simple-house
                             @{
                                 var base64 = Convert.ToBase64String(item.Imagem);
                                 var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
-                                                }
-                                                <img src='@imgsrc' alt="Image" style="width:100%" class="img-fluid tm-gallery-img  hover-shadow cursor" onclick="openModal();currentSlide(1)" />
-                                                <figcaption class="mb-4">
-                                                    <h4 class="tm-gallery-title">@Html.DisplayFor(model => item.NomeRestaurante)</h4>
-                                                    <p class="tm-gallery-description">@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
-                                                    <div id="myModal" class="modal">
-                                                        <span class="close cursor" onclick="closeModal()">&times;</span>
-                                                        <div class="modal-content">
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">1 / 4</div>
-                                                                <img src='@imgsrc' style="width:100%">
-                                                            </div>
+                            }
+                            <img src='@imgsrc' alt="Image" style="width:100%" class="img-fluid tm-gallery-img  hover-shadow cursor" onclick="document.getElementById('Modal+@item.RestaurantesId').style.display='block';currentSlide(1)" />
+                            
+                            <figcaption class="mb-4">
+                                <h4 class="tm-gallery-title">@Html.DisplayFor(model => item.NomeRestaurante)</h4>
+                                <p class="tm-gallery-description">@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
 
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">2 / 4</div>
-                                                                @{
-                                                                    var base65 = Convert.ToBase64String(item.Imagem1);
-                                                                    var imgsrc1 = string.Format("data:image/gif; base64,{0}", base65);
-                                                                }
-                                                                <img src='@imgsrc1' style="width:100%">
-                                                            </div>
+                                <div id="Modal+@item.RestaurantesId" class="modal">
+                                    <span class="close cursor" onclick="document.getElementById('Modal+@item.RestaurantesId').style.display='none'">&times;</span>
+                                    <div class="modal-content">
+                                        <div class="mySlides">
+                                            <div class="numbertext">1 / 4</div>
+                                            <img src='@imgsrc' style="width:100%">
+                                        </div>
 
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">3 / 4</div>
-                                                                @{
-                                                                    var base66 = Convert.ToBase64String(item.Imagem2);
-                                                                    var imgsrc2 = string.Format("data:image/gif; base64,{0}", base66);
-                                                                }
-                                                                <img src='@imgsrc2' style="width:100%">
-                                                            </div>
+                                        <div class="mySlides">
+                                            <div class="numbertext">2 / 4</div>
+                                            @{
+                                                var base65 = Convert.ToBase64String(item.Imagem1);
+                                                var imgsrc1 = string.Format("data:image/gif; base64,{0}", base65);
+                                            }
+                                            <img src='@imgsrc1' style="width:100%">
+                                        </div>
 
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">4 / 4</div>
-                                                                @{
-                                                                    var base67 = Convert.ToBase64String(item.Imagem3);
-                                                                    var imgsrc3 = string.Format("data:image/gif; base64,{0}", base67);
-                                                                }
-                                                                <img src='@imgsrc3' style="width:100%">
-                                                            </div>
-                                                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                        <div class="mySlides">
+                                            <div class="numbertext">3 / 4</div>
+                                            @{
+                                                var base66 = Convert.ToBase64String(item.Imagem2);
+                                                var imgsrc2 = string.Format("data:image/gif; base64,{0}", base66);
+                                            }
+                                            <img src='@imgsrc2' style="width:100%">
+                                        </div>
 
-                                                            <div class="row mt-5">
-                                                                <div class="col-12 text-center">
-                                                                    <h1 class="text-center mb-3">
-                                                                        @Html.DisplayFor(model => item.NomeRestaurante)
-                                                                    </h1>
-                                                                </div>
-                                                                <div class="col-sm-5 ml-5 mr-3">
-                                                                    <p>@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
-                                                                </div>
-                                                                <div class="col-sm-6 text-center">
-                                                                    <h5>Horário:</h5>
-                                                                    <p>@Html.DisplayFor(model => item.HoraAbertura) h- @Html.DisplayFor(model => item.HoraFecho) h</p>
+                                        <div class="mySlides">
+                                            <div class="numbertext">4 / 4</div>
+                                            @{
+                                                var base67 = Convert.ToBase64String(item.Imagem3);
+                                                var imgsrc3 = string.Format("data:image/gif; base64,{0}", base67);
+                                            }
+                                            <img src='@imgsrc3' style="width:100%">
+                                        </div>
+                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mt-5">
-                                                                <div class="col-sm-5 ml-5">
-                                                                    <h5 class="text-center">Contactos</h5>
-                                                                    <p>Email: @Html.DisplayFor(model => item.EmailRestaurante)</p>
-                                                                    <p>Telefone: @Html.DisplayFor(model => item.NumeroTelefone)</p>
-                                                                </div>
-                                                                <div class="col-sm-6 text-center">
-                                                                    <h5>Onde nos Encontramos:</h5>
-                                                                    <p>@Html.DisplayFor(model => item.LocalizacaoRestaurante)</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mt-5 mb-4">
-                                                                <div class="col-sm-5 ml-5 text-center">
-                                                                    <a href="ReservasRestaurante/Create" class="btn btn-outline-danger">Reservar Mesa</a>
-                                                                </div>
-                                                                <div class="col-sm-6 text-center">
-                                                                    <a href="ReservasTakeAways/Create" class="btn btn-outline-danger"> Reserva Take Away</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </figcaption>
-                                            </figure>
+                                        <div class="row mt-5">
+                                            <div class="col-12 text-center">
+                                                <h1 class="text-center mb-3">
+                                                    @Html.DisplayFor(model => item.NomeRestaurante)
+                                                </h1>
+                                            </div>
+                                            <div class="col-sm-5 ml-5 mr-3">
+                                                <p>@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <h5>Horário:</h5>
+                                                <p>@Html.DisplayFor(model => item.HoraAbertura) h- @Html.DisplayFor(model => item.HoraFecho) h</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <div class="col-sm-5 ml-5">
+                                                <h5 class="text-center">Contactos</h5>
+                                                <p>Email: @Html.DisplayFor(model => item.EmailRestaurante)</p>
+                                                <p>Telefone: @Html.DisplayFor(model => item.NumeroTelefone)</p>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <h5>Onde nos Encontramos:</h5>
+                                                <p>@Html.DisplayFor(model => item.LocalizacaoRestaurante)</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 mb-4">
+                                            <div class="col-sm-5 ml-5 text-center">
+                                                <a href="ReservasRestaurante/Create" class="btn btn-outline-danger">Reservar Mesa</a>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <a href="ReservasTakeAways/Create" class="btn btn-outline-danger"> Reserva Take Away</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figcaption>
+                        </figure>
                     </article>
                 }
             </div> <!-- gallery page 1 -->

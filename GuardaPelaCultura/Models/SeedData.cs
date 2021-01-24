@@ -20,7 +20,7 @@ namespace GuardaPelaCultura.Models
             {
                 return;
             }
-            //byte[] foto = File.ReadAllBytes("./imgSeed/catedral.jpg");
+
             dbContext.Restaurantes.Add(
                 new Restaurantes
                 {
@@ -35,12 +35,28 @@ namespace GuardaPelaCultura.Models
                     Imagem1 = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
                     Imagem2 = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
                     Imagem3 = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
-                    /*Imagem = foto,
-                    Imagem1 = foto,
-                    Imagem2 = foto,
-                    Imagem3 = foto,*/
                 });
+            dbContext.Restaurantes.Add(
+            new Restaurantes
+            {
+                NomeRestaurante = "After",
+                NumeroTelefone = "963725836",
+                EmailRestaurante = "After@gmail.com",
+                LocalizacaoRestaurante = "Guarda",
+                TextoDescritivoRestaurante = "Espaço Acolheder",
+                HoraAbertura = 11,
+                HoraFecho = 20,
+                Imagem = File.ReadAllBytes("./imgSeed/BolaDePrata.PNG"),
+                Imagem1 = File.ReadAllBytes("./imgSeed/02.jpg"),
+                Imagem2 = File.ReadAllBytes("./imgSeed/Colmeia.PNG"),
+                Imagem3 = File.ReadAllBytes("./imgSeed/01.jpg"),
+            });
             dbContext.SaveChanges();
         }
     }
 }
+
+//SEMPRE QUE ADICIONARMOS ALGO AQUI
+
+//drop-database -Context GuardaPelaCulturaContext
+//update-database -Context GuardaPelaCulturaContext
