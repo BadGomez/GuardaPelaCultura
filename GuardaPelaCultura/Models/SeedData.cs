@@ -13,6 +13,7 @@ namespace GuardaPelaCultura.Models
         internal static void Populate(GuardaPelaCulturaContext dbContext)
         {
             PopulateRestaurante(dbContext);
+            PopulateMesa(dbContext);
         }
         private static void PopulateRestaurante(GuardaPelaCulturaContext dbContext)
         {
@@ -31,10 +32,10 @@ namespace GuardaPelaCultura.Models
                     TextoDescritivoRestaurante = "Restaurante regional",
                     HoraAbertura = 11,
                     HoraFecho = 23,
-                    Imagem = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
-                    Imagem1 = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
-                    Imagem2 = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
-                    Imagem3 = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
+                    Imagem = File.ReadAllBytes("./imgSeed/OBorges.PNG"),
+                    Imagem1 = File.ReadAllBytes("./imgSeed/OBorges1.PNG"),
+                    Imagem2 = File.ReadAllBytes("./imgSeed/OBorges2.PNG"),
+                    Imagem3 = File.ReadAllBytes("./imgSeed/OBorges3.PNG"),
                 });
             dbContext.Restaurantes.Add(
             new Restaurantes
@@ -52,6 +53,25 @@ namespace GuardaPelaCultura.Models
                 Imagem3 = File.ReadAllBytes("./imgSeed/01.jpg"),
             });
             dbContext.SaveChanges();
+        }
+        private static void PopulateMesa (GuardaPelaCulturaContext dbContext)
+        {
+            dbContext.Mesa.Add(
+                new Mesa
+                {
+                    RestaurantesId = 1,
+                    LugaresRestaurante = 4,
+                    MesasRestaurante = 1,
+                });
+            dbContext.Mesa.Add(
+                new Mesa
+                {
+                    RestaurantesId = 2,
+                    LugaresRestaurante = 5,
+                    MesasRestaurante = 1,
+                });
+            dbContext.SaveChanges();
+
         }
     }
 }
