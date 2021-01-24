@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GuardaPelaCultura.Models;
+//using GuardaPelaCultura.Models;
+//using GuardaPelaCultura.Models;
 
 namespace GuardaPelaCultura
 {
@@ -34,11 +36,12 @@ namespace GuardaPelaCultura
 
             services.AddDbContext<GuardaPelaCulturaContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("GuardaPelaCulturaContext")));
-            
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,9 +77,10 @@ namespace GuardaPelaCultura
             {
                 using (var serviceScope = app.ApplicationServices.CreateScope())
                 {
-                    var dbContext = serviceScope.ServiceProvider.GetService<GuardaPelaCulturaDbContext>();
+                    var dbContext = serviceScope.ServiceProvider.GetService<GuardaPelaCulturaContext>();
                     SeedData.Populate(dbContext);
                 }
             }
+        }
     }
 }
