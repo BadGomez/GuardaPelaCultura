@@ -6,80 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\img\01.jpg" />
-    <Content Remove="wwwroot\img\02.jpg" />
-    <Content Remove="wwwroot\img\03.jpg" />
-    <Content Remove="wwwroot\img\04.jpg" />
-    <Content Remove="wwwroot\img\05.jpg" />
-    <Content Remove="wwwroot\img\06.jpg" />
-    <Content Remove="wwwroot\img\07.jpg" />
-    <Content Remove="wwwroot\img\08.jpg" />
-    <Content Remove="wwwroot\img\about-01.jpg" />
-    <Content Remove="wwwroot\img\about-02.jpg" />
-    <Content Remove="wwwroot\img\about-03.jpg" />
-    <Content Remove="wwwroot\img\about-04.jpg" />
-    <Content Remove="wwwroot\img\about-05.jpg" />
-    <Content Remove="wwwroot\img\about-06.jpg" />
-    <Content Remove="wwwroot\img\img-01.jpg" />
-    <Content Remove="wwwroot\img\OBorges.PNG" />
-    <Content Remove="wwwroot\img\Simple..PNG" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\img\ - Cópia.jpg" />
-    <None Include="wwwroot\img\.jpg" />
-    <None Include="wwwroot\img\01.jpg" />
-    <None Include="wwwroot\img\02.jpg" />
-    <None Include="wwwroot\img\03.jpg" />
-    <None Include="wwwroot\img\04.jpg" />
-    <None Include="wwwroot\img\05.jpg" />
-    <None Include="wwwroot\img\06.jpg" />
-    <None Include="wwwroot\img\07.jpg" />
-    <None Include="wwwroot\img\08.jpg" />
-    <None Include="wwwroot\img\about-01.jpg" />
-    <None Include="wwwroot\img\about-02.jpg" />
-    <None Include="wwwroot\img\about-03.jpg" />
-    <None Include="wwwroot\img\about-04.jpg" />
-    <None Include="wwwroot\img\about-05.jpg" />
-    <None Include="wwwroot\img\about-06.jpg" />
-    <None Include="wwwroot\img\BolaDePrata.PNG" />
-    <None Include="wwwroot\img\CandidaturaGuarda.jpg" />
-    <None Include="wwwroot\img\cascatadoPoçodaBroca.png" />
-    <None Include="wwwroot\img\catedral.jpg" />
-    <None Include="wwwroot\img\Colmeia.PNG" />
-    <None Include="wwwroot\img\CortelheiraDaBurra.PNG" />
-    <None Include="wwwroot\img\DomGarfo.PNG" />
-    <None Include="wwwroot\img\EstacaoDeVilarFormoso.jpg" />
-    <None Include="wwwroot\img\ForteDeAlmeida.gif" />
-    <None Include="wwwroot\img\fronteiradapaz.jpg" />
-    <None Include="wwwroot\img\GuardaRios.PNG" />
-    <None Include="wwwroot\img\HospedariaDoConventoD%27Aguiar.jpg" />
-    <None Include="wwwroot\img\HospedariaRobalo.jpg" />
-    <None Include="wwwroot\img\hotel-fortaleza-de-almeida.jpg" />
-    <None Include="wwwroot\img\HotelCamelo.jpg" />
-    <None Include="wwwroot\img\HotelLusitano.jpg" />
-    <None Include="wwwroot\img\HotelSantos.jpg" />
-    <None Include="wwwroot\img\HotelVanguarda.jpg" />
-    <None Include="wwwroot\img\img-01.jpg" />
     <None Include="wwwroot\img\logoGuarda.png" />
-    <None Include="wwwroot\img\muralhadeCasteloRodrigo.jpg" />
-    <None Include="wwwroot\img\Museu-Natural-da-Electricidade-Serra-da-Estrela.jpg" />
-    <None Include="wwwroot\img\MuseudoBrinquedo.jpg" />
-    <None Include="wwwroot\img\MuseudoCoa.jpg" />
-    <None Include="wwwroot\img\museudopao.jpg" />
-    <None Include="wwwroot\img\museuhisticocultural.jpg" />
-    <None Include="wwwroot\img\museuminiaturaautomovel.jpg" />
-    <None Include="wwwroot\img\museusabugal.jpg" />
-    <None Include="wwwroot\img\NobreVinhosETal.PNG" />
-    <None Include="wwwroot\img\OAlbertino.PNG" />
-    <None Include="wwwroot\img\OBorges.PNG" />
-    <None Include="wwwroot\img\PoçoDoInferno.jpg" />
-    <None Include="wwwroot\img\praias-fluviais-loriga.jpg" />
     <None Include="wwwroot\img\Se-Catedral-da-Guarda.jpg" />
-    <None Include="wwwroot\img\serraestrela.jpg" />
     <None Include="wwwroot\img\se_guarda.jpg" />
-    <None Include="wwwroot\img\Simple..PNG" />
-    <None Include="wwwroot\img\VilaGaleSerraDaEstrela.jpg" />
   </ItemGroup>
 
   <ItemGroup>
