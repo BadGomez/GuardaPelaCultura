@@ -6,9 +6,64 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\CandidaturaGuarda.jpg" />
+    <Content Remove="wwwroot\img\cascatadoPoçodaBroca.png" />
+    <Content Remove="wwwroot\img\catedral.jpg" />
+    <Content Remove="wwwroot\img\EstacaoDeVilarFormoso.jpg" />
+    <Content Remove="wwwroot\img\ForteDeAlmeida.gif" />
+    <Content Remove="wwwroot\img\fronteiradapaz.jpg" />
+    <Content Remove="wwwroot\img\GuardaRios.PNG" />
+    <Content Remove="wwwroot\img\HospedariaDoConventoD'Aguiar.jpg" />
+    <Content Remove="wwwroot\img\HospedariaRobalo.jpg" />
+    <Content Remove="wwwroot\img\hotel-fortaleza-de-almeida.jpg" />
+    <Content Remove="wwwroot\img\HotelCamelo.jpg" />
+    <Content Remove="wwwroot\img\HotelLusitano.jpg" />
+    <Content Remove="wwwroot\img\HotelSantos.jpg" />
+    <Content Remove="wwwroot\img\HotelVanguarda.jpg" />
+    <Content Remove="wwwroot\img\muralhadeCasteloRodrigo.jpg" />
+    <Content Remove="wwwroot\img\Museu-Natural-da-Electricidade-Serra-da-Estrela.jpg" />
+    <Content Remove="wwwroot\img\MuseudoBrinquedo.jpg" />
+    <Content Remove="wwwroot\img\MuseudoCoa.jpg" />
+    <Content Remove="wwwroot\img\museudopao.jpg" />
+    <Content Remove="wwwroot\img\museuhisticocultural.jpg" />
+    <Content Remove="wwwroot\img\museuminiaturaautomovel.jpg" />
+    <Content Remove="wwwroot\img\museusabugal.jpg" />
+    <Content Remove="wwwroot\img\PoçoDoInferno.jpg" />
+    <Content Remove="wwwroot\img\praias-fluviais-loriga.jpg" />
+    <Content Remove="wwwroot\img\serraestrela.jpg" />
+    <Content Remove="wwwroot\img\VilaGaleSerraDaEstrela.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\CandidaturaGuarda.jpg" />
+    <None Include="wwwroot\img\cascatadoPoçodaBroca.png" />
+    <None Include="wwwroot\img\catedral.jpg" />
+    <None Include="wwwroot\img\EstacaoDeVilarFormoso.jpg" />
+    <None Include="wwwroot\img\ForteDeAlmeida.gif" />
+    <None Include="wwwroot\img\fronteiradapaz.jpg" />
+    <None Include="wwwroot\img\GuardaRios.PNG" />
+    <None Include="wwwroot\img\HospedariaDoConventoD'Aguiar.jpg" />
+    <None Include="wwwroot\img\HospedariaRobalo.jpg" />
+    <None Include="wwwroot\img\hotel-fortaleza-de-almeida.jpg" />
+    <None Include="wwwroot\img\HotelCamelo.jpg" />
+    <None Include="wwwroot\img\HotelLusitano.jpg" />
+    <None Include="wwwroot\img\HotelSantos.jpg" />
+    <None Include="wwwroot\img\HotelVanguarda.jpg" />
     <None Include="wwwroot\img\logoGuarda.png" />
+    <None Include="wwwroot\img\muralhadeCasteloRodrigo.jpg" />
+    <None Include="wwwroot\img\Museu-Natural-da-Electricidade-Serra-da-Estrela.jpg" />
+    <None Include="wwwroot\img\MuseudoBrinquedo.jpg" />
+    <None Include="wwwroot\img\MuseudoCoa.jpg" />
+    <None Include="wwwroot\img\museudopao.jpg" />
+    <None Include="wwwroot\img\museuhisticocultural.jpg" />
+    <None Include="wwwroot\img\museuminiaturaautomovel.jpg" />
+    <None Include="wwwroot\img\museusabugal.jpg" />
+    <None Include="wwwroot\img\PoçoDoInferno.jpg" />
+    <None Include="wwwroot\img\praias-fluviais-loriga.jpg" />
     <None Include="wwwroot\img\Se-Catedral-da-Guarda.jpg" />
+    <None Include="wwwroot\img\serraestrela.jpg" />
     <None Include="wwwroot\img\se_guarda.jpg" />
+    <None Include="wwwroot\img\VilaGaleSerraDaEstrela.jpg" />
   </ItemGroup>
 
   <ItemGroup>
