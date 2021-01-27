@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GuardaPelaCultura.Data;
 using GuardaPelaCultura.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuardaPelaCultura.Controllers
 {
+    [Authorize(Roles = "GestorGPC, GestorRestaurante")]
     public class EmentasController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
@@ -142,7 +144,6 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // POST: Ementas/Delete/5
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

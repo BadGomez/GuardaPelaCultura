@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GuardaPelaCultura.Data;
 using GuardaPelaCultura.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuardaPelaCultura.Controllers
 {
+    [Authorize(Roles = "GestorGPC, GestorRestaurante")]
     public class MesasController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
