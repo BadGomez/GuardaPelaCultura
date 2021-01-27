@@ -17,6 +17,12 @@
 <h2 class="text-center mt-5 mb-4">Index</h2>
 
 <body>
+    <div class="card-body">
+        <form asp-ation="Index" method="get">
+            <input name="name" type="search" class="form-control" value="@Model.SearchName" placeholder="Nome da Reserva" />
+            <input name="page" type="hidden" value="1" />
+        </form>
+    </div>
     <div class="card-deck">
         <div class="row">
             @{
