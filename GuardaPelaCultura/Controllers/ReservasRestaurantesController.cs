@@ -29,7 +29,7 @@ namespace GuardaPelaCultura.Controllers
         }*/
 
         // GET: ReservasRestaurantes/Details/5
-        [Authorize(Roles = "Cliente")]
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -72,7 +72,7 @@ namespace GuardaPelaCultura.Controllers
             {
                 _context.Add(reservasRestaurante);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = reservasRestaurante.ReservasRestauranteId.ToString()});
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);
@@ -131,7 +131,7 @@ namespace GuardaPelaCultura.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = reservasRestaurante.ReservasRestauranteId.ToString() });
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);

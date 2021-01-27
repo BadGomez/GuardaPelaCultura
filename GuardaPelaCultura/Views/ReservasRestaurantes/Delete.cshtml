@@ -32,6 +32,13 @@
     <form asp-action="Delete" class="align-content-center text-center">
         <input type="hidden" asp-for="ReservasRestauranteId" />
         <input type="submit" value="Apagar" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+        @if (User.IsInRole("Cliente"))
+        {
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+        }
+        else
+        {
+            <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+        }
     </form>
 </div>

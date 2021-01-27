@@ -62,5 +62,13 @@
 </div>
 <div class="text-center">
     <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ReservasRestauranteId">Editar</a>
-    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+    <a asp-action="Delete" type="submit" value="Apagar" class="btn btn-danger" asp-route-id="@Model.ReservasRestauranteId">Eliminar</a>
+    @if (User.IsInRole("Cliente"))
+    {
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Concluir</a>
+    }
+    else
+    {
+        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+    }
 </div>
