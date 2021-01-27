@@ -102,7 +102,7 @@ namespace GuardaPelaCultura.Data
                 TextoDescritivoRestaurante = "O Restaurante Cortelha da Burra é um local onde os sabores tradicionais da Serra ganham nova dimensão!",
                 HoraAbertura = 10,
                 HoraFecho = 22,
-                Imagem = File.ReadAllBytes("./imgSeed/CortelhaDaBurra.PNG"),
+                Imagem = File.ReadAllBytes("./imgSeed/CortelheiraDaBurra.PNG"),
                 Imagem1 = File.ReadAllBytes("./imgSeed/cortelhaDaBurra1.jpg"),
                 Imagem2 = File.ReadAllBytes("./imgSeed/cortelhaDaBurra2.jpg"),
                 Imagem3 = File.ReadAllBytes("./imgSeed/cortelhaDaBurra3.jpg"),
@@ -119,9 +119,9 @@ namespace GuardaPelaCultura.Data
                 HoraAbertura = 12,
                 HoraFecho = 23,
                 Imagem = File.ReadAllBytes("./imgSeed/DomGarfo.PNG"),
-                Imagem1 = File.ReadAllBytes("./imgSeed/dom-garfo2.jpg"),
-                Imagem2 = File.ReadAllBytes("./imgSeed/dom-gafo3.jpg"),
-                Imagem3 = File.ReadAllBytes("./imgSeed/dom-gafo4.jpg"),
+                Imagem1 = File.ReadAllBytes("./imgSeed/dom-garfo2.png"),
+                Imagem2 = File.ReadAllBytes("./imgSeed/dom-garfo3.png"),
+                Imagem3 = File.ReadAllBytes("./imgSeed/dom-garfo4.jpg"),
             });
 
             dbContext.Restaurantes.Add(
@@ -137,7 +137,7 @@ namespace GuardaPelaCultura.Data
                  Imagem = File.ReadAllBytes("./imgSeed/dsigual1.jpg"),
                  Imagem1 = File.ReadAllBytes("./imgSeed/dsigual2.jpg"),
                  Imagem2 = File.ReadAllBytes("./imgSeed/dsigual3.jpg"),
-                 Imagem3 = File.ReadAllBytes("./imgSeed/dsigual4.jpg"),
+                 Imagem3 = File.ReadAllBytes("./imgSeed/dsigual4.png"),
              });
 
             dbContext.Restaurantes.Add(
@@ -167,8 +167,8 @@ namespace GuardaPelaCultura.Data
                  HoraAbertura = 11,
                  HoraFecho = 24,
                  Imagem = File.ReadAllBytes("./imgSeed/GuardaRios.PNG"),
-                 Imagem1 = File.ReadAllBytes("./imgSeed/GuardaRios1.jpg"),
-                 Imagem2 = File.ReadAllBytes("./imgSeed/GuardaRios2.jpg"),
+                 Imagem1 = File.ReadAllBytes("./imgSeed/GuardaRios1.jpeg"),
+                 Imagem2 = File.ReadAllBytes("./imgSeed/GuardaRios2.jpeg"),
                  Imagem3 = File.ReadAllBytes("./imgSeed/GuardaRios3.jpg"),
              });
 
@@ -225,7 +225,7 @@ namespace GuardaPelaCultura.Data
              {
                  NomeRestaurante = "Simple",
                  NumeroTelefone = "271212149",
-                 EmailRestaurante = "ajrsribeiro@hotmail.com <ajrsribeiro@hotmail.com>;",
+                 EmailRestaurante = "ajrsribeiro@hotmail.com;",
                  LocalizacaoRestaurante = "R. Dr. Vasco Borges 20, 6300-771 Guarda",
                  TextoDescritivoRestaurante = " Gastronimia: Italiana, Piza, Internacional, Mediterrâneo, Contemporâneo, Saudável, Portuguesa",
                  HoraAbertura = 10,
@@ -239,7 +239,7 @@ namespace GuardaPelaCultura.Data
         }
         private static void PopulateMesa(GuardaPelaCulturaContext dbContext)
         {
-            dbContext.Mesa.Add(
+            /*dbContext.Mesa.Add(
                 new Mesa
                 {
                     RestaurantesId = 1,
@@ -253,7 +253,7 @@ namespace GuardaPelaCultura.Data
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
                 });
-            dbContext.Mesa.Add(
+           /* dbContext.Mesa.Add(
                 new Mesa
                 {
                     RestaurantesId = 3,
@@ -329,9 +329,9 @@ namespace GuardaPelaCultura.Data
                     RestaurantesId = 13,
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
-                });
+                });*/
 
-            dbContext.SaveChanges();
+           // dbContext.SaveChanges();*/
 
         }
 
