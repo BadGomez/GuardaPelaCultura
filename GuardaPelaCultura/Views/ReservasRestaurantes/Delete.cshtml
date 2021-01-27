@@ -31,7 +31,7 @@
     </div>
     <form asp-action="Delete" class="align-content-center text-center">
         <input type="hidden" asp-for="ReservasRestauranteId" />
-        <input type="submit" value="Apagar" class="btn btn-danger" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
         @if (User.IsInRole("Cliente"))
         {
             <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
