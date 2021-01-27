@@ -33,12 +33,12 @@ namespace GuardaPelaCultura.Data
                 new Restaurantes
                 {
                     NomeRestaurante = "O Borges",
-                    NumeroTelefone = "914725836",
+                    NumeroTelefone = "238313010",
                     EmailRestaurante = "oborges@gmail.com",
-                    LocalizacaoRestaurante = "Seia",
-                    TextoDescritivoRestaurante = "Restaurante regional",
-                    HoraAbertura = 11,
-                    HoraFecho = 23,
+                    LocalizacaoRestaurante = "Tv. do Funchal 7, 6270-517 Seia",
+                    TextoDescritivoRestaurante = "Localizado no centro de Seia. Restaurante com provas dadas na gastronomia regional",
+                    HoraAbertura = 12,
+                    HoraFecho = 22,
                     Imagem = File.ReadAllBytes("./imgSeed/OBorges.PNG"),
                     Imagem1 = File.ReadAllBytes("./imgSeed/OBorges1.jpg"),
                     Imagem2 = File.ReadAllBytes("./imgSeed/OBorges2.jpg"),
@@ -47,7 +47,7 @@ namespace GuardaPelaCultura.Data
             dbContext.Restaurantes.Add(
             new Restaurantes
             {
-                NomeRestaurante = "After",
+                NomeRestaurante = "Bola de Prata",
                 NumeroTelefone = "963725836",
                 EmailRestaurante = "After@gmail.com",
                 LocalizacaoRestaurante = "Guarda",
@@ -146,5 +146,5 @@ namespace GuardaPelaCultura.Data
 //update-database -Context GuardaPelaCulturaContext
 
 //utilizadores
-//Update-Database -Context ApplicationDbContext
 //drop-Database -Context ApplicationDbContext
+//update-Database -Context ApplicationDbContext
