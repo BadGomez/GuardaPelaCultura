@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GuardaPelaCultura.Data;
 using GuardaPelaCultura.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuardaPelaCultura.Controllers
 {
+    //[Authorize(Roles = "GestorGPC, GestorRestaurante")]
     public class ReservasRestaurantesController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
@@ -27,6 +29,7 @@ namespace GuardaPelaCultura.Controllers
         }*/
 
         // GET: ReservasRestaurantes/Details/5
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,6 +50,7 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasRestaurante);
         }
 
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         // GET: ReservasRestaurantes/Create
         public IActionResult Create()
         {
@@ -59,6 +63,7 @@ namespace GuardaPelaCultura.Controllers
         // POST: ReservasRestaurantes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,ClienteId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
@@ -67,7 +72,7 @@ namespace GuardaPelaCultura.Controllers
             {
                 _context.Add(reservasRestaurante);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = reservasRestaurante.ReservasRestauranteId.ToString()});
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);
@@ -76,6 +81,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: ReservasRestaurantes/Edit/5
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,6 +103,7 @@ namespace GuardaPelaCultura.Controllers
         // POST: ReservasRestaurantes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReservasRestauranteId,RestaurantesId,ClienteId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
@@ -124,7 +131,7 @@ namespace GuardaPelaCultura.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = reservasRestaurante.ReservasRestauranteId.ToString() });
             }
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente", reservasRestaurante.ClienteId);
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante", reservasRestaurante.MesaId);
@@ -133,6 +140,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: ReservasRestaurantes/Delete/5
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -154,6 +162,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // POST: ReservasRestaurantes/Delete/5
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -168,6 +177,8 @@ namespace GuardaPelaCultura.Controllers
         {
             return _context.ReservasRestaurante.Any(e => e.ReservasRestauranteId == id);
         }
+
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public IActionResult Index(string name = null, int page = 1)
         { 
             var pagination = new PagingInfo

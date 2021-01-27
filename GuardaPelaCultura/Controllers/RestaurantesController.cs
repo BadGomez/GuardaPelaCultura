@@ -9,9 +9,11 @@ using GuardaPelaCultura.Data;
 using GuardaPelaCultura.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuardaPelaCultura.Controllers
 {
+    [Authorize(Roles = "GestorGPC, GestorRestaurante")]
     public class RestaurantesController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
