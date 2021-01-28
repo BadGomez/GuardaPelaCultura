@@ -21,6 +21,7 @@ namespace GuardaPelaCultura.Data
         {
             PopulateRestaurante(dbContext);
             PopulateMesa(dbContext);
+            PopulateEmenta(dbContext);
         }
         private static void PopulateRestaurante(GuardaPelaCulturaContext dbContext)
         {
@@ -258,7 +259,6 @@ namespace GuardaPelaCultura.Data
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
                 });
-           
             dbContext.Mesa.Add(
                 new Mesa
                 {
@@ -336,13 +336,380 @@ namespace GuardaPelaCultura.Data
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
                 });
-
-
-           dbContext.SaveChanges();
-
-
+          
+            dbContext.SaveChanges();
         }
 
+        private static void PopulateEmenta(GuardaPelaCulturaContext dbContext) {
+            
+            if (dbContext.Produtos.Any()) 
+            {
+                return;   
+            }
+
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Grelhada Mista",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 8,
+                    QuantidadeEmenta = 200,
+                    RestaurantesId = 1,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bitoque",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 200,
+                    RestaurantesId = 1,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Salmonete Grelhado",
+                    DescricaoEmenta = "Legumes",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 200,
+                    RestaurantesId = 1,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Posta Mirandesa",
+                    DescricaoEmenta = "Legumes",
+                    PrecoEmenta = 13,
+                    QuantidadeEmenta = 250,
+                    RestaurantesId = 2,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Picanha",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 11,
+                    QuantidadeEmenta = 250,
+                    RestaurantesId = 2,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Lagartinhos",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 250,
+                    RestaurantesId = 2,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Cozido à Portuguesa",
+                    DescricaoEmenta = "Batata Cozida e Arroz",
+                    PrecoEmenta = 12,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 3,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Cabrito Assado no Forno",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 3,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bacalhau à Lagareiro",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 13,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 3,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bife da Vazia Grelhado",
+                    DescricaoEmenta = "Batata Cozida e Arroz",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 150,
+                    RestaurantesId = 4,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Posta de Novilho de Miranda",
+                    DescricaoEmenta = "Batata Cozida e Arroz",
+                    PrecoEmenta = 13,
+                    QuantidadeEmenta = 150,
+                    RestaurantesId = 4,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Filetes de Polvo",
+                    DescricaoEmenta = "Arroz de Legumes",
+                    PrecoEmenta = 11,
+                    QuantidadeEmenta = 150,
+                    RestaurantesId = 4,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Costeleta de Novilho",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 17,
+                    QuantidadeEmenta = 200,
+                    RestaurantesId = 5,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Polvo à Lagareiro",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 200,
+                    RestaurantesId = 5,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Borrego na Brasa",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 12,
+                    QuantidadeEmenta = 200,
+                    RestaurantesId = 5,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Pescada à Roamana",
+                    DescricaoEmenta = "Arroz basmati de cenoura",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 6,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Costoleta de Porco",
+                    DescricaoEmenta = "Arroz e Feijão",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 6,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Costoleta de Porco",
+                    DescricaoEmenta = "Arroz e Feijão",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 6,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Franguinho da guia",
+                    DescricaoEmenta = "Arroz e Salada",
+                    PrecoEmenta = 9,
+                    QuantidadeEmenta = 100,
+                    RestaurantesId = 6,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Costeleta Recheada",
+                    DescricaoEmenta = "Puré de Batata",
+                    PrecoEmenta = 8,
+                    QuantidadeEmenta = 110,
+                    RestaurantesId = 7,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Carapauzínhos Fritos",
+                    DescricaoEmenta = "Arroz de Tomate",
+                    PrecoEmenta = 8,
+                    QuantidadeEmenta = 110,
+                    RestaurantesId = 7,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Hamburguer Ovo Bacon",
+                    DescricaoEmenta = "Batata Frita",
+                    PrecoEmenta = 7,
+                    QuantidadeEmenta = 110,
+                    RestaurantesId = 7,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bacalhau à Lagareiro",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 19,
+                    QuantidadeEmenta = 120,
+                    RestaurantesId = 8,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bife à Casa",
+                    DescricaoEmenta = "Batata Frita",
+                    PrecoEmenta = 14,
+                    QuantidadeEmenta = 120,
+                    RestaurantesId = 8,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bife à Casa",
+                    DescricaoEmenta = "Batata Frita",
+                    PrecoEmenta = 14,
+                    QuantidadeEmenta = 120,
+                    RestaurantesId = 8,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Choquinhos Grelhados",
+                    DescricaoEmenta = "Legumes",
+                    PrecoEmenta = 12,
+                    QuantidadeEmenta = 170,
+                    RestaurantesId = 9,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Vitela Assada no Forno",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 18,
+                    QuantidadeEmenta = 170,
+                    RestaurantesId = 9,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bacalhau com Broa",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 17,
+                    QuantidadeEmenta = 170,
+                    RestaurantesId = 9,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Lombinho de Porco laminado",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 14,
+                    QuantidadeEmenta = 210,
+                    RestaurantesId = 10,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Espetada de salmão e gambas",
+                    DescricaoEmenta = "Legumes Salteados",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 210,
+                    RestaurantesId = 10,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bife à Nobre",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 14,
+                    QuantidadeEmenta = 210,
+                    RestaurantesId = 10,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Leitão de Folgosinho",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 220,
+                    RestaurantesId = 11,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Borrego Assado no Forno",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 220,
+                    RestaurantesId = 11,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Vitela de Folgosinho",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 15,
+                    QuantidadeEmenta = 220,
+                    RestaurantesId = 11,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bife com Bacon",
+                    DescricaoEmenta = "Batata Frita e Arroz",
+                    PrecoEmenta = 12,
+                    QuantidadeEmenta = 230,
+                    RestaurantesId = 12,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Bacalhau com Broa",
+                    DescricaoEmenta = "Batata Assada",
+                    PrecoEmenta = 13,
+                    QuantidadeEmenta = 230,
+                    RestaurantesId = 12,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Filetes de Polvo",
+                    DescricaoEmenta = "Arroz de Legumes",
+                    PrecoEmenta = 12,
+                    QuantidadeEmenta = 230,
+                    RestaurantesId = 12,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Carbonara",
+                    DescricaoEmenta = "Bacon, Natas e Ovo",
+                    PrecoEmenta = 7,
+                    QuantidadeEmenta = 150,
+                    RestaurantesId = 13,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Índia",
+                    DescricaoEmenta = "Frango, quiabo, carril e Iogurt",
+                    PrecoEmenta = 7,
+                    QuantidadeEmenta = 150,
+                    RestaurantesId = 13,
+                });
+            dbContext.Produtos.Add(
+                new Ementa
+                {
+                    NomeEmenta = "Pizza Margherita",
+                    DescricaoEmenta = "Molho tomate e mozzarella",
+                    PrecoEmenta = 6,
+                    QuantidadeEmenta = 150,
+                    RestaurantesId = 13,
+                });
+
+            dbContext.SaveChanges();
+        }
         internal static async Task SeedDefaultAdminAsync (UserManager<IdentityUser> userManager)
         {
             await EnsureUserIsCreated(userManager, DEFAULT_ADMIN_USER, DEFAULT_ADMIN_PASSWORD, ROLE_ADMINISTRADOR);
