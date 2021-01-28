@@ -189,7 +189,6 @@ namespace GuardaPelaCultura.Controllers
         public async Task<IActionResult> IndexAsync(string name = null, int page = 1)
         {
             string email = User.Identity.Name;
-            int id = 0;
             var cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.EmailCliente == email);
             if (cliente == null)
             {
