@@ -238,7 +238,7 @@ namespace GuardaPelaCultura.Data
             dbContext.SaveChanges();
         }
         private static void PopulateMesa(GuardaPelaCulturaContext dbContext)
-        {
+        {          
             /*dbContext.Mesa.Add(
                 new Mesa
                 {
@@ -331,7 +331,7 @@ namespace GuardaPelaCultura.Data
                     MesasRestaurante = 1,
                 });*/
 
-           // dbContext.SaveChanges();*/
+            // dbContext.SaveChanges();*/
 
         }
 
