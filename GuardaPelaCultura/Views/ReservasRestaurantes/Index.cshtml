@@ -17,12 +17,15 @@
     <a asp-action="Create">Criar nova Reserva</a>
 </p>
 <body>
+    @if (!User.IsInRole("Cliente"))
+    {
     <div class="card-body">
         <form asp-action="Index" method="get">
             <input name="name" type="search" class="form-control" value="@Model.SearchName"  placeholder="Nome Da Reserva" />
             <input name="page" type="hidden" value="1" />
         </form>
     </div>
+    }
     <div class="card-deck">
         <div class="row justify-content-center">
             @foreach (var item in Model.ReservaRestaurantes)
@@ -45,30 +48,29 @@
             }
         </div>
     </div>
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">Primeira</a></li>
+    @if (!User.IsInRole("Cliente")) { 
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">Primeira</a></li>
+                @{
+                    int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
+                    if (initalPage < 1) initalPage = 1;
 
-            @{
-                int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
-                if (initalPage < 1) initalPage = 1;
-
-                int finalPage = Model.Paginacao.CurrentPage + PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
-                if (finalPage > Model.Paginacao.TotalPages) finalPage = Model.Paginacao.TotalPages;
-            }
-
-            @for (int p = initalPage; p <= finalPage; p++)
-            {
-                if (p == Model.Paginacao.CurrentPage)
-                {
-                    <li class="page-item active"><a class="page-link" href="#">@p</a></li>
+                    int finalPage = Model.Paginacao.CurrentPage + PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
+                    if (finalPage > Model.Paginacao.TotalPages) finalPage = Model.Paginacao.TotalPages;
                 }
-                else
-                {
-                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.SearchName">@p</a></li>
-                }
-            }
 
+                @for (int p = initalPage; p <= finalPage; p++)
+                {
+                    if (p == Model.Paginacao.CurrentPage)
+                    {
+                        <li class="page-item active"><a class="page-link" href="#">@p</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.SearchName">@p</a></li>
+                    }
+                }
             <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchName">Última</a></li>
         </ul>
     </nav>
