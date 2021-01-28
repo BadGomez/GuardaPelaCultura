@@ -239,7 +239,12 @@ namespace GuardaPelaCultura.Data
         }
         private static void PopulateMesa(GuardaPelaCulturaContext dbContext)
         {
-            /*dbContext.Mesa.Add(
+            if (dbContext.Mesa.Any())
+            {
+                return;
+            }
+
+            dbContext.Mesa.Add(
                 new Mesa
                 {
                     RestaurantesId = 1,
@@ -253,7 +258,8 @@ namespace GuardaPelaCultura.Data
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
                 });
-           /* dbContext.Mesa.Add(
+           
+            dbContext.Mesa.Add(
                 new Mesa
                 {
                     RestaurantesId = 3,
@@ -329,9 +335,9 @@ namespace GuardaPelaCultura.Data
                     RestaurantesId = 13,
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
-                });*/
+                });
 
-           // dbContext.SaveChanges();*/
+           dbContext.SaveChanges();
 
         }
 
