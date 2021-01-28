@@ -43,7 +43,7 @@
     </div>
     <nav class="mt-4">
         <ul class="pagination  justify-content-center">
-            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchMesa">First</a></li>
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchMesa">Primeira</a></li>
 
             @{
                 int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
@@ -65,7 +65,7 @@
                 }
             }
 
-            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchMesa">Last</a></li>
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchMesa">Última</a></li>
         </ul>
     </nav>
 </body>

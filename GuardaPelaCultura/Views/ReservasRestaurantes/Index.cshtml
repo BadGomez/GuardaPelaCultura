@@ -51,8 +51,7 @@
     @if (!User.IsInRole("Cliente")) { 
         <nav class="mt-4">
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">First</a></li>
-
+                <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">Primeira</a></li>
                 @{
                     int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
                     if (initalPage < 1) initalPage = 1;
@@ -72,10 +71,8 @@
                         <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.SearchName">@p</a></li>
                     }
                 }
-
-                <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchName">Last</a></li>
-            </ul>
-        </nav>
-   }
+            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchName">Última</a></li>
+        </ul>
+    </nav>
 </body>
 
