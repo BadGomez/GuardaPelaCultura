@@ -240,7 +240,7 @@ namespace GuardaPelaCultura.Data
         }
         private static void PopulateMesa(GuardaPelaCulturaContext dbContext)
         {
-            if (dbContext.Mesa.Any()) 
+            if (dbContext.Mesa.Any())
             {
                 return;
             }
@@ -259,7 +259,7 @@ namespace GuardaPelaCultura.Data
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
                 });
-           dbContext.Mesa.Add(
+            dbContext.Mesa.Add(
                 new Mesa
                 {
                     RestaurantesId = 3,
@@ -336,9 +336,8 @@ namespace GuardaPelaCultura.Data
                     LugaresRestaurante = 4,
                     MesasRestaurante = 1,
                 });
-
+          
             dbContext.SaveChanges();
-
         }
 
         private static void PopulateEmenta(GuardaPelaCulturaContext dbContext) {

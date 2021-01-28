@@ -52,9 +52,8 @@ namespace GuardaPelaCultura.Controllers
 
         [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         // GET: ReservasRestaurantes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente");
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante");
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
@@ -66,10 +65,18 @@ namespace GuardaPelaCultura.Controllers
         [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,ClienteId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
         {
             if (ModelState.IsValid)
             {
+                string email = User.Identity.Name;
+
+                var cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.EmailCliente == email);
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+                reservasRestaurante.Cliente = cliente;
                 _context.Add(reservasRestaurante);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Details), new { id = reservasRestaurante.ReservasRestauranteId.ToString()});
@@ -170,7 +177,7 @@ namespace GuardaPelaCultura.Controllers
             var reservasRestaurante = await _context.ReservasRestaurante.FindAsync(id);
             _context.ReservasRestaurante.Remove(reservasRestaurante);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexAsync));
         }
 
         private bool ReservasRestauranteExists(int id)
@@ -178,26 +185,57 @@ namespace GuardaPelaCultura.Controllers
             return _context.ReservasRestaurante.Any(e => e.ReservasRestauranteId == id);
         }
 
-        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
-        public IActionResult Index(string name = null, int page = 1)
-        { 
-            var pagination = new PagingInfo
+        [Authorize(Roles = "Cliente,GestorGPC, GestorRestaurante")]
+        public async Task<IActionResult> IndexAsync(string name = null, int page = 1)
+        {
+            string email = User.Identity.Name;
+            var cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.EmailCliente == email);
+            if (cliente == null)
             {
-                CurrentPage = page,
-                PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
-                TotalItem = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name)).Count()
-            };
-            var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
-            return View(
-            new ReservaRestauranteListViewModel
-            {
-
-                ReservaRestaurantes = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name)).OrderBy(page => page.DataReserva).Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize).Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes),
-                Paginacao = pagination,
-                SearchName = name
+                if (User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
+                {
+                    
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
-            ) ;
 
+            if (User.IsInRole("Cliente")) { 
+            
+                if(_context.ReservasRestaurante.Where(p => p.ClienteId == cliente.ClienteId).Count() == 0)
+                {
+                    return RedirectToAction("Index","Home");
+                }
+                var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
+                return View(
+                new ReservaRestauranteListViewModel
+                {
+                    ReservaRestaurantes = _context.ReservasRestaurante.Where(p => p.ClienteId == cliente.ClienteId)
+                    .OrderBy(page => page.DataReserva).Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes),
+                }
+                ) ;
+            }
+            else
+            {
+                var pagination = new PagingInfo
+                {
+                    CurrentPage = page,
+                    PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
+                    TotalItem = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name)).Count()
+                };
+                var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
+                return View(
+                new ReservaRestauranteListViewModel
+                {
+
+                    ReservaRestaurantes = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name)).OrderBy(page => page.DataReserva).Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize).Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes),
+                    Paginacao = pagination,
+                    SearchName = name
+                }
+                );
+            }
         }
     }
 }
