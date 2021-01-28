@@ -4,47 +4,69 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Create</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<h4>Cliente</h4>
-<hr />
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<h2 class="text-center mt-5 mb-4">Faça o seu Registo</h2>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-2 ml-5">
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group pt-1 mr-2">
+                <label asp-for="NomeCliente" class="control-label">Nome</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="NumeroTelefoneCliente" class="control-label">Telefone</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="NifCliente" class="control-label">NIF</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="EmailCliente" class="control-label">Email</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="Password" class="control-label">Password</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="ConfirmPassword" class="control-label">Confirme a sua Password</label>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-9">
+        <form method="post" enctype="multipart/form-data" asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeCliente" class="control-label"></label>
                 <input asp-for="NomeCliente" class="form-control" />
                 <span asp-validation-for="NomeCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroTelefoneCliente" class="control-label"></label>
                 <input asp-for="NumeroTelefoneCliente" class="form-control" />
                 <span asp-validation-for="NumeroTelefoneCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NifCliente" class="control-label"></label>
                 <input asp-for="NifCliente" class="form-control" />
                 <span asp-validation-for="NifCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmailCliente" class="control-label"></label>
                 <input asp-for="EmailCliente" class="form-control" />
                 <span asp-validation-for="EmailCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
                 <input asp-for="ConfirmPassword" class="form-control" type="password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group pt-1 mr-2">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>

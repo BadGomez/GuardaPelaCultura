@@ -4,38 +4,56 @@
     ViewData["Title"] = "Edit Personal Data";
 }
 
-<h1>Edit</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<h4>Cliente</h4>
-<hr />
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<h2 class="text-center mt-5 mb-4">Editar Registo</h2>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-2 ml-5">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group pt-1 mr-2">
+                <label asp-for="NomeCliente" class="control-label">Nomw</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="NumeroTelefoneCliente" class="control-label">Telémovel</label>
+            </div>
+            <div class="form-group pt-2 mr-2">
+                <label @Html.DisplayNameFor(model => model.EmailCliente)>Email</label>
+            </div>
+            <div class="form-group pt-2 mr-2" >
+               <label @Html.DisplayNameFor(model => model.NifCliente)>NIF</label>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-9">
         <form asp-action="Edit">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NomeCliente" class="control-label"></label>
                 <input asp-for="NomeCliente" class="form-control" />
                 <span asp-validation-for="NomeCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroTelefoneCliente" class="control-label"></label>
                 <input asp-for="NumeroTelefoneCliente" class="form-control" />
                 <span asp-validation-for="NumeroTelefoneCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.EmailCliente)
-                @Html.DisplayFor(model => model.EmailCliente)
-                @Html.DisplayNameFor(model => model.NifCliente)
-                @Html.DisplayFor(model => model.NifCliente)
+                <label>@Html.DisplayFor(model => model.EmailCliente)</label>
+            </div>
+            <div class="form-group">
+                <label>@Html.DisplayFor(model => model.NifCliente)</label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    
 
