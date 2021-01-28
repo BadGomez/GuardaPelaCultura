@@ -177,7 +177,7 @@ namespace GuardaPelaCultura.Controllers
             var reservasRestaurante = await _context.ReservasRestaurante.FindAsync(id);
             _context.ReservasRestaurante.Remove(reservasRestaurante);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(IndexAsync));
+            return RedirectToAction(nameof(Index),"Home");
         }
 
         private bool ReservasRestauranteExists(int id)
