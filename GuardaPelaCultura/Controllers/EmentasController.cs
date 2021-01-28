@@ -158,21 +158,25 @@ namespace GuardaPelaCultura.Controllers
             return _context.Produtos.Any(e => e.EmentaId == id);
         }
 
-        public IActionResult Index(int page = 1) 
+        public IActionResult Index(string name = null, int page = 1) 
         {
             var pagination = new PagingInfo
             {
                 CurrentPage = page,
                 PageSize = PagingInfo.DEFAULT_PAGE_SIZE,
-                TotalItem = _context.Produtos.Count()
+                TotalItem = _context.Produtos.Where(p => name == null || p.NomeEmenta.Contains(name)).Count()
             };
             var guardaPelaCulturaContext = _context.Produtos.Include(e => e.Restaurantes);
             return View(
             new EmentaListViewModel
             {
-                Ementas = _context.Produtos.OrderBy(page => page.NomeEmenta)
-            .Skip((page - 1) * pagination.PageSize).Take(pagination.PageSize).Include(e => e.Restaurantes),
-                Pagination = pagination
+                Ementas = _context.Produtos.Where(p => name == null || p.NomeEmenta.Contains(name))
+                        .OrderBy(p => p.Restaurantes.NomeRestaurante)
+                        .Skip((page - 1) * pagination.PageSize)
+                        .Take(pagination.PageSize)
+                        .Include(r => r.Restaurantes),
+                Pagination = pagination,
+                SearchName = name
             }
             );
         }
