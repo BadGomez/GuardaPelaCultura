@@ -22,6 +22,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <link href="~/css/outroscss.css" rel="stylesheet" />
 
 </head>
 <!--
@@ -50,14 +51,41 @@ https://templatemo.com/tm-539-simple-house
                 </ul>
             </nav>
         </div>
+        <nav class="mt-4">
+            <ul class="pagination  justify-content-center">
+                <li class="page-item"><a class="btn-success page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">Primeira</a></li>
+
+                @{
+                    int initalPage = Model.Paginacao.CurrentPage - PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
+                    if (initalPage < 1) initalPage = 1;
+
+                    int finalPage = Model.Paginacao.CurrentPage + PagingInfo.NUMBER_PAGES_SHOW_BEFORE_AFTER;
+                    if (finalPage > Model.Paginacao.TotalPages) finalPage = Model.Paginacao.TotalPages;
+                }
+
+                @for (int p = initalPage; p <= finalPage; p++)
+                {
+                    if (p == Model.Paginacao.CurrentPage)
+                    {
+                        <li class="page-item active"><a class="page-link btn-success" href="#">@p</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link btn-success" asp-action="Index" asp-route-page="@p" asp-route-name="@Model.SearchName">@p</a></li>
+                    }
+                }
+
+                <li class="page-item"><a class="page-link btn-success" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchName">Última</a></li>
+            </ul>
+        </nav>
 
         <!-- Gallery -->
-        <div class="row tm-gallery">
+        <div class="row tm-gallery mt-4">
             <!-- gallery page 1 -->
             <div id="tm-gallery-page-restaurantes" class="tm-gallery-page">
-            @{ 
-                int contaRestaurante = 0;
-            }
+                @{
+                    int contaRestaurante = 0;
+                }
                 @foreach (var item in Model.ListaRestaurantes)
                 {
                     <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
@@ -68,7 +96,7 @@ https://templatemo.com/tm-539-simple-house
                                 var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
                             }
                             <img src='@imgsrc' alt="Image" style="width:100%" class="img-fluid tm-gallery-img  hover-shadow cursor" onclick="document.getElementById('Modal+@item.RestaurantesId').style.display='block';RestauranteAtual(@contaRestaurante)" />
-                            
+
                             <figcaption class="mb-4">
                                 <h4 class="tm-gallery-title">@Html.DisplayFor(model => item.NomeRestaurante)</h4>
                                 <p class="tm-gallery-description">@Html.DisplayFor(model => item.TextoDescritivoRestaurante)</p>
