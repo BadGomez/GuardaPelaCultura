@@ -52,9 +52,10 @@ namespace GuardaPelaCultura.Controllers
 
         [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         // GET: ReservasRestaurantes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "ClienteId", "NomeCliente");
+            
+
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante");
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
@@ -66,10 +67,18 @@ namespace GuardaPelaCultura.Controllers
         [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,ClienteId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
+        public async Task<IActionResult> Create([Bind("ReservasRestauranteId,RestaurantesId,MesaId,NumeroPessoas,EstadoReserva,DataReserva,ObservacaoReserva")] ReservasRestaurante reservasRestaurante)
         {
             if (ModelState.IsValid)
             {
+                string email = User.Identity.Name;
+
+                var cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.EmailCliente == email);
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+                reservasRestaurante.Cliente = cliente;
                 _context.Add(reservasRestaurante);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Details), new { id = reservasRestaurante.ReservasRestauranteId.ToString()});
