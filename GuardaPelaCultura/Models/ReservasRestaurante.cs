@@ -20,14 +20,15 @@ namespace GuardaPelaCultura.Models
         public int MesaId { get; set; }
         public Mesa Mesa { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Escreva o número de pessoas, com máximo 6 devido às restrições do covid!")]
         public int NumeroPessoas { get; set; }
 
         public bool EstadoReserva { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "É necessário indicar a data, para que seja possivel realizar a reserva!")]
         public DateTime DataReserva { get; set; }
 
+        [StringLength(1000, MinimumLength = 2, ErrorMessage = "Minimo 2 caracteres")]
         public string ObservacaoReserva { get; set; }
     }
 }
