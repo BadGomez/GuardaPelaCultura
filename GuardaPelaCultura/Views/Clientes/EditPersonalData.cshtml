@@ -16,24 +16,24 @@
 <h2 class="text-center mt-5 mb-4">Editar Registo</h2>
 <div class="row">
     <div class="col-sm-2 ml-5">
-        <form asp-action="Edit">
+        <form asp-action="EditPersonalData">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group pt-1 mr-2">
-                <label asp-for="NomeCliente" class="control-label">Nomw</label>
+                <label asp-for="NomeCliente" class="control-label">Nome</label>
             </div>
             <div class="form-group pt-2 mr-2">
                 <label asp-for="NumeroTelefoneCliente" class="control-label">Telémovel</label>
             </div>
             <div class="form-group pt-2 mr-2">
-                <label @Html.DisplayNameFor(model => model.EmailCliente)>Email</label>
+                <label asp-for="EmailCliente" class="control-label">Email</label>
             </div>
-            <div class="form-group pt-2 mr-2" >
-               <label @Html.DisplayNameFor(model => model.NifCliente)>NIF</label>
+            <div class="form-group pt-2 mr-2">
+                <label asp-for="NifCliente" class="control-label">NIF</label>
             </div>
         </form>
     </div>
     <div class="col-sm-9">
-        <form asp-action="Edit">
+        <form asp-action="EditPersonalData">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="NomeCliente" class="form-control" />
@@ -50,10 +50,8 @@
                 <label>@Html.DisplayFor(model => model.NifCliente)</label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                <input asp-controller="Home" asp-action="Index" type="submit" value="Guardar" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
-    
-

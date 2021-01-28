@@ -4,50 +4,50 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+<link href="~/css/templatemo-style.css" rel="stylesheet" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/parallax.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<table class="table mt-5 text-center">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeCliente)
+                <p>Nome</p>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumeroTelefoneCliente)
+                <p>Telefone</p>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NifCliente)
+                <p>NIF</p>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailCliente)
+                <p>Email</p>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroTelefoneCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NifCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailCliente)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroTelefoneCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NifCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailCliente)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <th> <a class="tm-nav-link" title="Manage">@User.Identity.Name.Substring(0, User.Identity.Name.IndexOf("@", 0)) </a></th>
+                    <th> <a asp-controller="Clientes" asp-action="EditPersonalData" class="tm-nav-link" title="Manage">@User.Identity.Name.Substring(0, User.Identity.Name.IndexOf("@", 0)) </a></th>
                 <tr />
             </tbody>
         </table>
