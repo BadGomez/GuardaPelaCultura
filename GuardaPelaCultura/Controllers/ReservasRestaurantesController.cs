@@ -54,8 +54,6 @@ namespace GuardaPelaCultura.Controllers
         // GET: ReservasRestaurantes/Create
         public async Task<IActionResult> CreateAsync()
         {
-            
-
             ViewData["MesaId"] = new SelectList(_context.Mesa, "MesaId", "MesasRestaurante");
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
             return View();
@@ -179,7 +177,7 @@ namespace GuardaPelaCultura.Controllers
             var reservasRestaurante = await _context.ReservasRestaurante.FindAsync(id);
             _context.ReservasRestaurante.Remove(reservasRestaurante);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexAsync));
         }
 
         private bool ReservasRestauranteExists(int id)
@@ -188,15 +186,34 @@ namespace GuardaPelaCultura.Controllers
         }
 
         [Authorize(Roles = "Cliente,GestorGPC, GestorRestaurante")]
-        public IActionResult Index(string name = null, int page = 1)
+        public async Task<IActionResult> IndexAsync(string name = null, int page = 1)
         {
+            string email = User.Identity.Name;
+            int id = 0;
+            var cliente = await _context.Cliente.SingleOrDefaultAsync(c => c.EmailCliente == email);
+            if (cliente == null)
+            {
+                if (User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
+                {
+                    
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
             if (User.IsInRole("Cliente")) { 
             
+                if(_context.ReservasRestaurante.Where(p => p.ClienteId == cliente.ClienteId).Count() == 0)
+                {
+                    return RedirectToAction("Index","Home");
+                }
                 var guardaPelaCulturaContext = _context.ReservasRestaurante.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes);
                 return View(
                 new ReservaRestauranteListViewModel
                 {
-                    ReservaRestaurantes = _context.ReservasRestaurante.Where(p => name == null || p.Cliente.NomeCliente.Contains(name))
+                    ReservaRestaurantes = _context.ReservasRestaurante.Where(p => p.ClienteId == cliente.ClienteId)
                     .OrderBy(page => page.DataReserva).Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurantes),
                 }
                 ) ;

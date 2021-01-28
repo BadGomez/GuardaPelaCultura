@@ -78,7 +78,6 @@ https://templatemo.com/tm-539-simple-house
                 <li class="page-item"><a class="page-link btn-success" asp-action="Index" asp-route-page="@Model.Paginacao.TotalPages" asp-route-name="@Model.SearchName">Última</a></li>
             </ul>
         </nav>
-
         <!-- Gallery -->
         <div class="row tm-gallery mt-4">
             <!-- gallery page 1 -->
@@ -166,7 +165,17 @@ https://templatemo.com/tm-539-simple-house
                                         </div>
                                         <div class="row mt-5 mb-4">
                                             <div class="col-sm-5 ml-5 text-center">
-                                                <a href="ReservasRestaurantes/Create" class="btn btn-outline-danger">Reservar Mesa</a>
+                                                <a asp-controller="ReservasRestaurantes" asp-action="Create" class="btn btn-outline-danger">Reservar Mesa</a>
+                                                @{
+                                                    if (User.IsInRole("Cliente"))
+                                                    {
+                                                        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-danger">Minhas Reservas</a>
+                                                    }
+                                                    else if(User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
+                                                    {
+                                                        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-danger">Todas Reservas</a>
+                                                    }
+                                                }
                                             </div>
                                             <div class="col-sm-6 text-center">
                                                 <a href="ReservasTakeAways/Create" class="btn btn-outline-danger"> Reserva Take Away</a>
