@@ -166,7 +166,6 @@ namespace GuardaPelaCultura.Controllers
             return _context.Produtos.Any(e => e.EmentaId == id);
         }
 
-        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         public IActionResult Index(string name = null, int page = 1) 
         {
             var pagination = new PagingInfo
