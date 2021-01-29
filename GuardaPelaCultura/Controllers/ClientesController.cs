@@ -107,9 +107,7 @@ namespace GuardaPelaCultura.Controllers
             EditLoggedInClienteViewModel clienteInfo = new EditLoggedInClienteViewModel
             {
                 NomeCliente = cliente.NomeCliente,
-                NumeroTelefoneCliente = cliente.NumeroTelefoneCliente,
-                NifCliente = cliente.NifCliente,
-                EmailCliente = cliente.EmailCliente
+                NumeroTelefoneCliente = cliente.NumeroTelefoneCliente
             };
 
             return View(clienteInfo);
@@ -135,7 +133,7 @@ namespace GuardaPelaCultura.Controllers
             }
 
             clienteLoggedIn.NomeCliente = cliente.NomeCliente;
-
+            clienteLoggedIn.NumeroTelefoneCliente = cliente.NumeroTelefoneCliente;
             try
             {
                 _context.Update(clienteLoggedIn);

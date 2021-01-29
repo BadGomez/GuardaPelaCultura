@@ -15,12 +15,5 @@ namespace GuardaPelaCultura.Models
         [Required(ErrorMessage = "Escreva o seu número de telefone por favor")]
         [StringLength(14, ErrorMessage = "O telefone tem de ter 14 caracteres")]
         public string NumeroTelefoneCliente { get; set; }
-
-        public string NifCliente { get; set; }
-
-        [Required(ErrorMessage = "É necessário o seu Email por favor")]
-        [EmailAddress(ErrorMessage = "Email Inválido")]
-        [StringLength(40, ErrorMessage = "O Email deve ter 40 caracteres")]
-        public string EmailCliente { get; set; }
     }
 }
