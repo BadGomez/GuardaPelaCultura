@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GuardaPelaCultura.Data;
 using GuardaPelaCultura.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GuardaPelaCultura.Controllers
 {
@@ -20,12 +21,15 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: ReservasTakeAways
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ReservasTakeAway.ToListAsync());
         }
 
         // GET: ReservasTakeAways/Details/5
+
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +47,8 @@ namespace GuardaPelaCultura.Controllers
             return View(reservasTakeAway);
         }
 
+
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         // GET: ReservasTakeAways/Create
         public IActionResult Create()
         {
@@ -52,6 +58,7 @@ namespace GuardaPelaCultura.Controllers
         // POST: ReservasTakeAways/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReservasTakeAwayId,NomeRestaurante,Nome,NumeroTelefone,ObservacaoTakeAway")] ReservasTakeAway reservasTakeAway)
@@ -60,12 +67,13 @@ namespace GuardaPelaCultura.Controllers
             {
                 _context.Add(reservasTakeAway);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),"Home");
             }
             return View(reservasTakeAway);
         }
 
         // GET: ReservasTakeAways/Edit/5
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +92,7 @@ namespace GuardaPelaCultura.Controllers
         // POST: ReservasTakeAways/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReservasTakeAwayId,NomeRestaurante,Nome,NumeroTelefone,ObservacaoTakeAway")] ReservasTakeAway reservasTakeAway)
@@ -117,6 +126,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: ReservasTakeAways/Delete/5
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +145,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // POST: ReservasTakeAways/Delete/5
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
