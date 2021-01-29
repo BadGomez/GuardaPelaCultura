@@ -170,9 +170,9 @@ https://templatemo.com/tm-539-simple-house
                                                     {
                                                         <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-danger">Minhas Reservas</a>
                                                     }
-                                                    else if(User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
+                                                    else if (User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
                                                     {
-                                                        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-danger">Todas Reservas</a>
+                                                        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="ml-2 btn btn-outline-danger">Todas Reservas</a>
                                                     }
                                                 }
                                             </div>
@@ -453,6 +453,21 @@ https://templatemo.com/tm-539-simple-house
                 </div>
             </div>
         </div>
+        @if (User.IsInRole("GestorRestaurante"))
+        {
+            <div class="text-center mt-4">
+                <a asp-controller="Restaurantes" asp-action="Index" class="btn btn-outline-success mr-2">Restaurantes</a>
+                <a asp-controller="Ementas" asp-action="Index" class="btn btn-outline-success">Ementas</a>
+            </div>
+        }
+        else if (User.IsInRole("GestorGPC"))
+        {
+            <div class="text-center mt-4">
+                <a asp-controller="Restaurantes" asp-action="Index" class="btn btn-outline-success mr-2">Restaurantes</a>
+                <a asp-controller="Ementas" asp-action="Index" class="btn btn-outline-success mr-2">Ementas</a>
+                <a asp-controller="Clientes" asp-action="Index" class="btn btn-outline-success mr-2">Clientes</a>
+            </div>
+        }
     </main>
     <script>
         $(document).ready(function () {
