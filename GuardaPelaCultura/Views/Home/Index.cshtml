@@ -51,7 +51,7 @@ https://templatemo.com/tm-539-simple-house
             </nav>
         </div>
         <nav class="mt-4">
-            <ul class="pagination  justify-content-center">
+            <ul class="pagination justify-content-center">
                 <li class="page-item"><a class="btn-success page-link" asp-action="Index" asp-route-page="1" asp-route-name="@Model.SearchName">Primeira</a></li>
 
                 @{
@@ -168,7 +168,7 @@ https://templatemo.com/tm-539-simple-house
                                                 @{
                                                     if (User.IsInRole("Cliente"))
                                                     {
-                                                        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="btn btn-outline-danger">Minhas Reservas</a>
+                                                        <a asp-controller="ReservasRestaurantes" asp-action="Index" class="ml-2 btn btn-outline-danger">Minhas Reservas</a>
                                                     }
                                                     else if (User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
                                                     {
@@ -177,7 +177,8 @@ https://templatemo.com/tm-539-simple-house
                                                 }
                                             </div>
                                             <div class="col-sm-6 text-center">
-                                                <a asp-controller="ReservasTakeAways" asp-action="Create" class="btn btn-outline-danger"> Reserva Take Away</a>
+                                                <a asp-controller="Ementas" asp-action="Index" class="btn btn-outline-danger">Ementas</a>
+                                                <a asp-controller="ReservasTakeAways" asp-action="Create" class=" ml-2 btn btn-outline-danger"> Reserva Take Away</a>
                                             </div>
                                         </div>
                                     </div>

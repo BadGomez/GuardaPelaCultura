@@ -19,7 +19,7 @@
 <body>
     <div class="card-body">
         <form asp-ation="Index" method="get">
-            <input name="name" type="search" class="form-control" value="@Model.SearchName" placeholder="Nome da Reserva" />
+            <input name="name" type="search" class="form-control" value="@Model.SearchName" placeholder="Prato Pretendido" />
             <input name="page" type="hidden" value="1" />
         </form>
     </div>
@@ -37,11 +37,17 @@
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeEmenta)</h5>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.DescricaoEmenta)</p>
                             <p class="mt-2"><strong>Preço: </strong>@Html.DisplayFor(modelItem => item.PrecoEmenta) €</p>
-                            <p class="mt-2"><strong>Quantidade: </strong>@Html.DisplayFor(modelItem => item.QuantidadeEmenta)</p>
+                            @if (User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
+                            {
+                                <p class="mt-2"><strong>Quantidade: </strong>@Html.DisplayFor(modelItem => item.QuantidadeEmenta)</p>
+                            }
                             <p class="mt-2"><strong>Restaurante: </strong>@Html.DisplayFor(modelItem => item.Restaurantes.NomeRestaurante)</p>
-                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.EmentaId">Editar</a>
-                            <a asp-action="Details" class="btn btn-success" asp-route-id="@item.EmentaId">Detalhes</a>
-                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.EmentaId">Eliminar</a>
+                            @if (User.IsInRole("GestorGPC")||User.IsInRole("GestorRestaurante"))
+                            {
+                                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.EmentaId">Editar</a>
+                                <a asp-action="Details" class="btn btn-success" asp-route-id="@item.EmentaId">Detalhes</a>
+                                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.EmentaId">Eliminar</a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -78,8 +84,11 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-md-2">
-            <a asp-action="Create" class="btn btn-outline-secondary" style="margin-top:10%">Criar Novo</a>
-        </div>
-    </div>
+        @if (User.IsInRole("GestorGPC") || User.IsInRole("GestorRestaurante"))
+        {
+            <div class="col-md-2">
+                <a asp-action="Create" class="btn btn-outline-secondary" style="margin-top:10%">Criar Novo</a>
+            </div>
+        }
+     </div>
 </body>

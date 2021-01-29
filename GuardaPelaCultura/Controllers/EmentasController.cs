@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GuardaPelaCultura.Controllers
 {
-    [Authorize(Roles = "GestorGPC, GestorRestaurante")]
+
     public class EmentasController : Controller
     {
         private readonly GuardaPelaCulturaContext _context;
@@ -29,6 +29,8 @@ namespace GuardaPelaCultura.Controllers
         }*/
 
         // GET: Ementas/Details/5
+
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +50,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: Ementas/Create
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public IActionResult Create()
         {
             ViewData["RestaurantesId"] = new SelectList(_context.Restaurantes, "RestaurantesId", "NomeRestaurante");
@@ -57,6 +60,7 @@ namespace GuardaPelaCultura.Controllers
         // POST: Ementas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmentaId,NomeEmenta,DescricaoEmenta,PrecoEmenta,QuantidadeEmenta,RestaurantesId")] Ementa ementa)
@@ -72,6 +76,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: Ementas/Edit/5
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +96,7 @@ namespace GuardaPelaCultura.Controllers
         // POST: Ementas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EmentaId,NomeEmenta,DescricaoEmenta,PrecoEmenta,QuantidadeEmenta,RestaurantesId")] Ementa ementa)
@@ -125,6 +131,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // GET: Ementas/Delete/5
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +151,7 @@ namespace GuardaPelaCultura.Controllers
         }
 
         // POST: Ementas/Delete/5
+        [Authorize(Roles = "GestorGPC, GestorRestaurante")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -158,6 +166,7 @@ namespace GuardaPelaCultura.Controllers
             return _context.Produtos.Any(e => e.EmentaId == id);
         }
 
+        [Authorize(Roles = "Cliente, GestorGPC, GestorRestaurante")]
         public IActionResult Index(string name = null, int page = 1) 
         {
             var pagination = new PagingInfo
